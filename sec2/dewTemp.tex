@@ -1,28 +1,28 @@
-	\subsubsection{Temperatura de Burbuja}
+\subsubsection{Temperatura de Rocío}
 
 
 
 \begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
 
 \node(init){Inicio};
-\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
-\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$T,y_1,y_2,\ldots,y_{nc}$};
+\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$P,y_1, y_2,\ldots, y_{nc}$};
+\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$T,x_1,x_2,\ldots,x_{nc}$};
 \node[below of=estim,below](relations){Cálculo de las\\ razones de equilibrio\\
-$K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
-\node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=0}^{nc} K_i x_i $\\$ E = \ln{S_y} $};
+$K_i = \frac{ \hat{\phi}_i^L }{ \hat{ \phi}_i^V}$};
+\node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\
+$ S_x =\sum_{i=0}^{nc}\frac{y_i}{ K_i} $\\$ E = \ln{S_x} $};
 
 \node[below of=error,below](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
 \node[below of=criteria,below](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
 $\Delta T = 0.1  \quad \text{o} \quad 1.0 K$};
 
-\node[below of=tempIncrement,below](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $T^*$
-\\$K_i^* = \frac{ \hat{\phi}_i^L }{ \hat{\phi}_i^V}$};
+\node[below of=tempIncrement,below](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $T^*$\\$K_i^* = \frac{ \hat{\phi}_i^L }{\hat{\phi}_i^V}$};
 
 \node[right of=criteria	,right=2.2cm](end){Fin};
 
 
 \node[right of=tempIncrement, right=3cm](errorWithIncrement){Cálculo de la función Error \\ con $T^*$\\
-$ S_y^* =\sum_{i=0}^{nc} K_i^* x_i $\\$ E^* = \ln{S_y^*} $};
+$ S_x^* =\sum_{i=0}^{nc} \frac{y_i}{K_i^*}  $\\$ E^* = \ln{S_x^*} $};
 
 \node[right of=relations, right = 3cm](newValues){Cálculo de las nuevas estimaciones \\ de las \textbf{Incógnitas}\\
 \begin{minipage}{0.2\linewidth}
@@ -30,10 +30,10 @@ $ S_y^* =\sum_{i=0}^{nc} K_i^* x_i $\\$ E^* = \ln{S_y^*} $};
 T_{nueva} = \frac{TT^* \left(E^*-E\right)}{T^*E^*-TE}
 \end{equation*}
 \begin{equation*}
- S_y =\sum_{i=0}^{nc} K_i x_i \\
+ S_x =\sum_{i=0}^{nc}\frac{y_i}{K_i}   \\
  \end{equation*}
  \begin{equation*}
-\left(y_i\right)_{nueva} = \frac{K_i x_i}{S_y}
+\left(x_i\right)_{nueva} = \frac{y_i}{K_i S_x}
 \end{equation*}
 \end{minipage}
 };

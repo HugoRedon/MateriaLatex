@@ -1,12 +1,13 @@
-	\subsubsection{Temperatura de Burbuja}
+\subsubsection{Presión de Burbuja}
+
 
 
 
 \begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
 
 \node(init){Inicio};
-\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
-\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$T,y_1,y_2,\ldots,y_{nc}$};
+\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$T,x_1, x_2,\ldots, x_{nc}$};
+\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$P,y_1,y_2,\ldots,y_{nc}$};
 \node[below of=estim,below](relations){Cálculo de las\\ razones de equilibrio\\
 $K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
 \node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=0}^{nc} K_i x_i $\\$ E = \ln{S_y} $};
