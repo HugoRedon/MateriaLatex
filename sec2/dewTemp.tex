@@ -10,7 +10,7 @@
 \node[below of=estim,below](relations){Cálculo de las\\ razones de equilibrio\\
 $K_i = \frac{ \hat{\phi}_i^L }{ \hat{ \phi}_i^V}$};
 \node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\
-$ S_x =\sum_{i=0}^{nc}\frac{y_i}{ K_i} $\\$ E = \ln{S_x} $};
+$ S_x =\sum_{i=1}^{nc}\frac{y_i}{ K_i} $\\$ E = \ln{S_x} $};
 
 \node[below of=error,below](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
 \node[below of=criteria,below](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
@@ -22,7 +22,7 @@ $\Delta T = 0.1  \quad \text{o} \quad 1.0 K$};
 
 
 \node[right of=tempIncrement, right=3cm](errorWithIncrement){Cálculo de la función Error \\ con $T^*$\\
-$ S_x^* =\sum_{i=0}^{nc} \frac{y_i}{K_i^*}  $\\$ E^* = \ln{S_x^*} $};
+$ S_x^* =\sum_{i=1}^{nc} \frac{y_i}{K_i^*}  $\\$ E^* = \ln{S_x^*} $};
 
 \node[right of=relations, right = 3cm](newValues){Cálculo de las nuevas estimaciones \\ de las \textbf{Incógnitas}\\
 \begin{minipage}{0.2\linewidth}
@@ -30,7 +30,7 @@ $ S_x^* =\sum_{i=0}^{nc} \frac{y_i}{K_i^*}  $\\$ E^* = \ln{S_x^*} $};
 T_{nueva} = \frac{TT^* \left(E^*-E\right)}{T^*E^*-TE}
 \end{equation*}
 \begin{equation*}
- S_x =\sum_{i=0}^{nc}\frac{y_i}{K_i}   \\
+ S_x =\sum_{i=1}^{nc}\frac{y_i}{K_i}   \\
  \end{equation*}
  \begin{equation*}
 \left(x_i\right)_{nueva} = \frac{y_i}{K_i S_x}

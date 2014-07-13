@@ -1,0 +1,65 @@
+\subsection{Flash}
+
+
+
+\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
+
+\node(init){Inicio};
+\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$T,P,z_1, z_2,\ldots, z_{nc}$};
+\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$V/F,x_1,x_2,\ldots,x_{nc}$\\$y_1,y_2 \ldots, y_{nc}$};
+\node[below of=estim,below](relations){Cálculo de las\\ razones de equilibrio\\
+$K_i = \frac{ \hat{\phi}_i^L }{ \hat{ \phi}_i^V}$};
+\node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\
+$ \zeta =\sum_{i=1}^{nc}\left| x_i \hat{\varphi}_i^L - y_i \hat{\varphi}_i^V \right|$};
+
+\node[below of=error,below](criteria){$|\zeta| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
+
+
+\node[below of=criteria,below](rachford){Cálculo de $V/F$ con Rachford-Rice:\\ 
+\begin{minipage}{0.5\linewidth}
+\begin{equation*}
+S = \sum_{i=1}^{nc}\frac{z_i\left(K_i - 1\right)}{1+ \frac{V}{F}\left(K_i-1\right)}
+\end{equation*}
+Encontrar $V/F$ tal que $S = 0$\\
+Método de Newton-Raphson\\
+\begin{equation*}
+\acute{S} = \sum_{i=1}^{nc} \frac{-z_i \left(K_i - 1\right)^2}{\left[1+ \frac{V}{F} \left(K_i-1\right)\right]^2}
+\end{equation*}
+\begin{equation*}
+\left(\frac{V}{F}\right)_{nueva} = \left(\frac{V}{F}\right) - \frac{S}{\acute{S}}
+\end{equation*}
+\end{minipage}};
+
+\node[right of=criteria	,right=2.2cm](end){Fin};
+
+
+\node[right of=estim, right = 3cm](newValues){Cálculo de las nuevas estimaciones \\ de las \textbf{Incógnitas}\\
+\begin{minipage}{0.3\linewidth}
+\begin{equation*}
+\acute{x_i} = \frac{z_i}{1 + \frac{V}{F}\left(K_i-1\right)}
+\end{equation*}
+\begin{equation*}
+ S_x =\sum_{i=1}^{nc}\acute{x}_i \qquad x_i = \frac{\acute{x_i}}{S_x}
+\end{equation*}
+\begin{equation*}
+\acute{y_i} = \acute{x_i} K_i = \frac{z_i K_i}{1+\frac{V}{F}\left(K_i - 1\right)}
+\end{equation*}
+\begin{equation*}
+ S_y =\sum_{i=1}^{nc}\acute{y}_i \qquad y_i = \frac{\acute{y_i}}{S_y}
+\end{equation*}
+\end{minipage}
+};
+
+
+\draw[-latex] (init)--(lab);
+\draw[-latex] (lab)--(estim);
+\draw[-latex] (estim)--(relations);
+\draw[-latex] (relations)--(error);
+\draw[-latex] (error)--(criteria);
+\draw[-latex] (criteria)--node[fill=none,draw=none,above]{SI}(end);
+\draw[-latex] (criteria)--node[fill=none,draw=none,left]{NO}(rachford);
+
+\draw[-latex] (rachford)-|(newValues);
+\draw[-latex] (newValues)--(relations);
+
+\end{tikzpicture}
