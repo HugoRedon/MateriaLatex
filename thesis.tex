@@ -20,13 +20,22 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,shadows,positioning,shapes}
 %--
-
+%citas como superíndice
+\usepackage[superscript,biblabel]{cite}
+\makeatletter \renewcommand{\@citess}[1]{\textsuperscript{\,[#1]}} \makeatother
+%--
+%bibliografía en idioma correcto
+\usepackage[fixlanguage]{babelbib}
+\selectbiblanguage{spanish}
+%--
 
 \begin{document}
 	\tableofcontents
-	\include{./sec1/sec1}
-	\include{./sec2/sec2}
-	\include{./sec3/sec3}
-	\include{./bib/bibliography}
+	\include{sec1/sec1}
+	\include{sec2/sec2}
+	\include{sec3/sec3}
+		
+	\bibliographystyle{babplain}
+	\bibliography{bib/bibliography}
 \end{document}
 	
