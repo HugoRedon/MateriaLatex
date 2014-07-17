@@ -1,40 +1,14 @@
-\documentclass{report}
-
-%para mostrar acentos
-\usepackage[utf8x]{inputenc}
-\usepackage[spanish]{babel}
-%--
-%para escribir codigo	
-\usepackage{listings}
-%--
-%para escribir ecuaciones
-\usepackage{amsmath}
-\usepackage{units}
-%--
-% para escribir el simbolo grado en ambiente math
-\usepackage{textcomp}
-\usepackage{gensymb}
-%--
-
-%para escribir diagramas
-\usepackage{tikz}
-\usetikzlibrary{arrows,shadows,positioning,shapes}
-%--
-%citas como superíndice
-\usepackage[superscript,biblabel]{cite}
-\makeatletter \renewcommand{\@citess}[1]{\textsuperscript{\,[#1]}} \makeatother
-%--
-%bibliografía en idioma correcto
-\usepackage[fixlanguage]{babelbib}
-\selectbiblanguage{spanish}
-%--
-
+\documentclass[11pt,letterpaper ,twoside , openright]{book}
+\usepackage{thesis}
 \begin{document}
 	\tableofcontents
-	\include{sec1/sec1}
-	\include{sec2/sec2}
-	\include{sec3/sec3}
 		
+	\include{java/java_chapter}
+	\include{calculatingProperties/calculatingProperties_chapter}
+	\include{libraryStructure/libraryStructure_chapter}
+	\include{internetResources/internetResources_chapter}	
+	\include{advancedOptions/advancedOptions_chapter}
+
 	\bibliographystyle{babplain}
 	\bibliography{bib/bibliography}
 \end{document}
