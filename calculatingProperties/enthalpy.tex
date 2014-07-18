@@ -24,3 +24,32 @@ private  double calculateEnthalpy( double volume){
 h^{\neq} = \sum_{i=1}^{nc} x_i \left[ h_i^{ref} + \int_{Tref}^{T} Cp_i^{\neq} \mathrm{d}T \right]
 \end{equation}
 
+
+
+\begin{tikzpicture}
+\begin{axis}
+\addplot[blue]table{plotdata/enthalpy/lv.dat};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[view/h=-165]
+\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[view/h=-225]
+\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[view/h=-120]
+\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+\end{axis}
+\end{tikzpicture}
