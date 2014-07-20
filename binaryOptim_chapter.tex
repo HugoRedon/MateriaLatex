@@ -1,0 +1,19 @@
+\chapter{Optimización de parámetros $Binarios$}
+
+
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\binaryDiagram}[1] {
+\begin{tikzpicture}
+\begin{axis}
+\addplot[amber,only marks,mark size = 1pt]table[x=x1, y=expTemp]{#1};
+\addplot[blue,only marks,mark size = 1pt]table[x=yExp, y=expTemp]{#1};
+\addplot[green,thick] table[x=x1, y=calcTemp]{#1};
+\addplot[red,thick] table[x=yCalc, y=calcTemp]{#1};
+\end{axis}
+\end{tikzpicture}
+ }
+
+\binaryDiagram{plotdata/binaryOptim/error.dat}
+
+\binaryDiagram{plotdata/binaryOptim/errorAfterOptim.dat}
