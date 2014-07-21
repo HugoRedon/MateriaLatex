@@ -13,7 +13,36 @@
 \end{axis}
 \end{tikzpicture}
  }
+\newcommand{\alphaDiagram}[1]{
+\begin{tikzpicture}
+\begin{axis}
+\addplot[blue,only marks,mark size = 1pt]table[x=temperature, y=expPressure]{#1};
+\addplot[red,thick]table[x=temperature, y=calcPressure]{#1};
+\end{axis}
+\end{tikzpicture}
+}
 
-\binaryDiagram{plotdata/binaryOptim/error.dat}
 
-\binaryDiagram{plotdata/binaryOptim/errorAfterOptim.dat}
+
+
+
+\section{Metanol-Agua}
+\binaryDiagram{plotdata/binaryOptim/methanolWater/error.dat}
+\alphaDiagram{plotdata/binaryOptim/methanolWater/errorWaterAlpha.dat}
+\alphaDiagram{plotdata/binaryOptim/methanolWater/errorWaterAlphaAfterOptim.dat}
+\alphaDiagram{plotdata/binaryOptim/methanolWater/errorMethanolAlpha.dat}
+\alphaDiagram{plotdata/binaryOptim/methanolWater/errorMethanolAlphaAfterOptim.dat}
+\binaryDiagram{plotdata/binaryOptim/methanolWater/errorAfterOptim.dat}
+
+\section{Metanol-Dióxido de carbono}
+
+
+
+\begin{tikzpicture}
+\begin{axis}
+	\addplot[blue,only marks]table[x=x, y=pressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+	\addplot[red,only marks]table[x=y, y=pressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+	\addplot[brown]table[x=x, y=calcPressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+	\addplot[green]table[x=ycalc, y=calcPressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+\end{axis}
+\end{tikzpicture}
