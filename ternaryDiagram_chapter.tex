@@ -1,0 +1,81 @@
+\chapter{Diagramas ternarios}
+
+\newcommand{\alphaOptim}[1] {
+
+\begin{tabular}{c c}
+
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[blue,only marks,mark size = 1pt]table[x=Temperature,y=experimentalPressure]{plotdata/ternaryDiagram/#1/afterOptim.dat};
+		\addplot[red,thick]table[x=Temperature,y=calculatedPressure]{plotdata/ternaryDiagram/#1/afterOptim.dat};
+	\end{axis}
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[blue,only marks,mark size = 1pt]table[x=Temperature,y=experimentalPressure]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+		\addplot[red,thick]table[x=Temperature,y=calculatedPressure]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+	\end{axis}
+\end{tikzpicture}
+\\
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[blue,only marks,mark size = 1pt]table[x=Temperature,y=error]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+		\addplot[red,only marks,mark size = 1pt]table[x=Temperature,y=error]{plotdata/ternaryDiagram/#1/afterOptim.dat};
+	\end{axis}
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[only marks,mark size = 1pt]table[x=iteration,y=A]{plotdata/ternaryDiagram/#1/history.dat};
+		\addplot[only marks,mark size = 1pt]table[x=iteration,y=B]{plotdata/ternaryDiagram/#1/history.dat};
+		\addplot[only marks,mark size = 1pt]table[x=iteration,y=C]{plotdata/ternaryDiagram/#1/history.dat};
+	
+	\end{axis}
+\end{tikzpicture}
+\\
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[red,only marks,mark size = 1pt]table[x=iteration,y=Error]{plotdata/ternaryDiagram/#1/history.dat};
+	\end{axis}
+\end{tikzpicture}
+\end{tabular}
+}
+
+
+\newcommand{\binary}[1]{
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[blue,only marks,mark size = 1pt]table[x=x1,y=pressure]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+		\addplot[red,only marks,mark size = 1pt]table[x=y1,y=pressure]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+		\addplot[green,thick]table[x=y1calc,y=calcpressure]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+		\addplot[brown,thick]table[x=x1,y=calcpressure]{plotdata/ternaryDiagram/#1/beforeOptim.dat};
+
+		\addplot[purple,thick]table[x=y1calc,y=calcpressure]{plotdata/ternaryDiagram/#1/afterOptim.dat};
+		\addplot[black,thick]table[x=x1,y=calcpressure]{plotdata/ternaryDiagram/#1/afterOptim.dat};
+	\end{axis}
+\end{tikzpicture}
+
+}
+
+\alphaOptim{ethylene}
+\alphaOptim{water}
+\alphaOptim{ethanol}
+
+
+binary
+
+
+
+\binary{ethylenewater}
+
+
+
+\begin{tikzpicture}
+\begin{ternaryaxis}[xlabel=Agua,
+ylabel=Etileno,
+zlabel=Etanol]
+\addplot3[only marks,blue] table[x=x1,y=x2,z=x3]{plotdata/ternaryDiagram/graph.dat};
+\addplot3[only marks,red] table[x=y1,y=y2,z=y3]{plotdata/ternaryDiagram/graph.dat};
+\end{ternaryaxis}
+\end{tikzpicture}

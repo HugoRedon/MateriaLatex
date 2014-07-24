@@ -2,56 +2,78 @@
  La presión es el cálculo mas sencillo que podemos realizar con la ecuación de estado cúbica.
 
 \begin{equation}
-	p = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
+	P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
 \end{equation}
 
- Crearemos una clase en java que use la librería Materia y realize una gráfica de presión contra volumen a una temperatura determinada.
+{$P$} : Es la presión en [Pa].\\
+{$v$} : Es el volumen molar en [$\frac{m^3}{kg}$]\\
+{$a$} : Es una medida de la atracción entre las partículas. [$\frac{m^5}{kg s}$]\\
+{$a$} : Es el volumen excluido por un mol de partículas.[$\frac{m^3}{kg}$]\\
+{$u $ y $w $} : Son los parámetros diferentes para cada ecuación de estado.\\
 
-%\pgfplotstabletypeset{plotdata/pressurevolume.dat}%no es necesario mostrar la tabla
+\begin{tabular}{|c |c |c|}
+	\hline
+	Ecuación de estado  & $u$ & $w$ \\
+	\hline
+	Peng robinson  & $2$& $-1$\\
+	\hline
+	Redlich Kwong  & $1$& $0$\\
+	\hline
+	TST  & $2.5$& $-1.5$\\
+	\hline
+\end{tabular}
 
-\begin{tikzpicture}
-\begin{axis}
-\addplot[blue]table{plotdata/pressurevolume.dat};
-\end{axis}
-\end{tikzpicture}
+La ecuación de estado cúbica esta representada por la clase Cubic en la librería de funciones Materia.
 
-
-\begin{tikzpicture}
-\begin{axis}
-\addplot3[surf,
-colormap={blueblack}{color=(white) color=(blue)},
-domain=0:1]table{plotdata/pressurevolumetemperature.dat};
-\end{axis}
-\end{tikzpicture}
-
-
-\begin{lstlisting}[label=se,caption=Some Code]
+Un cálculo de presión con la libreria, se realiza de la siguiente manera.
+\begin{lstlisting}[label=pressureCalculation,caption=Cálculo de presión para el heptano con la ecuación de estado cúbica de Van Der Waals]
+import termo.eos.Cubic;
+...
 Cubic cubic = new Cubic();
 //parametros de van der waals para el heptano
 double a = 3107000.0;
 double b = 0.2049;
 
-
-double min_volume = 0.245;
-double max_volume = 2.06;
-
-int n = 100;
-double pass = (max_volume- min_volume)/n;
-
-PrintWriter writer = new PrintWriter(fileName, "UTF-8");
-writer.println(" Volumen Presion");
-for(int i=0;i < n; i++){
-	double volume = min_volume + pass*i;
-	double pressure = cubic.calculatePressure(300, volume, a, b);
-	
-	writer.println(" "+ volume + " " + pressure);
-}
-writer.close();		
+double volume = 1.5;
+double temperature = 300;
+double pressure = cubic.calculatePressure(temperature, volume, a, b);
 \end{lstlisting}
 
+\begin{figure}
+\begin{tabular}{c c}
+	\begin{tikzpicture}
+	\begin{axis}[width= 0.45 \linewidth]
+	\addplot[blue]table{plotdata/pressurevolume.dat};
+	\end{axis}
+	\end{tikzpicture}
+	&
+
+	\begin{tikzpicture}
+	\begin{axis}[width= 0.45 \linewidth]
+	\addplot3[surf,
+	colormap={blueblack}{color=(white) color=(blue)},
+	domain=0:1]table{plotdata/pressurevolumetemperature.dat};
+	\end{axis}
+	\end{tikzpicture}
+\end{tabular}
+
+\caption{Diagrama de presión contra volumen molar usando la eq. Van Der Waals (u=w=0)} \label{fig:cubicPressureDiagrams}
+\end{figure}
 
 
+De manera predeterminada los valores u y w de la ecuación de estado son iguales a 0;
 
+Podemos elegir los valores u y w para la ecuación de estado cúbica, o podemos utilizar la clase EquationsOfState para obtener una ecuación predeterminada.
+
+\begin{lstlisting}[label=pengRobinsonCreation,caption=Creación de la ecuación de estado de Peng Robinson usando los metodos Set de los parametros u y w]
+Cubic pengRobinson = new Cubic();
+pengRobinson.setU(2);
+pengRobinson.setW(-1);
+\end{lstlisting}
+
+\begin{lstlisting}[label=tstCreation,caption=Creación de la ecuación de estado de TST usando la clase EquationsOfState]
+Cubic tst = EquationsOfState.twoSimTassone();
+\end{lstlisting}
 
 
 

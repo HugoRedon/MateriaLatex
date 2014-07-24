@@ -1,9 +1,9 @@
 \subsection{Factor de compresibilidad}
 
-Solución de la ecuación de estado cúbica
+Es necesario realizar la solución de la ecuación de estado cúbica para conocer el factor de compresibilidad.
 
 \begin{equation}
-p=\frac{RT}{v-b} - \frac{a}{v^2 + ubv+ wb^2}
+z= \frac{P V}{R T}
 \qquad
 A=\frac{ap}{(RT)^2}
 \qquad
@@ -34,6 +34,31 @@ Q&=C^3+D^2
 Nota: En caso de que el z del líquido sea menor que B, entonces hay que calcularla como si fuera vapor.
 \item Si $Q > 0 \qquad z = \frac{1}{3}\left[\alpha + \left(-D + \sqrt{Q}\right)^{\frac{1}{3}}+ \left(-D - \sqrt{Q}\right)^{\frac{1}{3}} \right]$
 \end{itemize}
+
+La solución de la ecuación se realiza en el método de la clase Cubic "calculateCompresibilityFactor()"
+
+El método recibe el parámetro adimensional A, el parámetro adimensional B y la fase a la cual se desea calcular el factor de compresibilidad.
+
+La clase tiene los métodos necesarios para transformar los parámetros a y b a su forma adimensional A y B.
+
+\begin{lstlisting}[label=se,caption=Solución de la ecuación de estado cúbica en la clase Cubic]
+Cubic cubic = EquationsOfState.vanDerWaals();
+		
+double criticalTemperature = 540.2;
+double criticalPressure = 2.74000E+06;
+
+double pressure = criticalPressure * 1.5;
+double reducedTemperature= criticalTemperature * 2;
+
+//parametros de van Der Waals para el heptano
+double a = 3107000.0;
+double b = 0.2049;
+
+double A =cubic.get_A(temperature, pressure, a);
+double B = cubic.get_B(temperature, pressure, b);
+
+double z =cubic.calculateCompresibilityFactor(A, B, Phase.LIQUID);
+\end{lstlisting}
 
 
 
