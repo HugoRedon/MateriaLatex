@@ -1,27 +1,34 @@
 \section{Ecuación de estado cúbica}
- La presión es el cálculo mas sencillo que podemos realizar con la ecuación de estado cúbica.
+ 
+ \subsection{Cálculo de presión}
+ \label{subsec:pressure}
 
 \begin{equation}
 	P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
 \end{equation}
 
-{$P$} : Es la presión en [Pa].\\
-{$v$} : Es el volumen molar en [$\frac{m^3}{kg}$]\\
+{$P$} : presión en [Pa].\\
+{$v$} : volumen molar en [$\frac{m^3}{kg}$]\\
 {$a$} : Es una medida de la atracción entre las partículas. [$\frac{m^5}{kg s}$]\\
-{$a$} : Es el volumen excluido por un mol de partículas.[$\frac{m^3}{kg}$]\\
+{$a$} : volumen excluido por un mol de partículas.[$\frac{m^3}{kg}$]\\
 {$u $ y $w $} : Son los parámetros diferentes para cada ecuación de estado.\\
 
-\begin{tabular}{|c |c |c|}
+\begin{table}
+\begin{tabular}{|c |c | c | c | c |}
 	\hline
-	Ecuación de estado  & $u$ & $w$ \\
+	Ecuación de estado  & $u$ & $w$ & $\Omega_a$&$\Omega_b$\\
 	\hline
-	Peng robinson  & $2$& $-1$\\
+	Van Der Waals  & $0$ & $0$ & $0,421875$ & $0,125$\\
 	\hline
-	Redlich Kwong  & $1$& $0$\\
+	Peng robinson  & $2$ & $-1$ & $0.45723553$ & $0.077796074$\\
 	\hline
-	TST  & $2.5$& $-1.5$\\
+	Redlich Kwong  & $1$ & $0$ & $0.42748023$ & $0.08664035$\\
+	\hline
+	TST  & $2.5$ & $-1.5$ &$ 0.470507$ & $0.0740740$\\
 	\hline
 \end{tabular}
+\caption{Ecuaciónes de estado cúbicas}\label{tab:cubics}
+\end{table}
 
 La ecuación de estado cúbica esta representada por la clase Cubic en la librería de funciones Materia.
 
@@ -63,7 +70,7 @@ double pressure = cubic.calculatePressure(temperature, volume, a, b);
 
 De manera predeterminada los valores u y w de la ecuación de estado son iguales a 0;
 
-Podemos elegir los valores u y w para la ecuación de estado cúbica, o podemos utilizar la clase EquationsOfState para obtener una ecuación predeterminada.
+Podemos elegir los valores u y w para la ecuación de estado cúbica, o podemos utilizar la clase "EquationsOfState" para obtener una ecuación predeterminada.
 
 \begin{lstlisting}[label=pengRobinsonCreation,caption=Creación de la ecuación de estado de Peng Robinson usando los metodos Set de los parametros u y w]
 Cubic pengRobinson = new Cubic();
