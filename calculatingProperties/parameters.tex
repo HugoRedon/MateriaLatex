@@ -109,9 +109,9 @@ El cálculo de los parámetros para una mezcla depende de la regla de mezclado.P
 	\hline
 \end{tabularx}
 
-Se necesita definir el conjunto de compuestos de la mezcla.
 
-\begin{lstlisting}[caption=Cálculo de los parámetros de la ecuación de estado Soave Redlich Kwong y la expresión de $\alpha$ de mathias para el compuesto ]
+
+\begin{lstlisting}[caption=Código para el cálculo de los parámetros de la ecuación de estado en una mezcla. ]
 import termo.component.Compound;
 import termo.eos.Cubic;
 import termo.eos.EquationsOfState;
@@ -123,25 +123,41 @@ import termo.matter.factory.MixtureBuilder;
 import termo.phase.Phase;
 ...
 Compound cyclohexane = new Compound("Cyclohexane");
-		cyclohexane.setCriticalPressure(4073000);
-		cyclohexane.setCriticalTemperature(553.5);
-		cyclohexane.setAcentricFactor(0.211);
-		
-		Compound pentane = new Compound("N-pentane");
-		pentane.setCriticalPressure(3370000);
-		pentane.setCriticalTemperature(469.7);
-		pentane.setAcentricFactor(0.251);
-		
-		Cubic equationOfState = EquationsOfState.pengRobinson();
-		Alpha alpha = Alphas.getMathiasAndCopemanExpression();
-		
-		Mixture mixture = new MixtureBuilder()
-					.addCompounds(cyclohexane,pentane)
-					.setAlpha(alpha)
-					.setEquationOfState(equationOfState)
-					.setPhase(Phase.VAPOR)
-					.build();
+cyclohexane.setCriticalPressure(4073000);
+cyclohexane.setCriticalTemperature(553.5);
+cyclohexane.setAcentricFactor(0.211);
 
-		double a = mixture.calculate_a_cubicParameter();
-		double b = mixture.calculate_b_cubicParameter();
+Compound pentane = new Compound("N-pentane");
+pentane.setCriticalPressure(3370000);
+pentane.setCriticalTemperature(469.7);
+pentane.setAcentricFactor(0.251);
+
+Cubic equationOfState = EquationsOfState.pengRobinson();
+Alpha alpha = Alphas.getMathiasAndCopemanExpression();
+
+Mixture mixture = new MixtureBuilder()
+			.addCompounds(cyclohexane,pentane)
+			.setAlpha(alpha)
+			.setEquationOfState(equationOfState)
+			.setPhase(Phase.VAPOR)
+			.build();
+
+double a = mixture.calculate_a_cubicParameter();
+double b = mixture.calculate_b_cubicParameter();
+\end{lstlisting}
+
+
+Si se requiere utilizar una expresión de $\alpha$ diferente para cada compuesto.
+\begin{lstlisting}
+Mixture mixture = new MixtureBuilder()
+			.addCompound(cyclohexane,Alphas.getPengAndRobinsonExpression())
+			.addCompound(pentane,Alphas.getStryjekAndVeraExpression())
+			.setEquationOfState(eos)
+			.setPhase(phase)
+			.setMixingRule(mixingRule)
+			.setInteractionParameter(k)
+			.build();
+
+double a = mixture.calculate_a_cubicParameter();
+double b = mixture.calculate_b_cubicParameter();
 \end{lstlisting}
