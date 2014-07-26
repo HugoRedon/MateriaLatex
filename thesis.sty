@@ -14,17 +14,22 @@
 \definecolor{myviolet}{rgb}{0.4,0,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
 \lstset{ 
-  basicstyle=\ttfamily\color{black}\small,
+  basicstyle=\ttfamily\color{black}\footnotesize,
   commentstyle=\color{mygreen},    % comment style
-  keywordstyle=\color{myviolet},       % keyword style
+  keywordstyle=\color{blue},       % keyword style
   language=Java,                 % the language of the code
   morekeywords={*,...}, % if you want to add more keywords to the set
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   showstringspaces=false,
   numbersep=12pt,                   % how far the line-numbers are from the code  
   numberstyle=\color{mygray}, % the style that is used for the line-numbers  
-  stringstyle=\color{mymauve},     % string literal style
+  stringstyle=\color{orange},     % string literal style
+  tabsize=2,
+  literate={\ \ }{{\ }}1,
+  keywordstyle=[2]\color{red},
+  keywords=[2]{Alpha,HeterogeneousSubstance,Compound,Cubic}
 }
 
 
@@ -85,4 +90,8 @@
 
 %espacio entre notas de pie
 \setlength{\skip\footins}{2cm}
+%--
+
+%acentos dentro de lstlisting
+\lstset{escapeinside=||}
 %--
