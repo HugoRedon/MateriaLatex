@@ -1,133 +1,19 @@
+
+
 \chapter{Instalación}
-	Durante la primer parte de esta tesis nos enfocaremos en la utilización de la librería para realizar cálculos de interés en la ingeniería quimica, escribiendo pequeños fragmentos de código en java. Para la segunda parte nos enfocaremos en mostrar como modificar y expandir la librería.
 
 
-	Existen dos formas de utilizar la librería Materia en una aplicación de escritorio:
+  Durante la primer parte de esta tesis nos enfocaremos en la utilización de la librería para realizar cálculos de interés en la ingeniería quimica, escribiendo pequeños fragmentos de código en java. Para la segunda parte nos enfocaremos en mostrar como modificar y expandir la librería.
 
-    Descargar el archivo .jar y agregarlo al folder /lib de la aplicación ó desde maven utilizando el archivo pom.xml.
+	Existen dos formas de utilizar la librería Materia en una aplicación java:
+  Descargar el archivo .jar y agregarlo al folder /lib de la aplicación ó desde maven utilizando el archivo pom.xml.
 
-\begin{enumerate}
-\item Desde la página oficial de EQ PRO se puede descargar el archivo jar
+  La librería existe como un archivo .jar y se puede descargar desde la página creada para su difusión (ingenieria-eqpro.rhcloud.com), o desde maven automáticamente desde los servidores de sonatype.
 
-Usaremos el ambiente de desarrollo Netbeans para ejemplificar el proceso.
-
-Si aún no tienes experiencia en el desarrollo de aplicaciones java se recomienda visitar los tutoriales de (The java tutorials).
-
-    Descargar kit de desarrollo Jdk.
-    Descargar Netbeans.
-    Crear un nuevo proyecto desde Netbeans:new proyect Elegir aplicación java.application typeElegir nombre del proyecto proyect name
-    En la pestaña proyectos de netbeans, con click derecho en la carpeta “Libraries” elegir la opción “Agregar jar/Folder “. add jar Navegar entonces hasta la ruta donde se descargo el archivo jar. select materia jar
-
-Se puede ver entonces la librería agregada al proyecto.
-
-library added
-
-La librería está lista para ser usada, agregamos el siguiente codigo a la clase Equilibrio.
-
-
-\begin{lstlisting}	
-public class Equilibrio {
- public static void main(String[] args) {
-	 Compound agua = new Compound("agua");
-	 agua.setCriticalTemperature(647.3);
-	 agua.setCriticalPressure(2.212E7);
-	 agua.setAcentricFactor(0.344861);
-	 
-	 Cubic cubicEquationOfState = EquationOfStateFactory.pengRobinsonBase();
-	 Alpha alphaExpression = AlphaFactory.getStryjekAndVeraExpression();
-	 
-	 HeterogeneousSubstance substance =
-	 new HeterogeneousSubstance(cubicEquationOfState, alphaExpression, agua);
-	 double pressure = 101325;
-	 substance.setPressure(pressure);
-	 substance.bubbleTemperature();
-	 double temperature = substance.getTemperature();
-	 
-	 System.out.println("( Presi|ó|n "+pressure+" [Pa])Temperatura de burbuja: " + temperature + "[K]");
- }
-}
-\end{lstlisting}
-
-Ejecutamos el código y el resultado es:
-
-(Presión 101325.0 [Pa])Temperatura de burbuja: 374.5312063949659[K]
+  En el apéndice \ref{sec:manualInstall} se ejemplifica la instalación manual para 
 
 
 
-\item Desde maven utilizando el archivo pom.xml.
 
-Es necesario también tener instalado el kit de desarrollo jdk y netbeans.
-
-    Crear nuevo proyecto :new proyect
-     Elegir la categoría ->Maven ->Java Applicationmaven java app
-    Elegir nombre del proyecto y dar click en finalizar.maven name
-    Podemos ver en la carpeta del proyecto la siguiente estructura
-\begin{verbatim}
-    Maven_Equilibrio
-    |-- pom.xml
-    `-- src
-        -- main
-           `-- java
-               `-- hugo
-                   `-- ejemplos
-                       `-- maven_equilibrio
-\end{verbatim}
-Abrimos el archivo pom.xml y agregamos las siguientes etiquetas
-
-
-\begin{lstlisting}[language=XML,morekeywords={repositories,
-    repository,id,name,url,groupId,artifactId,dependencies,dependency}]
-<repositories>
-   <repository>
-     <id>snapshots</id>
-     <name>snapshotsrepo</name>
-     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-   </repository>
-</repositories>
  
-<dependencies>
-  <dependency>
-   <groupId>com.github.hugoredon</groupId>
-   <artifactId>materia</artifactId>
-   <version>1.2.4-SNAPSHOT</version>
-  </dependency>
-</dependencies>
-\end{lstlisting}
 
-
-5- Inmediatamente se ve agregada la dependencia Materia, cuando el proyecto se compile, se descargará el archivo jar automáticamente.
-
-maven materia added
-
-6.  Crear una clase java en cualquier paquete dentro de Source packages.maven create java class
-
-Escribimos dentro de esta clase el mismo código que en la entrada anterior.
-
-\begin{lstlisting}
-	
-public class Equilibrio {
- public static void main(String[] args) {
- Compound agua = new Compound("agua");
- agua.setCriticalTemperature(647.3);
- agua.setCriticalPressure(2.212E7);
- agua.setAcentricFactor(0.344861);
- 
- Cubic cubicEquationOfState = EquationOfStateFactory.pengRobinsonBase();
- Alpha alphaExpression = AlphaFactory.getStryjekAndVeraExpression();
- 
- HeterogeneousSubstance substance =
- new HeterogeneousSubstance(cubicEquationOfState, alphaExpression, agua);
- double pressure = 101325;
- substance.setPressure(pressure);
- substance.bubbleTemperature();
- double temperature = substance.getTemperature();
- 
- System.out.println("(Presi|ó|n "+pressure+" [Pa])Temperatura de burbuja: " + temperature + "[K]");
- }
-}
-
-\end{lstlisting}
-Ejecutamos el código y el resultado es:
-
-(Presión 101325.0 [Pa])Temperatura de burbuja: 374.5312063949659[K]
-\end{enumerate}
