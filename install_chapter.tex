@@ -1,19 +1,27 @@
-
-
 \chapter{Instalación}
-
 
   Durante la primer parte de esta tesis nos enfocaremos en la utilización de la librería para realizar cálculos de interés en la ingeniería quimica, escribiendo pequeños fragmentos de código en java. Para la segunda parte nos enfocaremos en mostrar como modificar y expandir la librería.
 
-	Existen dos formas de utilizar la librería Materia en una aplicación java:
-  Descargar el archivo .jar y agregarlo al folder /lib de la aplicación ó desde maven utilizando el archivo pom.xml.
+  \section{Para uso de la librería (compilado)}
 
-  La librería existe como un archivo .jar y se puede descargar desde la página creada para su difusión (ingenieria-eqpro.rhcloud.com), o desde maven automáticamente desde los servidores de sonatype.
+      Existen dos formas de utilizar la librería Materia en una aplicación java:
+    Descargar el archivo .jar y agregarlo al folder /lib de la aplicación ó desde maven utilizando el archivo pom.xml.
 
-  En el apéndice \ref{sec:manualInstall} se ejemplifica la instalación manual para 
+    La librería existe como un archivo .jar y se puede descargar desde la página creada para su difusión (ingenieria-eqpro.rhcloud.com), o automáticamente desde los servidores de sonatype usando maven.
+
+    Si se realiza la instalación manual la ubicación de la librería depende de la estructura del proyecto, por ejemplo para una aplicación web los archivos jar deberán ser agregados en el folder dentro del proyecto src/main/webapp/WEB-INF/lib.
+
+    Utilizando maven solo deberán agregarse las siguientes lineas de código al archivo pom.xml
+
+    \input{maven/mavencode}
+
+    En el apéndice \ref{sec:manualInstall} se ejemplifica la instalación manual y en el apéndice \ref{sec:mavenInstall} se muestra la instalación vía maven, para una simple aplicación de escritorio.
 
 
+  \section{Para extender o modificar la librería (código fuente)}
 
+    El código fuente de la librería se expone de manera pública en la página https://github.com/HugoRedon/Materia, bajo la licencia GNU GENERAL PUBLIC LICENSE Version 2
+  
+    Para poder participar en el proyecto será necesario obtener de manera gratuita una cuenta en github, realizar una copia de la librería "Fork" a la nueva cuenta , despues de hacer los cambios necesarios hacer una petición para integrar los cambios a la librería original "Pull request", y si los cambios son aceptados, se habrá logrado la participación al proyecto. Véase el apéndice \ref{chap:github}.
 
- 
 

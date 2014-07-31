@@ -1,8 +1,15 @@
-\documentclass[11pt,letterpaper ,twoside , openright]{book}
+\documentclass[12pt,letterpaper ,oneside , openright]{book}
 \usepackage{thesis}
-\includeonly{java_chapter,install_chapter, appendix}
+%en desarrollo
+	%\usepackage{showframe}
+	\includeonly{title,java_chapter}
+%--
+
 \begin{document}
-\tableofcontents
+	
+	\include{title}
+	\tableofcontents
+	
 	\include{java_chapter}
 	\include{install_chapter}
 	\include{calculatingProperties_chapter}
@@ -15,6 +22,7 @@
 
 	\appendix
 	\include{appendix}
+	\include{apendixx2}
 
 	\bibliographystyle{babplain}
 	\bibliography{bib/bibliography}  
