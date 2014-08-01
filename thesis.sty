@@ -70,6 +70,10 @@
 
 %para graficas
 \usepackage{pgfplots}
+
+
+
+
 	%para tablas 
 	\usepackage{pgfplotstable}
 %--
@@ -121,3 +125,13 @@
 %url
 \usepackage{hyperref}
 %--
+
+
+
+\pgfplotsset{
+xlabel=\footnotesize,
+standard/.style={every axis/.append style={font=\footnotesize}}
+}
+
+
+\usepackage{subcaption}

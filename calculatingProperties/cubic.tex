@@ -1,38 +1,48 @@
 \section{Ecuación de estado cúbica}
- 
- \subsection{Cálculo de presión}
+\begin{equation}
+P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
+\end{equation}
+\begin{itemize}\itemsep0ex
+\item{$P$} : presión en [Pa].\\
+\item{$v$} : volumen molar en [$\frac{m^3}{kg}$]\\
+\item{$a$} : Es una medida de la atracción entre las partículas. [$\frac{m^5}{kg s}$]\\
+\item{$a$} : volumen excluido por un mol de partículas.[$\frac{m^3}{kg}$]\\
+\item{$u $ y $w $} : Son los parámetros diferentes para cada ecuación de estado, ver tabla \ref{tab:cubics}\\
+\end{itemize}
+
+	\begin{table}
+	
+	\begin{tabular}{|c |c | c | c | c |}
+		\hline
+		Ecuación de estado  & $u$ & $w$ & $\Omega_a$&$\Omega_b$\\
+		\hline
+		Van Der Waals  & $0$ & $0$ & $0,421875$ & $0,125$\\
+		\hline
+		Peng robinson  & $2$ & $-1$ & $0.45723553$ & $0.077796074$\\
+		\hline
+		Redlich Kwong  & $1$ & $0$ & $0.42748023$ & $0.08664035$\\
+		\hline
+		TST  & $2.5$ & $-1.5$ &$ 0.470507$ & $0.0740740$\\
+		\hline
+	\end{tabular}
+	\caption{Ecuaciónes de estado cúbicas}\label{tab:cubics}
+	\end{table}
+
+
+La ecuación de estado cúbica representada por la clase ``Cubic'', permite realizar los cálculos de: 
+\begin{itemize}
+\itemsep0ex
+	\item{\nameref{subsec:pressure}} 
+	\item{\nameref{subsec:compresibilityFactor}}
+	\item{Volumen molar}
+	\item{Fugacidad}
+	\item{Adimensionalizar los parámetros a y b}
+\end{itemize}
+
+ \subsection{Presión}
  \label{subsec:pressure}
 
-\begin{equation}
-	P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
-\end{equation}
-
-{$P$} : presión en [Pa].\\
-{$v$} : volumen molar en [$\frac{m^3}{kg}$]\\
-{$a$} : Es una medida de la atracción entre las partículas. [$\frac{m^5}{kg s}$]\\
-{$a$} : volumen excluido por un mol de partículas.[$\frac{m^3}{kg}$]\\
-{$u $ y $w $} : Son los parámetros diferentes para cada ecuación de estado.\\
-
-\begin{table}
-\begin{tabular}{|c |c | c | c | c |}
-	\hline
-	Ecuación de estado  & $u$ & $w$ & $\Omega_a$&$\Omega_b$\\
-	\hline
-	Van Der Waals  & $0$ & $0$ & $0,421875$ & $0,125$\\
-	\hline
-	Peng robinson  & $2$ & $-1$ & $0.45723553$ & $0.077796074$\\
-	\hline
-	Redlich Kwong  & $1$ & $0$ & $0.42748023$ & $0.08664035$\\
-	\hline
-	TST  & $2.5$ & $-1.5$ &$ 0.470507$ & $0.0740740$\\
-	\hline
-\end{tabular}
-\caption{Ecuaciónes de estado cúbicas}\label{tab:cubics}
-\end{table}
-
-La ecuación de estado cúbica esta representada por la clase Cubic en la librería de funciones Materia.
-
-Un cálculo de presión con la libreria, se realiza de la siguiente manera.
+Un cálculo de presión, se realiza de la siguiente manera.
 \begin{lstlisting}[label=pressureCalculation,caption=Cálculo de presión para el heptano con la ecuación de estado cúbica de Van Der Waals]
 import termo.eos.Cubic;
 ...
@@ -49,28 +59,31 @@ double pressure = cubic.calculatePressure(temperature, volume, a, b);
 \begin{figure}
 \begin{tabular}{c c}
 	\begin{tikzpicture}
-	\begin{axis}[width= 0.45 \linewidth]
+	\begin{axis}[width= 0.45 \linewidth,font=\footnotesize,
+	xlabel = {Volumen molar $[\frac{m^3}{kg}]$},
+	ylabel = {Presión $[Pa]$}]
 	\addplot[blue]table{plotdata/pressurevolume.dat};
 	\end{axis}
 	\end{tikzpicture}
 	&
-
 	\begin{tikzpicture}
-	\begin{axis}[width= 0.45 \linewidth]
+	\begin{axis}[width= 0.45 \linewidth,,font=\footnotesize,
+	xlabel={Volumen molar $[\frac{m^3}{kg}]$},
+	zlabel={Presión $[Pa]$},
+	ylabel={Temperatura $[K]$}]
 	\addplot3[surf,
 	colormap={blueblack}{color=(white) color=(blue)},
 	domain=0:1]table{plotdata/pressurevolumetemperature.dat};
 	\end{axis}
 	\end{tikzpicture}
 \end{tabular}
-
-\caption{Diagrama de presión contra volumen molar usando la eq. Van Der Waals (u=w=0)} \label{fig:cubicPressureDiagrams}
+\caption{Diagramas de presión usando la eq. de Van Der Waals (u=w=0)} \label{fig:cubicPressureDiagrams}
 \end{figure}
 
 
-De manera predeterminada los valores u y w de la ecuación de estado son iguales a 0;
+De manera predeterminada los valores u y w de la ecuación de estado son iguales a 0. En la figura \ref{fig:cubicPressureDiagrams} se muestran los diagramas que se pueden obtener al realizar el cálculo de presión en cierto rango de volumen y temperatura.
 
-Podemos elegir los valores u y w para la ecuación de estado cúbica, o podemos utilizar la clase "EquationsOfState" para obtener una ecuación predeterminada.
+Podemos elegir los valores u y w para la ecuación de estado cúbica, o podemos utilizar la clase ``EquationsOfState'' para obtener una ecuación con los parámetros previamente establecidos.
 
 \begin{lstlisting}[label=pengRobinsonCreation,caption=Creación de la ecuación de estado de Peng Robinson usando los metodos Set de los parametros u y w]
 Cubic pengRobinson = new Cubic();
