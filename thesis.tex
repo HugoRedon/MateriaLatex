@@ -2,16 +2,15 @@
 \usepackage{thesis}
 %en desarrollo
 	%\usepackage{showframe}
-	\includeonly{title,java_chapter}
+	\includeonly{title,objective,java_chapter,install_chapter,apendixx2}
 %--
 
 \begin{document}
-	
-	\include{title}
+	\include{title}%Portada -Hecho
 	\tableofcontents
-	
-	\include{java_chapter}
-	\include{install_chapter}
+	\include{objective}%Objetivos -Hecho
+	\include{java_chapter}%Sobre java y herramientas -Hecho
+	\include{install_chapter}%Sobre la instalación Hecho
 	\include{calculatingProperties_chapter}
 	\include{optimization_chapter}
 	\include{binaryOptim_chapter}
@@ -19,11 +18,9 @@
 	\include{internetResources_chapter}	
 	\include{advancedOptions_chapter}
 	\include{ternaryDiagram_chapter}
-
 	\appendix
 	\include{appendix}
 	\include{apendixx2}
-
 	\bibliographystyle{babplain}
 	\bibliography{bib/bibliography}  
 \end{document} 
