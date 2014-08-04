@@ -9,6 +9,13 @@
 \usepackage{listings}
 
 %\usepackage{styles/UNAMThesis}
+\usepackage{setspace}
+
+\newcommand{\mysinglespacing}{%
+  \setstretch{1}% no correction afterwards
+}
+
+
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
 \renewcommand{\lstlistingname}{Código fuente}
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -17,7 +24,8 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{amber}{rgb}{1.0, 0.75, 0.0}
 \lstset{ 
-  basicstyle=\ttfamily\color{black}\footnotesize,
+  breaklines=no,
+  basicstyle=\ttfamily\color{black}\footnotesize \mysinglespacing,,
   commentstyle=\color{mygreen},    % comment style
   keywordstyle=\color{blue},       % keyword style
   language=Java,                 % the language of the code
@@ -32,7 +40,6 @@
   keywordstyle=[2]\color{red},
   keywords=[2]{Alpha,HeterogeneousSubstance,Compound,Cubic}
 }
-
 
 
 %--
@@ -123,7 +130,7 @@
 
 
 %url
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 %--
 
 
@@ -135,3 +142,13 @@ standard/.style={every axis/.append style={font=\footnotesize}}
 
 
 \usepackage{subcaption}
+
+
+
+%
+
+
+
+\captionsetup[lstlisting]{ font={footnotesize} }
+
+%--

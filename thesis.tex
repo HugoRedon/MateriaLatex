@@ -2,9 +2,9 @@
 \usepackage{thesis}
 %en desarrollo
 	%\usepackage{showframe}
-	\includeonly{calculatingProperties_chapter}
+	%\includeonly{calculatingProperties_chapter,calculatingProperties/parameters,calculatingProperties/enthalpy}
 %--
-	
+
 \begin{document}
 	\include{title}%Portada -Hecho
 	\tableofcontents	
@@ -12,6 +12,34 @@
 	\include{java_chapter}%Sobre java y herramientas -Hecho
 	\include{install_chapter}%Sobre la instalación Hecho
 	\include{calculatingProperties_chapter}
+
+
+		\include{calculatingProperties/cubic}%hecho
+		\include{calculatingProperties/compresibilityFactor}%hecho
+		\include{calculatingProperties/parameters}%hecho
+
+		\include{calculatingProperties/enthalpy}	
+
+		
+		\include{calculatingProperties/alpha/alphas}
+		
+		\include{calculatingProperties/fugacity}
+		
+		\include{calculatingProperties/entropy}
+		\include{calculatingProperties/gibbs}
+		
+		\subsection{volumen molar}
+		\subsection{Equilibrio LV}
+		\include{calculatingProperties/bubbleTemp}
+		\include{calculatingProperties/dewTemp}
+		\include{calculatingProperties/bubblePressure}
+		\include{calculatingProperties/dewPressure}
+		\include{calculatingProperties/flash}
+		\subsection{Diagramas}
+	
+
+
+
 	\include{optimization_chapter}
 	\include{binaryOptim_chapter}
 	\include{libraryStructure_chapter}
