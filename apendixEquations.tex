@@ -1,0 +1,76 @@
+\chapter{Ecuaciones}
+
+
+
+\begin{equation}
+P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
+\end{equation}
+
+
+\begin{itemize}\itemsep0ex
+\item $P$ : presión en $[Pa]$.
+\item $v$ : volumen molar en $[\frac{m^3}{kg}]$
+\item $a$ : Es una medida de la atracción entre las partículas. $[\frac{m^5}{kg s}]$
+\item $b$ : volumen excluido por un mol de partículas.$[\frac{m^3}{kg}]$
+\item $u$ y $w$ : Son los parámetros diferentes para cada ecuación de estado, ver tabla \ref{tab:cubics}
+\item $R$ : Constante universal de los gases ideales en $\frac{m^3 Pa}{kgmol K}$
+\end{itemize}
+
+	\begin{table}
+	
+	\begin{tabular}{|c |c | c | c | c |}
+		\hline
+		Ecuación de estado  & $u$ & $w$ & $\Omega_a$&$\Omega_b$\\
+		\hline
+		Van Der Waals  & $0$ & $0$ & $0,421875$ & $0,125$\\
+		\hline
+		Peng robinson  & $2$ & $-1$ & $0.45723553$ & $0.077796074$\\
+		\hline
+		Redlich Kwong  & $1$ & $0$ & $0.42748023$ & $0.08664035$\\
+		\hline
+		TST  & $2.5$ & $-1.5$ &$ 0.470507$ & $0.0740740$\\
+		\hline
+	\end{tabular}
+	\caption{Ecuaciónes de estado cúbicas}\label{tab:cubics}
+	\end{table}
+
+
+
+
+
+\begin{equation}
+z= \frac{P V}{R T}
+\qquad
+A=\frac{ap}{(RT)^2}
+\qquad
+B=\frac{bp}{RT}
+\end{equation}
+
+\begin{equation}
+z^3-\left[1-(u-1)B\right]z^2+ \\ \left[A-uB-uB^2 +\\ wB^2\right]z-\left[AB+wB^2+wB^3\right]=0
+\end{equation}
+
+
+\subsubsection{Entalpía del gas ideal}
+\begin{equation}
+h^{\neq} = \sum_{i=1}^{nc} x_i \left[ h_i^{ref} + \int_{Tref}^{T} Cp_i^{\neq} \mathrm{d}T \right]
+\end{equation}
+
+\section{Entalpía}
+\begin{equation}
+h = h^{\neq} + \left[ \frac{T(\frac{\partial a}{\partial T}) - a}{b\sqrt{u²-4w} }\right] 
+\ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
++ pv - RT
+\end{equation}
+
+\begin{lstlisting}[label=some-code,caption=Some Code]
+private  double calculateEnthalpy( double volume){
+    double idealGasEnthalpy = calculateIdealGasEnthalpy();
+    double a = calculate_a_cubicParameter();
+    double b = calculate_b_cubicParameter();
+    double L = cubicEquationOfState.calculateL(volume, b);
+    double partial_aPartial_temperature = partial_aPartial_temperature( );
+    
+    return idealGasEnthalpy + ((partial_aPartial_temperature - a)/b) * L  + pressure * volume - Constants.R *temperature;
+}
+\end{lstlisting}	
