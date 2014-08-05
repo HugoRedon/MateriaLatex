@@ -1,7 +1,35 @@
 \chapter{Objetivos}
 
 \begin{itemize}
-	\item Desarrollar una librería escrita en el lenguaje de java para el cálculo de propiedades de sustancias con ecuaciones de estado cúbicas.
-	\item Desarrollar un programa que exponga las funciones de la librería.
+	\item Desarrollar una biblioteca escrita en el lenguaje de java para realizar:
+	\begin{itemize}
+		\item El cálculo de propiedades de sustancias puras y mezclas con ecuaciones de estado cúbicas.
+		\item Cálculos de equilibrio Líquido-Vapor.
+		\item La estimación de parámetros de expresiones de $\alpha$.
+		\item La estimación de parámetros binarios.
+	\end{itemize}
+	\item La biblioteca a desarrollar deberá ser versátil, robusta, simple de usar y fácilmente expandible.
+	\item Desarrollar una interfaz de usuario que exponga las funciones de la librería.
 	\item Proponer un medio de difusión de la librería, que sea capaz de involucrar a cualquier persona interesada en modificar y extender la librería.
 \end{itemize}
+
+\chapter{Introducción}
+
+	Esta tesis trata sobre el uso de métodos computacionales para el cálculo de propiedades volumétricas y puntos de equilibrio Líquido-Vapor con ecuaciones de estado cúbicas. 
+
+	Como resultado se ha escrito una biblioteca de clases denominada \textbf{Materia}.
+
+	El diseño de la biblioteca en conjunto con las herramientas que se describen en la sección \ref{chap:tools} hacen de este trabajo una plataforma para el desarrollo de aplicaciones de simulación y modelado de procesos quimicos industriales.
+
+	El presente trabajo también propone un procedimiento para el desarrollo de futuras aplicaciones. Para lo cual se ha dotado de ciertas características a la biblioteca \textbf{Materia} asegurando el funcionamiento del proceso propuesto.
+
+	La biblioteca \textbf{Materia} se ha escrito para que su utilizacióń sea sencilla y no se requieran grandes conocimientos sobre programación. El capítulo \ref{chap:libraryUse} muestra como utilizar la estructura de clases para realizar los cálculos de propiedades y de equilibrio, mostrando pequeños fragmentos de código.
+
+	El capítulo \ref{chap:libraryExtension} muestra como extender la biblioteca de clases, guía en el proceso de creación de nuevas reglas de mezclado, expresiones de $\alpha$, etc. Este capítulo supone un conocimiento mas avanzado en temas de programación orientada a objetos.
+
+	Se ha creado una página de internet para permitir el uso de la librería \textbf{Materia} a través de una interfaz de usuario, el capítulo \ref{chap:webPage} documenta las funciones de la página. También es posible extender las funciones de la página de internet, sin embargo son necesarios conocimientos que estan fuera del alcance de esta tesis. El apéndice \ref{chap:webTools} describe las tecnologías utilizadas para la creación de la página de internet, y una breve descripción de su estructura.
+
+	\section{Explicación de las ecuaciones y cálculos que se realizan}
+	\section{Versatilidad del programa}
+	\section{Descripción de la estructura de la tesis}
+	\section{Alcance de la aplicación}

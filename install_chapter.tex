@@ -1,8 +1,15 @@
 \chapter{Instalación}
 
-  Durante la primer parte de esta tesis nos enfocaremos en la utilización de la librería para realizar cálculos de interés en la ingeniería quimica, escribiendo pequeños fragmentos de código en java. Para la segunda parte nos enfocaremos en mostrar como modificar y expandir la librería.
+  Para instalar la biblioteca \textbf{Materia} es necesario saber que tipo de trabajo se desea realizar con ella:
+  \begin{itemize}
+    \item Crear una aplicación que emplea las funciones ya definidas en la biblioteca.
+    \item Crear una nueva funcionalidad de la biblioteca.
+  \end{itemize}
 
-  \section{Para uso de la librería (compilado)}
+  Por ejemplo si se desea escribir una aplicación que realize diagramas de presión contra volumen molar usando ecuaciones de estado cúbicas, solo será necesario instalar la forma compilada según la sección \ref{sec:compiledinstall}, ya que estas funciones existen en la biblioteca no será necesario modificar el código fuente por lo tanto no es necesaria la segunda instalación. En cambio si se desea utilizar ecuaciones viriales para realizar los diagramas de presión, se deberán realizar las dos instalaciones descritas en este capítulo, ya que las ecuaciones viriales no forman parte del alance de esta tesis, la librería debera ser extendida para incluir dichas ecuaciones, una vez hecha la extensión al código fuente , la versión compilada puede ser empleada para realizar la aplicación que crea los diagramas.
+
+
+  \section{Para uso de la librería (compilado)}\label{sec:compiledinstall}
 
       Existen dos formas de utilizar la librería Materia en una aplicación java:
     Descargar el archivo .jar y agregarlo al folder /lib de la aplicación ó desde maven utilizando el archivo pom.xml.

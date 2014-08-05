@@ -1,8 +1,27 @@
-\chapter{Herramientas}
-	\section{Java}
-		Un lenguaje simple, orientado a objetos, distribuido, interpretado, robusto, de arquitectura neutral, portátil, de alto rendimiento, seguro, multiproceso y dinámico.\cite{java} 
+\chapter{Herramientas}\label{chap:tools}
 
-		Definición dada por James Gosling \footnote{Considerado creador del lenguaje Java}  en la fecha de su primer publicación (1995). 
+	Las herramientas que se describen en este capítulo en conjunto con la librería \textbf{Materia} forman la plataforma de desarrollo propuesta en esta tesis. Estas herramientas dan la versatilidad necesaria para el desarrollo de futuras aplicaciónes de modelado y simulación. 
+
+	Las herramientas resuelven las siguientes necesidades:
+
+\begin{itemize}
+	\item Java nos permite el desarrollo de los métodos computacionales de una forma sencilla y segura.
+	\item JUnit asegura el funcionamiento de la librería sin importar los cambios sean introducidos al código.
+	\item Git permite administrar los cambios entre versiones de una forma segura.
+	\item GitHub guarda el código fuente y permite compartir los cambios a través de internet.
+	\item Maven permite construir las aplicaciones descargando las proyectos necesarios desde los servidores centrales de Maven.
+	\item Netbeans es el ambiente de desarrollo que permite escribir, compilar y ejecutar las aplicaciones escritas.
+	\item Licencia `GNU GENERAL PUBLIC LICENSE Version 2' asegura que el código fuente sea usado segun las condiciones deseadas.
+	\item Idioma inglés, mantiene una fluidez en la lectura del código fuente.
+\end{itemize}
+
+	\section{Java}
+
+		James Gosling \footnote{Considerado creador del lenguaje Java} define a java como: 
+
+		Un lenguaje simple, orientado a objetos, distribuido, interpretado, robusto, de arquitectura neutral, portátil, de alto rendimiento, seguro, multiproceso y dinámico.\cite{java}
+
+		
 
 		\begin{description}
 		\item{Simple:} Una de las razones mas importantes por las que se decidió programar la librería en este lenguaje, es que java evita al programador la necesidad de realizar tareas de índole técnico sobre la computadora, como por ejemplo el almacenamiento de los datos en la memoria. Esto permite al programador concentrarse en el area de estudio deseada.
@@ -20,7 +39,9 @@
 
 	\section{JUnit}
 
-		Esta librería de funciones \footnote{Librería de funciones es una traducción de ``java class library'', que es el nombre del tipo de proyecto, sin embargo una mejor definicion sería una ``Estructura de objetos''} ha sido creada con la idea de expandirse y ser escrita por cualquier persona interesada en ello.Es muy importante mantener una evidencia del funcionamiento de la librería. El uso de la tecnología JUnit es una forma para asegurar que los cambios introducidos al programa no han afectado el funcionamiento esperado de la libreria.
+		Es un conjunto de clases (framework) que permite realizar la ejecución de clases Java de manera controlada, para poder evaluar si el funcionamiento de cada uno de los métodos de la clase se comporta como se espera.
+
+		 La biblioteca \textbf{Materia} ha sido creada con la idea de expandirse y ser escrita por cualquier persona interesada en ello, por lo tanto es muy importante mantener una evidencia del funcionamiento de la librería. El uso de la tecnología JUnit es una forma para asegurar que los cambios introducidos al programa no han afectado el funcionamiento esperado de la libreria.
 
 		Al momento de escribir este trabajo la librería cuenta con mas de 100 pruebas que definen el funcionamiento esperado.
 
@@ -45,7 +66,7 @@
 	\section{Wildfly}
 		WildFly, anteriormente conocido como `JavaBeans Open Source Software Application Server' es un servidor de aplicaciones que implementa la plataforma Java, Enterprise Edition. JBoss está escrito en Java y como tal es multiplataforma: utilizable en cualquier sistema operativo que soporte Java
 
-	\section{GNU GENERAL PUBLIC LICENSE Version 2}
+	\section{Licencia `GNU GENERAL PUBLIC LICENSE Version 2'}
 
 		`GNU GENERAL PUBLIC LICENSE' es una licencia libre, sin derechos para software y otro tipo de obras. Pretende garantizar la libertad de compartir y modificar todas las versiones de un programa - para asegurarse de que sigue siendo software libre para todos sus usuarios.
 		
