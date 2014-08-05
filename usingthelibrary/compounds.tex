@@ -1,0 +1,22 @@
+\section{Compuestos}\label{sec:compounds}
+
+La clase `Compound' permite definir las propiedades de un compuesto puro y utilizarlas dentro de la librería \Materia.
+
+Propiedades como la temperatura crítica, presión crítica, factor acéntrico y los parámetros para las expresiones de \alfa pueden obtenerse de esta clase como se muestra en el código \ref{lst:compounds}.
+
+\begin{lstlisting}[caption={Se muestra la creación de un objeto tipo `Compound' para definir y utilizar las propiedades del cyclohexano, haciendo uso de los métodos `get' y `set'.},label={lst:compounds}]
+Compound compound = new Compound("Cyclohexane");
+compound.setCriticalPressure(4073000);
+compound.setCriticalTemperature(553.5);
+compound.setAcentricFactor(0.211);
+....
+double acentricFactor = compound.getAcentricFactor();
+double pc = compound.getCriticalPressure();
+double tc = compound.getCriticalTemperature();
+\end{lstlisting}
+
+
+
+
+
+

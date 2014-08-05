@@ -16,24 +16,14 @@ P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
 \item $R$ : Constante universal de los gases ideales en $\frac{m^3 Pa}{kgmol K}$
 \end{itemize}
 
-	\begin{table}
-	
-	\begin{tabular}{|c |c | c | c | c |}
-		\hline
-		Ecuación de estado  & $u$ & $w$ & $\Omega_a$&$\Omega_b$\\
-		\hline
-		Van Der Waals  & $0$ & $0$ & $0,421875$ & $0,125$\\
-		\hline
-		Peng robinson  & $2$ & $-1$ & $0.45723553$ & $0.077796074$\\
-		\hline
-		Redlich Kwong  & $1$ & $0$ & $0.42748023$ & $0.08664035$\\
-		\hline
-		TST  & $2.5$ & $-1.5$ &$ 0.470507$ & $0.0740740$\\
-		\hline
-	\end{tabular}
-	\caption{Ecuaciónes de estado cúbicas}\label{tab:cubics}
-	\end{table}
 
+\begin{equation}\label{eq:a}
+	b_i = \Omega_b \frac{R T_{ci}}{p_{ci}} 
+\end{equation}
+
+\begin{equation}\label{eq:b}
+ a_i = \Omega_a \frac{\left(R T_{ci}\right)^2}{p_{ci}} \alpha_i
+\end{equation}
 
 
 
@@ -52,12 +42,12 @@ z^3-\left[1-(u-1)B\right]z^2+ \\ \left[A-uB-uB^2 +\\ wB^2\right]z-\left[AB+wB^2+
 
 
 \subsubsection{Entalpía del gas ideal}
-\begin{equation}
+\begin{equation}\label{eq:idealgasenthalpy}
 h^{\neq} = \sum_{i=1}^{nc} x_i \left[ h_i^{ref} + \int_{Tref}^{T} Cp_i^{\neq} \mathrm{d}T \right]
 \end{equation}
 
 \section{Entalpía}
-\begin{equation}
+\begin{equation}\label{eq:enthalpy}
 h = h^{\neq} + \left[ \frac{T(\frac{\partial a}{\partial T}) - a}{b\sqrt{u²-4w} }\right] 
 \ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
 + pv - RT

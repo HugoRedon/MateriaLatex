@@ -1,4 +1,4 @@
-\section{Parámetros de la ecuación de estado cúbica}
+\section{Parámetros de la ecuación de estado cúbica}\label{sec:parameters}
 
 El cálculo de los parámetros depende de la cantidad de compuestos presentes en el sistema.
 
@@ -6,8 +6,6 @@ El cálculo de los parámetros depende de la cantidad de compuestos presentes en
  \item Para los compuestos puros la clase `Substance' define el cálculo de los parámetros usando una expresión de $\alpha$ , los parámetros $\Omega_a$ y $\Omega_b$ de la ecuación de estado y las propiedades del compuesto puro.
  \item Para las mezclas, la clase `Mixture' define el cálculo de los parámetros usando una regla de mezclado y el cojunto de los parámetros  $a$ y $b$ calculados a partir de los compuestos puros.
 \end{itemize}
-
-
 
 
 Esta estructura se muestra en laf figura \ref{fig:homogeneousCalculations}
@@ -36,43 +34,35 @@ Nótese de la figura \ref{fig:homogeneousCalculations} los siguiente:
 \end{lstlisting}
 
 
-\subsection{Compuesto puro}
+\subsection{Compuesto puro}\label{subsec:substance}
 
 Como se muestra en la figura \ref{fig:homogeneousCalculations} la clase `Substance' continene una expresión de $\alpha$, y una ecuación de estado, necesarias para realizar el cáculo de los parámetros, segun las ecuaciones \ref{eq:a} y \ref{eq:b}. 
 
-\begin{equation}\label{eq:a}
-	b_i = \Omega_b \frac{R T_{ci}}{p_{ci}} 
-\end{equation}
-
-\begin{equation}\label{eq:b}
- a_i = \Omega_a \frac{\left(R T_{ci}\right)^2}{p_{ci}} \alpha_i
-\end{equation}
-
 La expresión de $\alpha$ puede ser una función de la temperatura, las expresiones implementadas en el presente trabajo se muestran en la tabla \ref{tab:alphas}.
 
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c| }
-	\hline
-	Expresión & Parámetros & Ecuación de estado\\
-	\hline
-	Soave    &  ---& PR\\
-	Peng and Robinson & ---& PR \\
-	Mathias & $A$ & SRK\\
-	Stryjek and Vera & $k_1$ & PRSV\\
-	Adachi and Lu & $A,B$&SRK,PR\\
-	Soave & $A,B$&SRK,PR\\
-	Melhem, et al. & $A,B$&SRK,PR\\
-	Androulakis et al. & $A,B,C$& SRK,PR\\
-	Mathias and Copeman & $A,B,C$& SRK,PR\\
-	Yu and Lu & $A,B,C$&SRK,PR\\
-	Stryjek and Vera & $A,B,C$&PR\\
-	Twu & $L,M,N$&TST\\
-	Twu & ---&TST,PR\\
-	GCEOS & ---& (Cualquier u y w)\\
-	\hline
-\end{tabular}
-\caption{Expresiónes de $\alpha$ disponibles en la librería}\label{tab:alphas}
+\begin{table}[!h]
+	\centering
+	\caption{Expresiónes de $\alpha$ disponibles en la librería}\label{tab:alphas}
+	\begin{tabular}{|c|c|c| }
+		\hline
+		Expresión & Parámetros & Ecuación de estado\\
+		\hline
+		Soave    &  ---& PR\\
+		Peng and Robinson & ---& PR \\
+		Mathias & $A$ & SRK\\
+		Stryjek and Vera & $k_1$ & PRSV\\
+		Adachi and Lu & $A,B$&SRK,PR\\
+		Soave & $A,B$&SRK,PR\\
+		Melhem, et al. & $A,B$&SRK,PR\\
+		Androulakis et al. & $A,B,C$& SRK,PR\\
+		Mathias and Copeman & $A,B,C$& SRK,PR\\
+		Yu and Lu & $A,B,C$&SRK,PR\\
+		Stryjek and Vera & $A,B,C$&PR\\
+		Twu & $L,M,N$&TST\\
+		Twu & ---&TST,PR\\
+		GCEOS & ---& (Cualquier u y w)\\
+		\hline
+	\end{tabular}
 \end{table}
 
 
@@ -98,16 +88,12 @@ double a = substance.calculate_a_cubicParameter();
 double b = substance.calculate_b_cubicParameter();
 \end{lstlisting}
 
-
-Para realizar el cálculo es necesario definir las propiedades del compuesto, temperatura crítica, presión crítica, y algunas expresiones de $\alpha$ necesitan el factor acéntrico, para lo cual existe la clase `Compound' que encapsula todas las propiedades del compuesto.
-
-
 En la sección \ref{subsec:pressure} se mostró como crear una ecuación de estado cúbica previamente definida, a través de la clase `EquatiosOfState'. Los valore de $\Omega_a$ y $\Omega_b$ se muestran en la tabla \ref{tab:cubics}. De forma muy similar al de las ecuaciońes de estado,la selección de la expresión de $\alpha$ se realiza a través de la clase `Alphas'.
 
 
 
 
-\subsubsection{Mezcla}
+\subsubsection{Mezcla}\label{subsec:mixture}
 
 El cálculo de los parámetros para una mezcla depende de la regla de mezclado, y en el caso de las reglas de mezclado basadas en la energía libre de exceso, también del modelo de actividad.
 
@@ -115,29 +101,29 @@ Las reglas de mezclado incluidas en este trabajo se muestran en la tabla \ref{ta
 
 
 \begin{table}
-\begin{tabularx}{\textwidth}{|X|X|X|}
-	\hline
-	Regla & Parámetros & \\
-	\hline
-	Van Der Waals & $k_{ij}$ & $k_{ij} = k_{ji}$ \\
-	Mathias-Klotz-Prausnitz& $k_{ij}$ & $k_{ij} \neq k_{ji}$ \\
-	Huron Vidal & Según el model de actividad & \\
-	Wong Sandler & $k_{ij}$ + los parámetros del modelo de actividad & $k_{ij} = k_{ji}$ \\
-	\hline
-\end{tabularx}
-\caption{Reglas de mezclado implementadas}\label{tab:mixingrules}
+	\caption{Reglas de mezclado implementadas}\label{tab:mixingrules}
+	\begin{tabularx}{\textwidth}{|X|X|X|}
+		\hline
+		Regla & Parámetros & \\
+		\hline
+		Van Der Waals & $k_{ij}$ & $k_{ij} = k_{ji}$ \\
+		Mathias-Klotz-Prausnitz& $k_{ij}$ & $k_{ij} \neq k_{ji}$ \\
+		Huron Vidal & Según el model de actividad & \\
+		Wong Sandler & $k_{ij}$ + los parámetros del modelo de actividad & $k_{ij} = k_{ji}$ \\
+		\hline
+	\end{tabularx}
 \end{table}
 
 \begin{table}
-\begin{tabularx}{\textwidth}{|X|X|X|}
-	\hline
-	Modelo de actividad & Parámetros & \\
-	\hline
-	Wilson & $a_{ij}$, $b_{ij}$  & \\
-	NRTL & $a_{ij}$, $b_{ij}$, $\alpha_{ij}$ & $\alpha_{ij} = \alpha_{ji}$ \\
-	\hline
-\end{tabularx}
-\caption{Modelos de actividad }\label{tab:activitymodels}
+	\caption{Modelos de actividad }\label{tab:activitymodels}
+	\begin{tabularx}{\textwidth}{|X|X|X|}
+		\hline
+		Modelo de actividad & Parámetros & \\
+		\hline
+		Wilson & $a_{ij}$, $b_{ij}$  & \\
+		NRTL & $a_{ij}$, $b_{ij}$, $\alpha_{ij}$ & $\alpha_{ij} = \alpha_{ji}$ \\
+		\hline
+	\end{tabularx}
 \end{table}
 
 El código \ref{lst:mixtureParameters} muestra el cálculo de los parámetros para una mezcla, donde la expresión de $\alpha$ es la misma para cada compuesto puro. 

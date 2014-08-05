@@ -1,0 +1,56 @@
+\subsection{Entalpía}\label{subsec:enthalpy}
+
+	Para conocer la entalpía real de una substacia o mezcla, es necesario conocer la entalpía del gas ideal y la entalpía de excesso.
+
+\subsubsection{Entalpía del gas ideal con la ecuación del calor específico}
+	Para realizar el cálculo de la entalpía segun el gas ideal, es necesaria una ecuación que represente el calor específico. El cálculo depende de la forma de la ecuación del calor específico.
+
+	La librería \Materia  define una interface para obligar que todas las implementaciones de la ecuación tengan los métodos para calcular la entalpía según la ecuación \ref{eq:idealgasenthalpy}.
+
+	Incluidas para el presente trabajo la librería \Materia implementa las ecuaciones 107 del DIPPR y una ecuación Polinomial\marginpar{Faltan las referencias a las ecuaciones del cp}. 
+	
+	Predeterminadamente se usa la ecuación la ecuación 107 de DIPPR.
+
+
+	En el fragmento de código \ref{lst:enthalpy} se muestra el cálculo de la entalpía según la ecuación \ref{eq:enthalpy}. 
+
+\begin{lstlisting}[caption={Cálculo de la entalpía},label={lst:enthalpy}]
+Homogeneous homogeneous = ...// Objeto tipo Homogeneous
+double enthalpy = homogeneous.calculateEnthapy();
+\end{lstlisting}
+	
+	El objeto `homogeneous' del código \ref{lst:enthalpy} puede ser una substancia o una mezcla como se describe en las secciones \ref{subsec:substance} o \ref{subsec:mixture} respectivamente.
+
+\begin{figure}[!h]
+	\centering	
+	\begin{tikzpicture}
+	\begin{axis}
+	\addplot[blue]table{plotdata/enthalpy/lv.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{}\label{fig:2denthalpy}
+\end{figure}
+
+
+%\addplot+[point meta=explicit]table[x=xcolname,y=ycolname,meta=colordata]{datafile.dat};%ejemplo de uso meta
+\begin{tikzpicture}
+\begin{axis}[view/h=-165]
+\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
+\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
+\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[view/h=-225]
+\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[view/h=-120]
+\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+\end{axis}
+\end{tikzpicture}
