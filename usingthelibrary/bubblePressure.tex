@@ -1,4 +1,14 @@
-\subsubsection{Presión de Burbuja}
+\subsection{Presión de Burbuja}
+
+
+\begin{tikzpicture}
+\begin{axis}[view/v=-15]
+\addplot3[surf,point meta=explicit]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\addplot3[mesh,point meta=explicit]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\end{axis}
+\end{tikzpicture}
+
+
 
 
 

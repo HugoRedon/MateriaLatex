@@ -2,10 +2,9 @@
 \usepackage{thesis}
 %para desarrollo
 	%\usepackage{showframe}
-	%\includeonly{calculatingProperties_chapter,calculatingProperties/parameters,calculatingProperties/enthalpy}
-%--
-
-\begin{document}
+	\includeonly{usingthelibrary/bubblePressure}   
+%--              
+\begin{document}      
 	\include{title}%Portada -Hecho
 	\tableofcontents	
 	\include{objective}%Objetivos -Hecho
@@ -30,17 +29,14 @@
 		\include{usingthelibrary/gibbs}
 		
 		
-		
-		
-
-		
-		
-		\subsection{Equilibrio LV}
+		\section{Equilibrio Líquido-Vapor}\label{sec:heterogeneous}
 		\include{usingthelibrary/bubbleTemp}
 		\include{usingthelibrary/dewTemp}
 		\include{usingthelibrary/bubblePressure}
 		\include{usingthelibrary/dewPressure}
 		\include{usingthelibrary/flash}
+		
+
 		\subsection{Diagramas}
 	
 

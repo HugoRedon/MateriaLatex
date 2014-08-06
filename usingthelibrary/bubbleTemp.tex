@@ -1,21 +1,39 @@
-	\subsubsection{Temperatura de Burbuja}
+\subsection{Temperatura de Burbuja}
+
+\begin{figure}[!h]
+	\centering	
+	\begin{tikzpicture}
+	\begin{axis}
+	\addplot[blue]table{plotdata/heterogeneous/et.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{}\label{fig:bubblePressure}
+\end{figure}
+
+\begin{tikzpicture}
+\begin{axis}[view/h=-165]
+\addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=liquidVolume, z=pressure]{plotdata/heterogeneous/et.dat};
+\addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=vaporVolume, z=pressure]{plotdata/heterogeneous/et.dat};
+\end{axis}
+\end{tikzpicture}
 
 
 
-\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
+
+\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=1.4cm,column sep=0.7cm] ]
 
 \node(init){Inicio};
-\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
-\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$T,y_1,y_2,\ldots,y_{nc}$};
-\node[below of=estim,below](relations){Cálculo de las\\ razones de equilibrio\\
+\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
+\node[below of=lab,below = 0.4cm](estim){Estimado inicial de\\ las incognitas\\$T,y_1,y_2,\ldots,y_{nc}$};
+\node[below of=estim,below = 0.6](relations){Cálculo de las\\ razones de equilibrio\\
 $K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
-\node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = \ln{S_y} $};
+\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = \ln{S_y} $};
 
-\node[below of=error,below](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
-\node[below of=criteria,below](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
+\node[below of=error,below = 0.6](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
+\node[below of=criteria,below = 0.4](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
 $\Delta T = 0.1  \quad \text{o} \quad 1.0 K$};
 
-\node[below of=tempIncrement,below](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $T^*$
+\node[below of=tempIncrement,below = 0.4](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $T^*$
 \\$K_i^* = \frac{ \hat{\phi}_i^L }{ \hat{\phi}_i^V}$};
 
 \node[right of=criteria	,right=2.2cm](end){Fin};
