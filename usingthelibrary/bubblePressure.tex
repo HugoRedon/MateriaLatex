@@ -2,31 +2,44 @@
 
 
 \begin{tikzpicture}
-\begin{axis}[view/v=-15]
-\addplot3[surf,point meta=explicit]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
-\addplot3[mesh,point meta=explicit]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\begin{axis}[view/v=-15,colorbar]
+\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
 \end{axis}
 \end{tikzpicture}
 
 
+\begin{tikzpicture}
+\begin{axis}[view/v=-220]
+\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\end{axis}
+\end{tikzpicture}
 
+
+\begin{tikzpicture}
+\begin{axis}[view/v=-115]
+\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
+\end{axis}
+\end{tikzpicture}
 
 
 
 \begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
 
 \node(init){Inicio};
-\node[below of=init] (lab)  {Lectura de \textbf{Datos} \\$T,x_1, x_2,\ldots, x_{nc}$};
-\node[below of=lab,below](estim){Estimado inicial de\\ las incognitas\\$P,y_1,y_2,\ldots,y_{nc}$};
-\node[below of=estim,below](relations){Cálculo de las\\ razones de equilibrio\\
+\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$T,x_1, x_2,\ldots, x_{nc}$};
+\node[below of=lab,below=0.2cm](estim){Estimado inicial de\\ las incognitas\\$P,y_1,y_2,\ldots,y_{nc}$};
+\node[below of=estim,below=0.6cm](relations){Cálculo de las\\ razones de equilibrio\\
 $K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
-\node[below of=relations,below = 0.2cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = {S_y}-1 $};
+\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = {S_y}-1 $};
 
-\node[below of=error,below](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
-\node[below of=criteria,below](pressureIncrement){Incrementer la temperatura\\$P^* = P + \Delta P$\\
+\node[below of=error,below=0.6cm](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
+\node[below of=criteria,below=0.4cm](pressureIncrement){Incrementer la temperatura\\$P^* = P + \Delta P$\\
 $\Delta P = 0.001  \quad \text{o} \quad 0.0001 K$};
 
-\node[below of=pressureIncrement,below](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $P^*$
+\node[below of=pressureIncrement,below=0.4cm](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $P^*$
 \\$K_i^* = \frac{ \hat{\phi}_i^L }{ \hat{\phi}_i^V}$};
 
 \node[right of=criteria	,right=2.2cm](end){Fin};

@@ -17,6 +17,8 @@
 *.sublime-*
 .project
 *.ucls
+*contourtmp*
+*~
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
