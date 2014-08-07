@@ -2,7 +2,7 @@
 \usepackage{thesis}
 %para desarrollo
 	%\usepackage{showframe}
-	%\includeonly{usingthelibrary/fugacity}   
+	\includeonly{usingthelibrary/compresibilityFactor,usingthelibrary/fugacity,usingthelibrary/volume,apendixEquations}     
 %--              
 \begin{document}      
 	\include{title}%Portada -Hecho
@@ -15,7 +15,8 @@
 		\include{usingthelibrary/units}%hecho
 		\include{usingthelibrary/cubic}%hecho
 			\include{usingthelibrary/compresibilityFactor}%hecho
-			\subsection{volumen molar}\label{subsec:volume}
+
+			\include{usingthelibrary/volume}%hecho
 			\include{usingthelibrary/fugacity}  
 
 		\include{usingthelibrary/compounds}%hecho
