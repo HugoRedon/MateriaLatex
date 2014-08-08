@@ -64,33 +64,38 @@ La expresión de $\alpha$ puede ser una función de la temperatura, las expresio
 		\hline
 	\end{tabular}
 \end{table}
+\subsubsection{Creación de un objeto tipo `Substance'}\label{subsub:substanceCreation}
 
+Es necesario utilizar el método constructor de la clase `Substance' para crear un objeto de este tipo, se debe proporcionar como parámetros la ecuación de estado deseada, la exprsión de $\alpha$, una instancia de la clase `Compound' como se muestra en la sección \ref{sec:compounds} y la fase de la substancia.
 
-Para un compuesto puro los parámetros $a$ y $b$ se calculan segun el código \ref{lst:substanceParams}.
+En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de estado cúbica previamente definida, a través de la clase `EquatiosOfState'. Los valore de $\Omega_a$ y $\Omega_b$ se muestran en la tabla \ref{tab:cubics}. De forma muy similar al de las ecuaciońes de estado,la selección de la expresión de $\alpha$ se realiza a través de la clase `Alphas'.
 
+El código \ref{lst:substanceCreation} muestra como crear una objeto del tipo substancia.
 
-\begin{lstlisting}[caption={Cálculo de los parámetros para el Ciclohexano, con la ecuación de estado Soave Redlich Kwong y la expresión de $\alpha$ de mathias },label={lst:substanceParams}]
-import.termo.eos.Cubic;
-import.termo.eos.Alpha;
-import.termo.component;
-...
+\begin{lstlisting}[caption={Creación de un objeto tipo `Substance' para el compuesto Ciclohexano, con la ecuación de estado Soave Redlich Kwong y la expresión de $\alpha$ de mathias },label={lst:substanceCreation}]
+//creación del compuesto
 Compound compound = new Compound("Cyclohexane");
 compound.setCriticalPressure(4073000);
 compound.setCriticalTemperature(553.5);
 compound.setAcentricFactor(0.211);
 
+\\Elección de la ecuación de estado y la expresión de alfa
 Cubic srk = EquationsOfState.redlichKwongSoave();
 Alpha mathias = Alphas.getMathiasExpression();
 
+\\Creación de la substancia
 Substance substance = new Substance(srk,mathias, compound,Phase.LIQUID);
+\end{lstlisting}
 
+	Finalmente se utiliza el objeto creado para realizar el cálculo de los parámetros de la ecuación de estado cúbica, en el código \ref{lst:substanceParams}.
+
+\begin{lstlisting}[caption={Cálculo de los parámetros para la ecuación de estado cúbica con la clase `Substance'.},label={lst:substanceParams}]
 double a = substance.calculate_a_cubicParameter();
 double b = substance.calculate_b_cubicParameter();
 \end{lstlisting}
+ 
 
-En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de estado cúbica previamente definida, a través de la clase `EquatiosOfState'. Los valore de $\Omega_a$ y $\Omega_b$ se muestran en la tabla \ref{tab:cubics}. De forma muy similar al de las ecuaciońes de estado,la selección de la expresión de $\alpha$ se realiza a través de la clase `Alphas'.
-
-
+Nótese que el código \ref{lst:homogeneousParameters} y el código \ref{lst:substanceParams} es idéntico y aunque parece redundate, solo se muestra para señalar el polimorfismo de la librería , es decir que el objeto substance es del tipo `Homogeneous' además del tipo `Substance', y tiene accesso a los métodos en las dos clases.
 
 
 \subsubsection{Mezcla}\label{subsec:mixture}
@@ -98,7 +103,6 @@ En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de
 El cálculo de los parámetros para una mezcla depende de la regla de mezclado, y en el caso de las reglas de mezclado basadas en la energía libre de exceso, también del modelo de actividad.
 
 Las reglas de mezclado incluidas en este trabajo se muestran en la tabla \ref{tab:mixingrules}, y los modelos de actividad se listan en la tabla \ref{tab:activitymodels}.
-
 
 \begin{table}
 	\caption{Reglas de mezclado implementadas}\label{tab:mixingrules}
@@ -125,10 +129,15 @@ Las reglas de mezclado incluidas en este trabajo se muestran en la tabla \ref{ta
 		\hline
 	\end{tabularx}
 \end{table}
+\subsubsection{Creación de un objeto tipo `Mixture'}\label{subsub:mixtureCreation}
 
-El código \ref{lst:mixtureParameters} muestra el cálculo de los parámetros para una mezcla, donde la expresión de $\alpha$ es la misma para cada compuesto puro. 
+Un objeto tipo `Mixture' contiene dentro de sí un conjuto de objetos tipo `Substance', esto hace que su creación sea mas compleja. Se ha escrito la clase `MixtureBuilder' para facilitar la creación de los objetos de la clase `Mixture'.
 
-\begin{lstlisting}[caption={Código para el cálculo de los parámetros de la ecuación de estado en una mezcla.}, label={lst:mixtureParameters} ]
+La clase `MixtureBuilder' facilita la creación de los objetos `Substance' que forman el conjunto de compuestos de la mezcla, y permite asignar una expresión de $\alpha$ diferente para cada compuesto.
+
+El código \ref{lst:mixtureParameters} muestra de una mezcla, donde la expresión de $\alpha$ es la misma para cada compuesto puro. 
+
+\begin{lstlisting}[caption={Creación de una mezcla con la clase `MixtureBuilder' asignando la misma expresión de $\alpha$ para cada compuesto puro.}, label={lst:mixtureParameters} ]
 
 Compound cyclohexane = new Compound("Cyclohexane");
 cyclohexane.setCriticalPressure(4073000);
@@ -150,11 +159,9 @@ Mixture mixture = new MixtureBuilder()
 			.setPhase(Phase.VAPOR)
 			.build();
 
-double a = mixture.calculate_a_cubicParameter();
-double b = mixture.calculate_b_cubicParameter();
 \end{lstlisting}
 
-Es posible realizar el cálculo de los parámetros con una expresión de $\alpha$ diferente para cada compuesto puro según el código \ref{lst:mixtureParametersDifAlphas}. 
+Es posible crear la mezcla con una expresión de $\alpha$ diferente para cada compuesto puro según el código \ref{lst:mixtureParametersDifAlphas}. 
 
 
 \begin{lstlisting}[caption={Código para el cálculo de los parámetros de la ecuación de estado en una mezcla, con diferentes expresiones de $\alpha$},label={lst:mixtureParametersDifAlphas}]
@@ -166,7 +173,11 @@ Mixture mixture = new MixtureBuilder()
 			.setMixingRule(mixingRule)
 			.setInteractionParameter(k)
 			.build();
+\end{lstlisting}
 
+Finalmente se pueden calcular los parámetros de la ecuación cúbica con el código \ref{lst:mixtureParameters}.
+
+\begin{lstlisting}[caption={Cálculo de parámetros de la mezcla},label={lst:mixtureParameters}]
 double a = mixture.calculate_a_cubicParameter();
 double b = mixture.calculate_b_cubicParameter();
 \end{lstlisting}

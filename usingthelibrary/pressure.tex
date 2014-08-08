@@ -1,17 +1,12 @@
  \subsection{Presión}\label{subsec:pressure}
 	Un cálculo de presión, se realiza como se muestra en el código \ref{lst:pressureCalculation}.
-	\begin{lstlisting}[label=lst:pressureCalculation,caption=Cálculo de presión para el heptano con la ecuación de estado cúbica de Van Der Waals]
-	import termo.eos.Cubic;
-	...
-	Cubic cubic = new Cubic();
-	//parametros de van der waals para el heptano
-	double a = 3107000.0;
-	double b = 0.2049;
-
-	double volume = 1.5;
-	double temperature = 300;
-	double pressure = cubic.calculatePressure(temperature, volume, a, b);
+	\begin{lstlisting}[label=lst:pressureCalculation,caption=Cálculo de presión para un objeto tipo homogeneous]
+	double pressure = homogeneous.calculatePressure(temperature, volume);
 	\end{lstlisting}
+
+	Como ya se mencionó antes el objeto `Homogeneous' del código \ref{lst:pressureCalculation} puede ser del tipo `Substance' o `Mixture'.
+
+ 	En la figura \ref{fig:cubicPressureDiagrams} se muestra un ejemplo de uso del cálculo para realizár gŕaficas de presión.
 
 	\begin{figure}[!h]
 	\begin{tabular}{c c}
@@ -34,8 +29,8 @@
 		\end{axis}
 		\end{tikzpicture}
 	\end{tabular}
-	\caption{Diagramas de presión usando la eq. de Van Der Waals (u=w=0)} \label{fig:cubicPressureDiagrams}
+	\caption{Diagramas de presión para el heptano usando la eq. de Van Der Waals (u=w=0)} \label{fig:cubicPressureDiagrams}
 	\end{figure}
 
 
-	 En la figura \ref{fig:cubicPressureDiagrams} se muestra un ejemplo de uso del cálculo para realizár gŕaficas de presión.
+	
