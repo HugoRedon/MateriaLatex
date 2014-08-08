@@ -1,18 +1,19 @@
 \section{Ecuación de estado cúbica}\label{sec:cubic}
 
-	La ecuación de estado cúbica representada por la clase ``Cubic'', permite realizar los cálculos de: 
+	La ecuación de estado cúbica representada por la clase `Cubic', permite realizar los cálculos de: 
 	\begin{itemize}
 	\itemsep0ex
-		\item{\nameref{subsec:pressure}} 
-		\item{\nameref{subsec:compresibilityFactor}}
-		\item{\nameref{subsec:volume}}
-		\item{\nameref{subsec:fugacity}}
+		\item{Presión} 
+		\item{Factor de compresibilidad}
+		\item{Volumen molar}
+		\item{Fugacidad}
 	\end{itemize}
 
-	En la tabla \ref{tab:cubics} se muestran las ecuaciones implementadas en este trabajo.
+	Cualquier ecuación de estado cúbica se puede crear dentro de la librería \Materia usando los métodos `get' y `set' de la clase `Cubic', ver la sección \ref{subsec:cubicCreation}, pero para comodidad se han definido las ecuaciones de la tabla \ref{tab:cubics} para accederse a través de la clase `EquationsOfState'.
+
 	\begin{table}[!h]
 		\centering
-		\caption{Ecuaciónes de estado cúbicas}\label{tab:cubics}
+		\caption{Ecuaciónes de estado cúbicas accesibles desde la clase `EquationsOfState'}\label{tab:cubics}
 		\begin{tabular}{|c |c | c | c | c |}
 			\hline
 			Ecuación de estado  & $u$ & $w$ & $\Omega_a$&$\Omega_b$\\
@@ -28,69 +29,60 @@
 		\end{tabular}		
 	\end{table}
 
- \subsection{Presión}\label{subsec:pressure}
+\subsection{Creación de una ecuación de estado cúbica}\label{subsec:cubicCreation}
 
-	Un cálculo de presión, se realiza como se muestra en el código \ref{lst:pressureCalculation}.
-	\begin{lstlisting}[label=lst:pressureCalculation,caption=Cálculo de presión para el heptano con la ecuación de estado cúbica de Van Der Waals]
-	import termo.eos.Cubic;
-	...
-	Cubic cubic = new Cubic();
-	//parametros de van der waals para el heptano
-	double a = 3107000.0;
-	double b = 0.2049;
+	Existen dos formas de crear una ecuación cúbica dentro de la librería \Materia.
 
-	double volume = 1.5;
-	double temperature = 300;
-	double pressure = cubic.calculatePressure(temperature, volume, a, b);
-	\end{lstlisting}
+	La primera es a través del método contructor, que se accede con la palabra reservada  `new'. De esta manera los valores u y w de la ecuación de estado son iguales a 0 y se les puede asignar un valor diferente haciendo uso de los métods `get' y `set' como se muestra en el código \ref{lst:pengRobinsonCreation}.
 
-	\begin{figure}[!h]
-	\begin{tabular}{c c}
-		\begin{tikzpicture}
-		\begin{axis}[width= 0.45 \linewidth,font=\footnotesize,
-		xlabel = {Volumen molar $[\frac{m^3}{kg}]$},
-		ylabel = {Presión $[Pa]$}]
-		\addplot[blue]table{plotdata/pressurevolume.dat};
-		\end{axis}
-		\end{tikzpicture}
-		&
-		\begin{tikzpicture}
-		\begin{axis}[width= 0.45 \linewidth,,font=\footnotesize,
-		xlabel={Volumen molar $[\frac{m^3}{kg}]$},
-		zlabel={Presión $[Pa]$},
-		ylabel={Temperatura $[K]$}]
-		\addplot3[surf,
-		colormap={blueblack}{color=(white) color=(blue)},
-		domain=0:1]table{plotdata/pressurevolumetemperature.dat};
-		\end{axis}
-		\end{tikzpicture}
-	\end{tabular}
-	\caption{Diagramas de presión usando la eq. de Van Der Waals (u=w=0)} \label{fig:cubicPressureDiagrams}
-	\end{figure}
-
-
-	De manera predeterminada los valores u y w de la ecuación de estado son iguales a 0. En la figura \ref{fig:cubicPressureDiagrams} se muestra un ejemplo de uso del cálculo para realizár gŕaficas de presión.
-
-	Podemos asignar los valores u y w para la ecuación de estado cúbica, o podemos utilizar la clase ``EquationsOfState'' para obtener una ecuación con los parámetros previamente establecidos, los fragmentos de código \ref{lst:pengRobinsonCreation} y \ref{lst:tstCreation} muestran el procedimiento respectivamente.
-
-	\begin{lstlisting}[label=lst:pengRobinsonCreation,caption=Creación de la ecuación de estado de Peng Robinson usando los metodos `Set' de los parametros u y w]
+	\begin{lstlisting}[label={lst:pengRobinsonCreation},caption=Creación de la ecuación de estado de Peng Robinson usando los metodos `Set' de los parametros u y w]
 	Cubic pengRobinson = new Cubic();
 	pengRobinson.setU(2);
 	pengRobinson.setW(-1);
+	pengRobinson.setOmega_a(0.45723553);
+	pengRobinson.setOmega_b(0.077796074);
 	\end{lstlisting}
 
-	\begin{lstlisting}[label=lst:tstCreation,caption=Creación de la ecuación de estado de TST usando la clase EquationsOfState]
+	La segunda forma de crear una ecuación de estado es a través de la clase `EquationsOfState'. Para obtener una ecuación con los parámetros previamente establecidos, el fragmento de código \ref{lst:tstCreation} muestra el procedimiento.
+
+
+	\begin{lstlisting}[label=lst:tstCreation,caption=Creación de la ecuación de estado de TST usando la clase `EquationsOfState']
 	Cubic tst = EquationsOfState.twoSimTassone();
 	\end{lstlisting}
 
+\subsection{Cálculos con la ecuación cúbica}
+	Ya que la clase `Cubic' no realiza los cálculos de sus parámetros estos deben ser proporcionados como argumento de los métodos.
 
+	Los métodos de la clase `Cubic' raramente será necesario usarlos directamente, ya que es dificil obtener el cálculo de los parámetros $a$ y $b$, en cambio la clase `Homogeneous' define el cálculo de los parámetros y de las propiedades que a continuación se muestran.
 
+	\subsubsection{Presión}
+	El cálculo en el método `calculatePressure' se realiza según la ecuación \ref{eq:pressure} y se utiliza como se muestra en el código \ref{lst:cubicpressure}.
+\begin{lstlisting}[label={lst:cubicpressure},caption={Cálculo de presión con una ecuación de estado cúbica, proporcionando como argumento la temperatura, el volumen y los parámetros $a$,$b$}]
+	 double pressure =  cubic.calculatePressure(temperature, volume, a, b);
+\end{lstlisting}
+	\subsubsection{Factor de compresibilidad}
 
+	Es necesario realizar la solución de la ecuación de estado cúbica, como se muestra en el apéndice \ref{chap:cubicsolution}, para conocer el factor de compresibilidad. La solución de la ecuación se realiza en el método `calculateCompresibilityFactor'.
 
+	El método recibe los parámetros adimensionales A, B y la fase a la cual se desea calcular el factor de compresibilidad. La clase ``Cubic'' tiene los métodos necesarios para transformar los parámetros a y b a su forma adimensional A y B según las ecuaciones \ref{eq:AB}.
 
+	El código \ref{lst:compresibility} muestra como usar el método.
+\begin{lstlisting}[label={lst:compresibility},caption={Cálculo del factor de compresibilidad con una ecuación de estado cúbica, proporcionando como argumento los parámetros adimensionales $A$,$B$, y la fase a la cual se desea calcular el factor}]
+	double z = cubic.calculateCompresibilityFactor(A,B,aPhase);
+\end{lstlisting}
+	\subsubsection{Volumen molar}
 
-
-
-
+	La ecuación \ref{eq:volume} proporciona un método para calcular el volume molar a partir del factor de compresibilidad. El código \ref{lst:volume} muestra el método.
+\begin{lstlisting}[label={lst:volume},caption={Cálculo del volumen molar usando una ecuación de estado cúbica, el método recibe los parámetros de temperatura, presión y factor acéntrico}]
+	double volume = calculateVolume(temperature, pressure, z);
+\end{lstlisting}	
+	\subsubsection{Fugacidad}
+	La fugacidad se calcúla segun la ecuación \ref{eq:fugacity}.Para realizar el cálculo de la fugaciad es necesario conocer las derivadas de los parámetros con respecto a la cantidad de moles del componente i, es decir al componente para el cúal se desea realizar el cálculo de fugacidad. El cálculo de la derivada de los parámetros se realiza en las clases que hereden a `Homogeneous', por ejemplo las clases `Substance' y `Mixture'.
+	El método se usa como se indica en el código \ref{lst:fugacity}.
+\begin{lstlisting}[label={lst:fugacity},caption={Cálculo de fugacidad usando una ecuación de estad cúbica, el método recibe los parámetros de temperatura, presión ,los parámetros de la ecuación cúbica $a$ y $b$, las derivadas con respecto a la cantidad de moles $partial_a$, $partial_b$ y finalmente la fase a la que se desea el cálculo de la fugacidad.}]
+	double fugacity = calculateFugacity(temperature, pressure,
+										 a, b, parcial_a, parcial_b,aPhase);
+               )
+\end{lstlisting}
 
 
