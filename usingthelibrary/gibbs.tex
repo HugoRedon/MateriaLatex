@@ -1,4 +1,12 @@
 \subsection{Energía libre de Gibbs}
+	
+	El cálculo de la energía libre de gibbs se realiza a partir de la entropía y la entalpía segun la ecuación \ref{eq:gibbs} y su cálculo se demuestra en el código \ref{lst:gibbs}.
+
+	\begin{lstlisting}[label={lst:gibbs},caption={Cálculo de la energía libre de gibbs con la librería \Materia}]
+		double gibbs = homogeneous.calculateGibbs();
+	\end{lstlisting}
+
+	Las figuras \ref{fig:2dgibbs} y \ref{fig:gibbs3d} muestran diagramas de entalpía creados con ayuda de la librería \Materia.
 
 \begin{figure}[!h]
 	\centering	
@@ -7,7 +15,7 @@
 	\addplot[blue]table{plotdata/gibbs/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{}\label{fig:2dgibbs}
+	\caption{Diagrama de la energía libre de Gibbs para el agua.}\label{fig:2dgibbs}
 \end{figure}
 
 \begin{figure}
@@ -32,4 +40,5 @@
 	\addplot3[surf]table{plotdata/gibbs/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
+	\caption{Diagramas de la energía libre de Gibbs para el agua.}\label{fig:gibbs3d}
 \end{figure}

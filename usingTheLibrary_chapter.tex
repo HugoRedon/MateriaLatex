@@ -4,7 +4,7 @@
 		
 	La clase `Cubic' realiza cálculos de presión, fugacidad, factor de compresibilidad y adimensionamiento de los parámetros $a$ y $b$, pero no calcula los parámetros $a$ y $b$.Para calcular los parámetos $a$ y $b$ existen las clases `Substance' y `Mixture' que definen el cálculo de los parámetros para un compuesto puro o para una mezcla respectivamente. 
 
-	Las clases `Substance' y `Mixture' tienen en común los métodos `calculate\_a\_cubicParameter',`calculate\_b\_cubicParameter', ademas de otros que se condensan en la clase `Homogeneous'.La clase `Homogeneous' utiliza los cálculos de los parámetros de la ecuación cúbica y la clase cúbic para finalmente realizar el cálculo de la fugacidad, presión ,factor compresibilidad, entalpía, entropía y energía libre de gibbs.
+	Las clases `Substance' y `Mixture' tienen en común los métodos `calculate\_a\_cubicParameter', `calculate\_b\_cubicParameter', ademas de otros que se condensan en la clase `Homogeneous'.La clase `Homogeneous' utiliza los cálculos de los parámetros de la ecuación cúbica y la clase cúbic para finalmente realizar el cálculo de la fugacidad, presión ,factor compresibilidad, entalpía, entropía y energía libre de gibbs.
 
 	La clase `Homogeneous' no realiza cálculos de equlibrio, ya que la clase representa una sola fase. Para realizar cálculos de equilibrio existe la clase `Heterogeneous' que contiene dos fases una líquida y una vapor. A través de los cálculos de fugacidad de cada fase y empleando un algoritmo numérico se pueden realizar los cálculos de equilibrio Líquid-Vapor.
 

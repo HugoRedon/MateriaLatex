@@ -28,9 +28,9 @@ Nótese de la figura \ref{fig:homogeneousCalculations} los siguiente:
 	Cualquiera de las dos implementaciones de la clase `Homogeneous' tiene los métodos necesarios para calcular los parámetros de la ecuación cúbica según el código \ref{lst:homogeneousParameters}.
 
 \begin{lstlisting}[caption=Cualquier objeto tipo `Homogeneous' puede calcular los parámetros de la ecuación de estado cúbica a y b, label={lst:homogeneousParameters}]
-	Homogeneous system = ...// Objeto tipo `Homogeneous'.
-	double a = system.calculate_a_cubicParameter();
-	double b = system.calculate_b_cubicParameter();
+	Homogeneous homogeneous = ...// Objeto tipo `Homogeneous'.
+	double a = homogeneous.calculate_a_cubicParameter();
+	double b = homogeneous.calculate_b_cubicParameter();
 \end{lstlisting}
 
 
@@ -73,17 +73,17 @@ En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de
 El código \ref{lst:substanceCreation} muestra como crear una objeto del tipo substancia.
 
 \begin{lstlisting}[caption={Creación de un objeto tipo `Substance' para el compuesto Ciclohexano, con la ecuación de estado Soave Redlich Kwong y la expresión de $\alpha$ de mathias },label={lst:substanceCreation}]
-//creación del compuesto
+
 Compound compound = new Compound("Cyclohexane");
 compound.setCriticalPressure(4073000);
 compound.setCriticalTemperature(553.5);
 compound.setAcentricFactor(0.211);
 
-\\Elección de la ecuación de estado y la expresión de alfa
+
 Cubic srk = EquationsOfState.redlichKwongSoave();
 Alpha mathias = Alphas.getMathiasExpression();
 
-\\Creación de la substancia
+
 Substance substance = new Substance(srk,mathias, compound,Phase.LIQUID);
 \end{lstlisting}
 
@@ -104,7 +104,7 @@ El cálculo de los parámetros para una mezcla depende de la regla de mezclado, 
 
 Las reglas de mezclado incluidas en este trabajo se muestran en la tabla \ref{tab:mixingrules}, y los modelos de actividad se listan en la tabla \ref{tab:activitymodels}.
 
-\begin{table}
+\begin{table}[!h]
 	\caption{Reglas de mezclado implementadas}\label{tab:mixingrules}
 	\begin{tabularx}{\textwidth}{|X|X|X|}
 		\hline
@@ -118,7 +118,7 @@ Las reglas de mezclado incluidas en este trabajo se muestran en la tabla \ref{ta
 	\end{tabularx}
 \end{table}
 
-\begin{table}
+\begin{table}[!h]
 	\caption{Modelos de actividad }\label{tab:activitymodels}
 	\begin{tabularx}{\textwidth}{|X|X|X|}
 		\hline

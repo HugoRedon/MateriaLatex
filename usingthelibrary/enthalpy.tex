@@ -1,24 +1,27 @@
 \subsection{Entalpía}\label{subsec:enthalpy}
 
-	Para conocer la entalpía real de una substacia o mezcla, es necesario conocer la entalpía del gas ideal y la entalpía de excesso.
+	Para conocer la entalpía real de una substacia o mezcla, es necesario conocer la entalpía del gas ideal y la entalpía residual.
 
 \subsubsection{Entalpía del gas ideal con la ecuación del calor específico}
-	Para realizar el cálculo de la entalpía segun el gas ideal, es necesaria una ecuación que represente el calor específico. El cálculo depende de la forma de la ecuación del calor específico.
+	Para realizar el cálculo de la entalpía segun el gas ideal, es necesaria una ecuación que represente el calor específico. El cálculo depende de la forma de la ecuación del calor específico y sus parámetros. En la sección \ref{sec:cp} se muestran las ecuaciónes de cp incluidas en la librería y como usarlas.
 
-	La librería \Materia  define una interface para obligar que todas las implementaciones de la ecuación tengan los métodos para calcular la entalpía según la ecuación \ref{eq:idealgasenthalpy}.
+	Con la ecuación del cp la clase `Homogeneous' puede calcular la entalpía del gas ideal como se muestra en el código \ref{lst:idealgasenthalpy}.
 
-	Incluidas para el presente trabajo la librería \Materia implementa las ecuaciones 107 del DIPPR y una ecuación Polinomial\marginpar{Faltan las referencias a las ecuaciones del cp}. 
+	\begin{lstlisting}[label={lst:idealgasenthalpy},caption={Cálculo de la entalpía del gas ideal.}]
+	double idealGasEnthalpy = homogeneous.calculateIdealGasEnthalpy():
+	\end{lstlisting}
 	
-	Predeterminadamente se usa la ecuación la ecuación 107 de DIPPR.
+\subsubsection{Entalpía real}
 
-	En el fragmento de código \ref{lst:enthalpy} se muestra el cálculo de la entalpía según la ecuación \ref{eq:enthalpy}. 
+	La entalpía residual no esta separada en un método particular, sino que esta incluido en el cálculo de la entalpía real. Es muy facil realizar la separación, pero para los objetivos de la presente tesis no fue necesario realizarlo.
 
-\begin{lstlisting}[caption={Cálculo de la entalpía},label={lst:enthalpy}]
-Homogeneous homogeneous = ...// Objeto tipo Homogeneous
-double enthalpy = homogeneous.calculateEnthapy();
+	Finalmente el cálculo de la entalpía se realiza en el método `calculateEnthalpy()' como se muestra en el fragmento de código \ref{lst:enthalpy} según la ecuación \ref{eq:enthalpy}. 
+
+\begin{lstlisting}[caption={Cálculo de la entalpía real},label={lst:enthalpy}]
+	double enthalpy = homogeneous.calculateEnthapy();
 \end{lstlisting}
 	
-	El objeto `homogeneous' del código \ref{lst:enthalpy} puede ser una substancia o una mezcla como se describe en las secciones \ref{subsec:substance} o \ref{subsec:mixture} respectivamente.
+	Las figuras \ref{fig:2denthalpy} y \ref{fig:enthalpy3d} muestran diagramas de entalpía creados con ayuda de la librería \Materia.
 
 \begin{figure}[!h]
 	\centering	
@@ -27,29 +30,32 @@ double enthalpy = homogeneous.calculateEnthapy();
 	\addplot[blue]table{plotdata/enthalpy/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{}\label{fig:2denthalpy}
+	\caption{Diagrama de entalpía para el agua.}\label{fig:2denthalpy}
 \end{figure}
 
 
 %\addplot+[point meta=explicit]table[x=xcolname,y=ycolname,meta=colordata]{datafile.dat};%ejemplo de uso meta
-\begin{tikzpicture}
-\begin{axis}[view/h=-165]
-\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
-\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
-\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
-\end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-\begin{axis}[view/h=-225]
-\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
-\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
-\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
-\end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-\begin{axis}[view/h=-120]
-\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
-\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
-\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
-\end{axis}
-\end{tikzpicture}
+\begin{figure}
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-165]
+	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
+	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
+	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-225]
+	\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+	\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+	\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-120]
+	\addplot3[surf]table{plotdata/enthalpy/lv3d.dat};
+	\addplot3[surf]table{plotdata/enthalpy/l3d.dat};
+	\addplot3[surf]table{plotdata/enthalpy/v3d.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Diagramas de entalpía para el agua.}\label{fig:enthalpy3d}
+\end{figure}

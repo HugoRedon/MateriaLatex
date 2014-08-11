@@ -1,4 +1,28 @@
 \subsection{Entropía}
+
+	El cálculo de la entropía es muy semejante al de la entalpía, es necesario conocer la entropía del gas ideal y la entropía residual.
+
+\subsubsection{Entropía del gas ideal con la ecuación del calor específico}
+
+	El cálculo de la entropía segun el gas ideal, también necesita una ecuación que represente el calor específico. En la sección \ref{sec:cp} se muestran las ecuaciónes de cp incluidas en la librería y como usarlas.
+
+	En el fragmento de código \ref{lst:idealgasentropy} se muestra el cálculo de la entropía del gas ideal según la ecuación \ref{eq:idealgasentropy}. 
+
+	\begin{lstlisting}[label={lst:idealgasentropy},caption={Cálculo de la entropía absoluta del gas ideal.}]
+	double idealGasEntropy = homogeneous.calculateIdealGasEntropy();
+	\end{lstlisting}
+
+\subsubsection{Entropía real}
+
+	El cálculo de la entalpía se realiza según la ecuación \ref{eq:entropy} y su uso se muestra en el código \ref{lst:entropy}.
+
+\begin{lstlisting}[label={lst:entropy},caption={Cálculo de la entropía absoluta.}]
+	double entropy = homogeneous.calculateEntropy()
+\end{lstlisting}
+
+	Las figuras \ref{fig:2dentropy} y \ref{fig:entropy3d} muestran diagramas de entalpía creados con ayuda de la librería \Materia.
+
+
 \begin{figure}[!h]
 	\centering	
 	\begin{tikzpicture}
@@ -6,7 +30,7 @@
 	\addplot[blue]table{plotdata/entropy/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{}\label{fig:2dentropy}
+	\caption{Diagrama de entropía para el agua.}\label{fig:2dentropy}
 \end{figure}
 
 \begin{figure}
@@ -31,4 +55,5 @@
 	\addplot3[surf]table{plotdata/entropy/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
+	\caption{Diagramas de entropía para el agua.}\label{fig:entropy3d}
 \end{figure}

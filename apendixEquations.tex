@@ -72,11 +72,11 @@ private  double calculateEnthalpy( double volume){
 
 
 \subsection{Entropía}
-\begin{equation}
+\begin{equation}\label{eq:entropy}
 s = s^{\neq} + R\ln\left[\frac{z(v-b)}{v}\right] + \frac{\frac{\partial a}{\partial T}}{b \sqrt{u^2 - 4w}}
 \ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq:idalgasentropy}
 s^{\neq} = \sum_{i=1}^{nc} x_i\left[s_i^{ref} + \int_{Tref}^T \frac{Cp_i^{\neq}}{T} \mathrm{d}T 
 - R\ln \left(\frac{p}{p_{ref}}\right)- R\ln{x_i}
 \right]

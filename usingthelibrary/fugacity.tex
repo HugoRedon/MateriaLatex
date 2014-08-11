@@ -1,8 +1,16 @@
 \subsection{Fugacidad}\label{subsec:fugacity}
 	
-\begin{lstlisting}[caption={Cálculo de la fugacidad para }]
+	El cálculo de fugacidad se realiza para un compuesto en específico. Si el cálculo se desea hacer para una mezcla homogénea, será necesario especificar el compuesto para el cual se desea la fugacidad.Si el cálculo es para una substancia no será necesario especificar el compuesto, ya que la substancia solo tiene un compuesto puro. En el código \ref{lst:substancefugacity} se realiza el cálculo de fugacidad para una substancia, y en el código \ref{lst:mixturefugacity} se realiza el cálculo de fugaciad para un compuesto en una mezcla.
 
+\begin{lstlisting}[label={lst:substancefugacity}, caption={Cálculo de la fugacidad para una substancia homogénea.}]
+	double fugacity = substance.calculateFugacity();
 \end{lstlisting}
+
+\begin{lstlisting}[label={lst:mixturefugacity}, caption={Cálculo de la fugacidad para un compuesto en una mezcla.}]
+	double fugacity = mixture.calculateFugacity(compound);
+\end{lstlisting}
+
+	Para crear la figura \ref{fig:fugacity} se calculó la fugacidad de una substancia en su fase vapor, y despues en su fase líquida, los planos se cruzan en la línea de equilibrio Líquido-Vapor.
 
 \begin{figure}
 	\centering
