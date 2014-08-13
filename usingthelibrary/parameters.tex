@@ -135,9 +135,9 @@ Un objeto tipo `Mixture' contiene dentro de sí un conjuto de objetos tipo `Subs
 
 La clase `MixtureBuilder' facilita la creación de los objetos `Substance' que forman el conjunto de compuestos de la mezcla, y permite asignar una expresión de $\alpha$ diferente para cada compuesto.
 
-El código \ref{lst:mixtureParameters} muestra de una mezcla, donde la expresión de $\alpha$ es la misma para cada compuesto puro. 
+El código \ref{lst:mixturecreation} muestra la creación de una mezcla, donde la expresión de $\alpha$ es la misma para cada compuesto puro. 
 
-\begin{lstlisting}[caption={Creación de una mezcla con la clase `MixtureBuilder' asignando la misma expresión de $\alpha$ para cada compuesto puro.}, label={lst:mixtureParameters} ]
+\begin{lstlisting}[caption={Creación de una mezcla con la clase `MixtureBuilder' asignando la misma expresión de $\alpha$ para cada compuesto puro.}, label={lst:mixturecreation} ]
 
 Compound cyclohexane = new Compound("Cyclohexane");
 cyclohexane.setCriticalPressure(4073000);

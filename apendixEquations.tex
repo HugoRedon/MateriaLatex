@@ -9,11 +9,11 @@ P = \frac{R T}{v-b} - \frac{a}{v^2 +u b v + w b^2 }
 
 \begin{itemize}\itemsep0ex
 \item $P$ : presión en $[Pa]$.
-\item $v$ : volumen molar en $[\frac{m^3}{kg}]$
-\item $a$ : Es una medida de la atracción entre las partículas. $[\frac{m^5}{kg s}]$
-\item $b$ : volumen excluido por un mol de partículas.$[\frac{m^3}{kg}]$
+\item $v$ : volumen molar en $[\frac{m^3}{kmol}]$
+\item $a$ : Es una medida de la atracción entre las partículas. $[\frac{m^5}{kg \cdot s}]$
+\item $b$ : volumen excluido por un kmol de partículas.$[\frac{m^3}{kmol}]$
 \item $u$ y $w$ : Son los parámetros diferentes para cada ecuación de estado, ver tabla \ref{tab:cubics}
-\item $R$ : Constante universal de los gases ideales en $\frac{m^3 Pa}{kgmol K}$
+\item $R$ : Constante universal de los gases ideales en $\frac{m^3 Pa}{kmol K}$
 \end{itemize}
 
 
@@ -76,7 +76,7 @@ private  double calculateEnthalpy( double volume){
 s = s^{\neq} + R\ln\left[\frac{z(v-b)}{v}\right] + \frac{\frac{\partial a}{\partial T}}{b \sqrt{u^2 - 4w}}
 \ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
 \end{equation}
-\begin{equation}\label{eq:idalgasentropy}
+\begin{equation}\label{eq:idealgasentropy}
 s^{\neq} = \sum_{i=1}^{nc} x_i\left[s_i^{ref} + \int_{Tref}^T \frac{Cp_i^{\neq}}{T} \mathrm{d}T 
 - R\ln \left(\frac{p}{p_{ref}}\right)- R\ln{x_i}
 \right]

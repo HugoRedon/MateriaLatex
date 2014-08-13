@@ -15,7 +15,7 @@
 \begin{figure}
 	\centering
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-170,view/v=15,xlabel={Temperatura $[K]$},ylabel={Presión $[Pa]$},zlabel={Fugacidad},width=0.8\linewidth,smooth,
+	\begin{axis}[view/h=-170,view/v=15,xlabel={Temperatura $[K]$},ylabel={Presión $[Pa]$},zlabel={Fugacidad},width=0.6\linewidth,smooth,
 	every axis y label/.style={at={(current axis.south east)},right=2mm},]
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, z=liquidfug , x=temperature,y=pressure]{plotdata/fugacity/fug3d.dat};
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, z=vaporfug , x=temperature,y=pressure]{plotdata/fugacity/fug3d.dat};

@@ -18,7 +18,7 @@
 
 
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
-\renewcommand{\lstlistingname}{Código fuente}
+\renewcommand{\lstlistingname}{Código}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{myviolet}{rgb}{0.4,0,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -163,7 +163,21 @@
 
 %
   \newcommand \Materia{\textbf{Materia }}
-  \newcommand \alfa{$\alpha $}
+  \newcommand \alfa{$\alpha$ }
+
+  \newcommand \enthalpyUnits{$[\frac{J}{kmol}]$ }
+  \newcommand \entropyUnits{$[\frac{J}{kmol \cdot K}]$}
+  \newcommand \molarVolumeUnits{$[\frac{m^3}{kmol}]$}
+  \newcommand \temperatureUnits{$[K]$}
+  \newcommand \pressureUnits{$[Pa]$}
+  \newcommand \gibbsUnits{\enthalpyUnits}
+
+  \newcommand \enthalpy{Entalpía \enthalpyUnits}
+  \newcommand \entropy{Entropía \entropyUnits}
+  \newcommand \molarVolume{Volumen molar  \molarVolumeUnits}
+  \newcommand \temperature{Temperatura \temperatureUnits}
+  \newcommand \pressure{Presión \pressureUnits}
+  \newcommand \gibbs{Energía libre de Gibbs \gibbsUnits}
 %--
 
 

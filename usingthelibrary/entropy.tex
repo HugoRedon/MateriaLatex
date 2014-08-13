@@ -26,34 +26,34 @@
 \begin{figure}[!h]
 	\centering	
 	\begin{tikzpicture}
-	\begin{axis}
+	\begin{axis}[xlabel={\entropy},ylabel=\pressure]
 	\addplot[blue]table{plotdata/entropy/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagrama de entropía para el agua.}\label{fig:2dentropy}
+	\caption{Diagrama de presión-entropía para el agua.}\label{fig:2dentropy}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!h]
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-165]
+	\begin{axis}[view/h=-165,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure},colorbar]
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-225]
-	\addplot3[surf]table{plotdata/entropy/lv3d.dat};
-	\addplot3[surf]table{plotdata/entropy/l3d.dat};
-	\addplot3[surf]table{plotdata/entropy/v3d.dat};
+	\begin{axis}[view/h=-225,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure}]
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-120]
-	\addplot3[surf]table{plotdata/entropy/lv3d.dat};
-	\addplot3[surf]table{plotdata/entropy/l3d.dat};
-	\addplot3[surf]table{plotdata/entropy/v3d.dat};
+	\begin{axis}[view/h=-120,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure}]
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagramas de entropía para el agua.}\label{fig:entropy3d}
+	\caption{Diagramas tridimensionales presión-entropía-`volumen molar' para el agua.}\label{fig:entropy3d}
 \end{figure}

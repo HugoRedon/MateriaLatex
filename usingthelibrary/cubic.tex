@@ -66,14 +66,14 @@
 
 	El método recibe los parámetros adimensionales A, B y la fase a la cual se desea calcular el factor de compresibilidad. La clase ``Cubic'' tiene los métodos necesarios para transformar los parámetros a y b a su forma adimensional A y B según las ecuaciones \ref{eq:AB}.
 
-	El código \ref{lst:compresibility} muestra como usar el método.
-\begin{lstlisting}[label={lst:compresibility},caption={Cálculo del factor de compresibilidad con una ecuación de estado cúbica, proporcionando como argumento los parámetros adimensionales $A$,$B$, y la fase a la cual se desea calcular el factor}]
-	double z = cubic.calculateCompresibilityFactor(A,B,aPhase);
+	El código \ref{lst:cubiccompresibility} muestra como usar el método.
+\begin{lstlisting}[label={lst:cubiccompresibility},caption={Cálculo del factor de compresibilidad con una ecuación de estado cúbica, proporcionando como argumento los parámetros adimensionales $A$,$B$, y la fase a la cual se desea calcular el factor}]
+	double z = cubic.calculateCompresibilityFactor(A,B,phase);
 \end{lstlisting}
 	\subsubsection{Volumen molar}
 
-	La ecuación \ref{eq:volume} proporciona un método para calcular el volume molar a partir del factor de compresibilidad. El código \ref{lst:volume} muestra el método.
-\begin{lstlisting}[label={lst:volume},caption={Cálculo del volumen molar usando una ecuación de estado cúbica, el método recibe los parámetros de temperatura, presión y factor acéntrico}]
+	La ecuación \ref{eq:volume} proporciona un método para calcular el volume molar a partir del factor de compresibilidad. El código \ref{lst:cubicvolume} muestra el método.
+\begin{lstlisting}[label={lst:cubicvolume},caption={Cálculo del volumen molar usando una ecuación de estado cúbica, el método recibe los parámetros de temperatura, presión y factor acéntrico}]
 	double volume = calculateVolume(temperature, pressure, z);
 \end{lstlisting}	
 	\subsubsection{Fugacidad}
@@ -81,7 +81,7 @@
 	El método se usa como se indica en el código \ref{lst:fugacity}.
 \begin{lstlisting}[label={lst:fugacity},caption={Cálculo de fugacidad usando una ecuación de estad cúbica, el método recibe los parámetros de temperatura, presión ,los parámetros de la ecuación cúbica $a$ y $b$, las derivadas con respecto a la cantidad de moles $partial_a$, $partial_b$ y finalmente la fase a la que se desea el cálculo de la fugacidad.}]
 	double fugacity = calculateFugacity(temperature, pressure,
-										 a, b, parcial_a, parcial_b,aPhase);
+										 a, b, parcial_a, parcial_b,phase);
 \end{lstlisting}
 
 
