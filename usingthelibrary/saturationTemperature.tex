@@ -4,14 +4,14 @@
 
 	Para realizar el cálculo de temperatura de saturación primero se necesita indicar la presión con el método `setPressure', después se debe llamar el método `saturationTemperature' y finalmente leer el resultado de la temperatura con el método `getTemperature'. El estimado inicial se proporciona como argumento del método `saturationTemperature' su uso se muestra en el código \ref{lst:saturationtemperatureWithEstimate}. Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:saturationtemperature} entonces la clase realiza la estimación como se muestra en el diagrama \ref{fig:temperatureEstimate}. 
 
-	\begin{lstlisting}[label={lst:saturationtemperatureWithEstimate},caption={Cálculo de la temperatura de burbuja proporcionando un estimado inicial.}]
+	\begin{lstlisting}[label={lst:saturationtemperatureWithEstimate},caption={Cálculo de la temperatura de saturación proporcionando un estimado inicial.}]
 		heterogeneousSubstance.setPressure(pressure);
 		heterogeneousSubstance.saturationTemperature(temperatureEstimate);
 		double temperature = heterogeneousSubstance.getTemperature();
 	\end{lstlisting}
 
 
-	\begin{lstlisting}[label={lst:saturationtemperature},caption={Cálculo de la temperatura de burbuja.}]
+	\begin{lstlisting}[label={lst:saturationtemperature},caption={Cálculo de la temperatura de saturación.}]
 		heterogeneousSubstance.setPressure(pressure);
 		heterogeneousSubstance.saturationTemperature();
 		double temperature = heterogeneousSubstance.getTemperature();
