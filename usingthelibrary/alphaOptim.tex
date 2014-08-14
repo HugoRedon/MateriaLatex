@@ -1,0 +1,42 @@
+
+\subsection{Optimización de parámetros de $\alpha$}\label{subsec:alphaoptim}
+	
+\begin{tikzpicture}
+\begin{axis}
+\addplot[blue,only marks,mark size = 1pt]table[x=temperature, y=exppressure]{plotdata/alphaOptimization/error.dat};
+\addplot[green,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/error.dat};
+\addplot[red,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/minError.dat};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tabular}{c c c}
+\begin{tikzpicture}
+	\begin{axis}
+		\addplot[red,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/error.dat};
+		\addplot[blue,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/minError.dat};
+	\end{axis}
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+	\begin{axis}[width=5cm]
+	\addplot[blue,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/minError.dat};
+	\end{axis}
+\end{tikzpicture}
+\end{tabular}
+
+\begin{tikzpicture}
+\begin{axis}
+\addplot[orange,only marks,mark size = 1pt]table[x=iteration,y=a]{plotdata/alphaOptimization/trayectory.dat};
+\addplot[red,only marks,mark size = 1pt]table[x=iteration,y=b]{plotdata/alphaOptimization/trayectory.dat};
+\end{axis}
+\begin{axis}
+\addplot[blue,only marks,mark size = 1pt]table[x=iteration,y=error]{plotdata/alphaOptimization/trayectory.dat};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[view/h=80,zmax=614983.3952123278]
+\addplot3[surf]table{plotdata/alphaOptimization/params.dat};
+\addplot3[red]table[x=a,y=b,z=error]{plotdata/alphaOptimization/trayectory.dat};
+\end{axis}
+\end{tikzpicture}

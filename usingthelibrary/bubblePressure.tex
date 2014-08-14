@@ -7,6 +7,10 @@
 
 
 	\begin{lstlisting}[label={lst:bubblepressureWithEstimate},caption={Cálculo de la presión de burbuja proporcionando un estimado inicial.}]
+
+		heterogeneousMixture.setZFraction(compound1,molarFraction1);
+		//...... asignar la fracción molar para todos los compuestos
+
 		heterogeneousMixture.setTemperature(temperature);
 		heterogeneousMixture.bubblePressure(pressureEstimate);
 		double pressure = heterogeneousMixture.getPressure();
@@ -14,6 +18,9 @@
 
 
 	\begin{lstlisting}[label={lst:bubblepressure},caption={Cálculo de la presión de burbuja.}]
+		heterogeneousMixture.setZFraction(compound1,molarFraction1);
+		//...... asignar la fracción molar para todos los compuestos
+
 		heterogeneousMixture.setTemperature(temperature);
 		heterogeneousMixture.bubblePressure();
 		double pressure = heterogeneousMixture.getPressure();

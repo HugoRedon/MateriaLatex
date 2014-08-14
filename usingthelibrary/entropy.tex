@@ -33,6 +33,15 @@
 	\caption{Diagrama de presión-entropía para el agua.}\label{fig:2dentropy}
 \end{figure}
 
+
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-45,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure},colorbar]
+	\addplot3[surf,point meta=explicit]table[meta=temperature,x=pressure,y=entropy,z=temperature]{plotdata/entropy/lv3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature,x=pressure,y=entropy,z=temperature]{plotdata/entropy/l3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature,x=pressure,y=entropy,z=temperature]{plotdata/entropy/v3d.dat};
+	\end{axis}
+	\end{tikzpicture}
+
 \begin{figure}[!h]
 	\begin{tikzpicture}
 	\begin{axis}[view/h=-165,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure},colorbar]

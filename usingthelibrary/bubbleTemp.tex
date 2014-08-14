@@ -5,6 +5,10 @@
 	Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:bubbletemperature} entonces la clase realiza la estimación de la temperatura como se muestra en la figura \ref{fig:bubbletemperatureEstimate}. 
 
 	\begin{lstlisting}[label={lst:bubbletemperatureWithEstimate},caption={Cálculo de la temperatura de burbuja proporcionando un estimado inicial.}]
+
+		heterogeneousMixture.setZFraction(compound1,molarFraction1);
+		//...... asignar la fracción molar para todos los compuestos
+
 		heterogeneousMixture.setPressure(pressure);
 		heterogeneousMixture.bubbleTemperature(temeperatureEstimate);
 		double temperature = heterogeneousMixture.getTemperature();
@@ -12,6 +16,10 @@
 
 
 	\begin{lstlisting}[label={lst:bubbletemperature},caption={Cálculo de la temperatura de burbuja.}]
+
+		heterogeneousMixture.setZFraction(compound1,molarFraction1);
+		//...... asignar la fracción molar para todos los compuestos
+
 		heterogeneousMixture.setPressure(pressure);
 		heterogeneousMixture.bubbleTemperature();
 		double temperature = heterogeneousMixture.getTemperature();
@@ -135,11 +143,8 @@
 	\begin{minipage}{0.2\linewidth}
 
 	\begin{equation*}
-	 S_y =\sum_{i=1}^{nc} K_i x_i \\
+	 y_i = \frac{p\degree_i x_i}{P} \\
 	 \end{equation*}
-	 \begin{equation*}
-	\left(y_i\right)_{nueva} = \frac{K_i x_i}{S_y}
-	\end{equation*}
 	\end{minipage}};
 
 
