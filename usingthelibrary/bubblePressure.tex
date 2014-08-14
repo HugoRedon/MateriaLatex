@@ -1,15 +1,38 @@
 \subsection{Presión de Burbuja}\label{subsec:bubblepressure}
 
-	El cálculo de presión de burbuja se realiza como se indica en el código \ref{lst:bubblepressure}.
+	El cálculo de presión de burbuja para una mezcla se realiza como se indica en la figura \ref{fig:bubblepressure}. Usando un objeto del tipo `HeterogeneousMixture' de la librería \Materia el cálculo se realiza como se muestra en los fragmentos de código \ref{lst:bubblepressure} y \ref{lst:bubblepressureWithEstimate}.
+
+	Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:bubblepressure} entonces la clase realiza la estimación de la presión de vapor con la ecuación del factor acéntrico \ref{eq:pressureacentricfactor}. 
 
 
 
-	\begin{lstlisting}
+	\begin{lstlisting}[label={lst:bubblepressureWithEstimate},caption={Cálculo de la presión de burbuja proporcionando un estimado inicial.}]
+		heterogeneousMixture.setTemperature(temperature);
+		heterogeneousMixture.bubblePressure(pressureEstimate);
+		double pressure = heterogeneousMixture.getPressure();
 	\end{lstlisting}
 
-\begin{figure}
+
+	\begin{lstlisting}[label={lst:bubblepressure},caption={Cálculo de la presión de burbuja.}]
+		heterogeneousMixture.setTemperature(temperature);
+		heterogeneousMixture.bubblePressure();
+		double pressure = heterogeneousMixture.getPressure();
+	\end{lstlisting}
+
+\begin{figure}\centering
 	\begin{tikzpicture}
-	\begin{axis}[view/v=-15,colorbar]
+	\begin{axis}[view/v=-15,colorbar left,xlabel={Fracción Molar},ylabel=\temperature,zlabel=\pressure,colorbar style={ylabel=\temperature,
+        yticklabel style={
+            text width=2.5em,
+            align=right}}]
+		\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
+		\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
+	\end{axis}
+	\end{tikzpicture}
+
+
+	\begin{tikzpicture}
+	\begin{axis}[view/v=-220,xlabel={Fracción Molar},ylabel=\temperature,zlabel=\pressure]
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\end{axis}
@@ -17,20 +40,12 @@
 
 
 	\begin{tikzpicture}
-	\begin{axis}[view/v=-220]
+	\begin{axis}[view/v=-115,xlabel={Fracción Molar},ylabel=\temperature,zlabel=\pressure]
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\end{axis}
 	\end{tikzpicture}
-
-
-	\begin{tikzpicture}
-	\begin{axis}[view/v=-115]
-	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
-	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
-	\end{axis}
-	\end{tikzpicture}
-	\caption{Diagramas de presión de burbuja para el sistema metanol-agua.}\label{fig:bubblepressure3d}
+	\caption{Diagramas tridimensionales de presión-composición-temperatura para el sistema metanol-agua.}\label{fig:bubblepressure3d}
 \end{figure}
 
 \begin{figure}

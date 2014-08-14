@@ -1,8 +1,10 @@
 \subsection{Temperatura de saturación}\label{subsec:saturationtemperature}
 
+
 	El cálculo de temperatura de saturación se realiza como se indica en la figura \ref{fig:saturationtemperature}. Usando un objeto del tipo `HeterogeneousSubstance' de la librería \Materia el cálculo se realiza como se muestra en los fragmentos de código \ref{lst:saturationtemperature} y \ref{lst:saturationtemperatureWithEstimate}.
 
-	Para realizar el cálculo de temperatura de saturación primero se necesita indicar la presión con el método `setPressure', después se debe llamar el método `saturationTemperature' y finalmente leer el resultado de la temperatura con el método `getTemperature'. El estimado inicial se proporciona como argumento del método `saturationTemperature' su uso se muestra en el código \ref{lst:saturationtemperatureWithEstimate}. Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:saturationtemperature} entonces la clase realiza la estimación como se muestra en el diagrama \ref{fig:temperatureEstimate}. 
+	Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:saturationtemperature} entonces la clase realiza la estimación como se muestra en el diagrama \ref{fig:temperatureEstimate}. 
+
 
 	\begin{lstlisting}[label={lst:saturationtemperatureWithEstimate},caption={Cálculo de la temperatura de saturación proporcionando un estimado inicial.}]
 		heterogeneousSubstance.setPressure(pressure);
@@ -80,7 +82,7 @@ T_{nueva} = \frac{TT^* \left(E^*-E\right)}{T^*E^*-TE}
 
 \node(init){Inicio};
 \node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$P$};
-\node[below of=lab,below = 0.4cm](estim){Estimado inicial de\\ la incognita\\$T=300$};
+\node[below of=lab,below = 0.4cm](estim){Estimado inicial de\\ la incognita\\$T=300 K$};
 \node[below of=estim,below = 0.6](relations){Cálculo de la presión de vapor según\\ la ecuación del  factor acéntrico con $T$ \\\\
 $ P\degree= P_c 10^{\displaystyle\left[\left(-\frac{7}{3}\right) \left(1+\omega \right)  \left(\left(\frac{T_c}{T}\right) - 1 \right) \right]}$};
 \node[below of=relations,below = 1.1cm](error){Cálculo de la función Error\\$ E = \ln{\displaystyle\frac{P\degree}{P}}$};

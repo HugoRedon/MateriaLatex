@@ -2,7 +2,7 @@
 
 	El cálculo de presión de saturación se realiza como se indica en la figura \ref{fig:saturationpressure}. Usando un objeto del tipo `HeterogeneousSubstance' de la librería \Materia el cálculo se realiza como se muestra en los fragmentos de código \ref{lst:saturationpressure} y \ref{lst:saturationpressureWithEstimate}.
 
-	Para realizar el cálculo de presión de saturación primero se necesita indicar la temperatura con el método `setTemperature', después se debe llamar el método `saturationPressure' y finalmente leer el resultado de la presión con el método `getPressure'. El estimado inicial se proporciona como argumento del método `saturationPressure' su uso se muestra en el código \ref{lst:saturationpressureWithEstimate}. Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:saturationpressure} entonces la clase realiza la estimación de la presión de vapor con la ecuación del factor acéntrico \ref{eq:pressureacentricfactor}. 
+	Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:saturationpressure} entonces la clase realiza la estimación de la presión de vapor con la ecuación del factor acéntrico \ref{eq:pressureacentricfactor}. 
 
 	\begin{lstlisting}[label={lst:saturationpressureWithEstimate},caption={Cálculo de la presión de saturación proporcionando un estimado inicial.}]
 		heterogeneousSubstance.setTemperature(temperature);

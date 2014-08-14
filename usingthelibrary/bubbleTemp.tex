@@ -1,5 +1,23 @@
 \subsection{Temperatura de Burbuja}
 
+	El cálculo de temperatura de burbuja para una mezcla se realiza como se indica en la figura \ref{fig:bubbletemperature}. Usando un objeto del tipo `HeterogeneousMixture' de la librería \Materia el cálculo se realiza como se muestra en los fragmentos de código \ref{lst:bubbletemperature} y \ref{lst:bubbletemperatureWithEstimate}.
+
+	Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:bubbletemperature} entonces la clase realiza la estimación de la temperatura como se muestra en la figura \ref{fig:bubbletemperatureEstimate}. 
+
+	\begin{lstlisting}[label={lst:bubbletemperatureWithEstimate},caption={Cálculo de la temperatura de burbuja proporcionando un estimado inicial.}]
+		heterogeneousMixture.setPressure(pressure);
+		heterogeneousMixture.bubbleTemperature(temeperatureEstimate);
+		double temperature = heterogeneousMixture.getTemperature();
+	\end{lstlisting}
+
+
+	\begin{lstlisting}[label={lst:bubbletemperature},caption={Cálculo de la temperatura de burbuja.}]
+		heterogeneousMixture.setPressure(pressure);
+		heterogeneousMixture.bubbleTemperature();
+		double temperature = heterogeneousMixture.getTemperature();
+	\end{lstlisting}
+
+
 \begin{figure}[!h]
 	\centering	
 	\begin{tikzpicture}
@@ -19,54 +37,130 @@
 
 
 
+\begin{figure}[!h]
+	\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=1.4cm,column sep=0.7cm] ]
 
-\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=1.4cm,column sep=0.7cm] ]
+	\node(init){Inicio};
+	\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
+	\node[below of=lab,below = 0.4cm](estim){Estimado inicial de\\ las incognitas\\$T,y_1,y_2,\ldots,y_{nc}$};
+	\node[below of=estim,below = 0.6](relations){Cálculo de las\\ razones de equilibrio\\
+	$K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
+	\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = \ln{S_y} $};
 
-\node(init){Inicio};
-\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
-\node[below of=lab,below = 0.4cm](estim){Estimado inicial de\\ las incognitas\\$T,y_1,y_2,\ldots,y_{nc}$};
-\node[below of=estim,below = 0.6](relations){Cálculo de las\\ razones de equilibrio\\
-$K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
-\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = \ln{S_y} $};
+	\node[below of=error,below = 0.6](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
+	\node[below of=criteria,below = 0.4](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
+	$\Delta T = 0.1  \quad \text{o} \quad 1.0 K$};
 
-\node[below of=error,below = 0.6](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
-\node[below of=criteria,below = 0.4](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
-$\Delta T = 0.1  \quad \text{o} \quad 1.0 K$};
+	\node[below of=tempIncrement,below = 0.4](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $T^*$
+	\\$K_i^* = \frac{ \hat{\phi}_i^L }{ \hat{\phi}_i^V}$};
 
-\node[below of=tempIncrement,below = 0.4](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $T^*$
-\\$K_i^* = \frac{ \hat{\phi}_i^L }{ \hat{\phi}_i^V}$};
-
-\node[right of=criteria	,right=2.2cm](end){Fin};
-
-
-\node[right of=tempIncrement, right=3cm](errorWithIncrement){Cálculo de la función Error \\ con $T^*$\\
-$ S_y^* =\sum_{i=1}^{nc} K_i^* x_i $\\$ E^* = \ln{S_y^*} $};
-
-\node[right of=relations, right = 3cm](newValues){Cálculo de las nuevas estimaciones \\ de las \textbf{Incógnitas}\\
-\begin{minipage}{0.2\linewidth}
-\begin{equation*}
-T_{nueva} = \frac{TT^* \left(E^*-E\right)}{T^*E^*-TE}
-\end{equation*}
-\begin{equation*}
- S_y =\sum_{i=1}^{nc} K_i x_i \\
- \end{equation*}
- \begin{equation*}
-\left(y_i\right)_{nueva} = \frac{K_i x_i}{S_y}
-\end{equation*}
-\end{minipage}
-};
+	\node[right of=criteria	,right=2.2cm](end){Fin};
 
 
-\draw[-latex] (init)--(lab);
-\draw[-latex] (lab)--(estim);
-\draw[-latex] (estim)--(relations);
-\draw[-latex] (relations)--(error);
-\draw[-latex] (error)--(criteria);
-\draw[-latex] (criteria)--node[fill=none,draw=none,above]{SI}(end);
-\draw[-latex] (criteria)--node[fill=none,draw=none,left]{NO}(tempIncrement);
-\draw[-latex] (tempIncrement)--(relationsWithIncrement);
-\draw[-latex] (relationsWithIncrement)--(errorWithIncrement);
-\draw[-latex] (errorWithIncrement)--(newValues);
-\draw[-latex] (newValues)--(relations);
+	\node[right of=tempIncrement, right=3cm](errorWithIncrement){Cálculo de la función Error \\ con $T^*$\\
+	$ S_y^* =\sum_{i=1}^{nc} K_i^* x_i $\\$ E^* = \ln{S_y^*} $};
 
-\end{tikzpicture}
+	\node[right of=relations, right = 3cm](newValues){Cálculo de las nuevas estimaciones \\ de las \textbf{Incógnitas}\\
+	\begin{minipage}{0.2\linewidth}
+	\begin{equation*}
+	T_{nueva} = \frac{TT^* \left(E^*-E\right)}{T^*E^*-TE}
+	\end{equation*}
+	\begin{equation*}
+	 S_y =\sum_{i=1}^{nc} K_i x_i \\
+	 \end{equation*}
+	 \begin{equation*}
+	\left(y_i\right)_{nueva} = \frac{K_i x_i}{S_y}
+	\end{equation*}
+	\end{minipage}
+	};
+
+
+	\draw[-latex] (init)--(lab);
+	\draw[-latex] (lab)--(estim);
+	\draw[-latex] (estim)--(relations);
+	\draw[-latex] (relations)--(error);
+	\draw[-latex] (error)--(criteria);
+	\draw[-latex] (criteria)--node[fill=none,draw=none,above]{SI}(end);
+	\draw[-latex] (criteria)--node[fill=none,draw=none,left]{NO}(tempIncrement);
+	\draw[-latex] (tempIncrement)--(relationsWithIncrement);
+	\draw[-latex] (relationsWithIncrement)--(errorWithIncrement);
+	\draw[-latex] (errorWithIncrement)--(newValues);
+	\draw[-latex] (newValues)--(relations);
+
+	\end{tikzpicture}
+	\caption{Algoritmo para el cálculo de temperatura de burbuja.}\label{fig:bubbletemperature}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[!h]
+	\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=1.4cm,column sep=0.7cm] ]
+
+	\node(init){Inicio};
+	\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$P,x_1, x_2,\ldots, x_{nc}$};
+	\node[below of=lab,below = 0.4cm](estim){Estimado inicial de\\ la incognita\\$T=300 K$};
+	\node[below of=estim,below = 0.6](relations){Cálculo de la presión de vapor con T \\
+	$P\degree = \sum_{i=1}^{nc} x_i p\degree_i$\\${p\degree_i}= P_c 10^{\displaystyle\left[\left(-\frac{7}{3}\right) \left(1+\omega \right)  \left(\left(\frac{T_c}{T}\right) - 1 \right) \right]}$};
+	\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ E = \ln{\displaystyle\frac{P\degree}{P}} $};
+
+	\node[below of=error,below = 0.6](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
+	\node[below of=criteria,below = 0.4](tempIncrement){Incrementer la temperatura\\$T^* = T + \Delta T$\\
+	$\Delta T = 0.1  \quad \text{o} \quad 1.0 K$};
+
+	\node[below of=tempIncrement,below = 0.4](relationsWithIncrement){Cálculo de la presión de vapor con $T^*$ \\
+	$P\degree^* = \sum_{i=1}^{nc} x_i p\degree_i^*$\\${p\degree_i}^*= P_c 10^{\displaystyle\left[\left(-\frac{7}{3}\right) \left(1+\omega \right)  \left(\left(\frac{T_c}{T^*}\right) - 1 \right) \right]}$};
+
+	
+
+
+	\node[right of=relationsWithIncrement, right=5.5cm](errorWithIncrement){Cálculo de la función Error \\ con $T^*$\\$ E^* = \ln{\displaystyle\frac{P\degree^*}{P}} $};
+
+	\node[right of=relations, right = 5.5cm](newValues){Cálculo de las nueva estimacion \\ de la \textbf{Incógnita}\\
+	\begin{minipage}{0.2\linewidth}
+	\begin{equation*}
+	T_{nueva} = \frac{TT^* \left(E^*-E\right)}{T^*E^*-TE}
+	\end{equation*}
+	\end{minipage}
+	};
+
+
+	\node[right of=criteria,right=2.5cm](newfractions){Cálculo de las\\ fracciones del vapor\\
+	\begin{minipage}{0.2\linewidth}
+
+	\begin{equation*}
+	 S_y =\sum_{i=1}^{nc} K_i x_i \\
+	 \end{equation*}
+	 \begin{equation*}
+	\left(y_i\right)_{nueva} = \frac{K_i x_i}{S_y}
+	\end{equation*}
+	\end{minipage}};
+
+
+	\node[right of=newfractions	,right=1.7cm](end){Fin};
+
+
+	\draw[-latex] (init)--(lab);
+	\draw[-latex] (lab)--(estim);
+	\draw[-latex] (estim)--(relations);
+	\draw[-latex] (relations)--(error);
+	\draw[-latex] (error)--(criteria);
+	\draw[-latex] (criteria)--node[fill=none,draw=none,above]{SI}(newfractions);
+	\draw[-latex] (newfractions)--(end);
+	\draw[-latex] (criteria)--node[fill=none,draw=none,left]{NO}(tempIncrement);
+	\draw[-latex] (tempIncrement)--(relationsWithIncrement);
+	\draw[-latex] (relationsWithIncrement)--(errorWithIncrement);
+	\draw[-latex] (errorWithIncrement)--(newValues);
+	\draw[-latex] (newValues)--(relations);
+
+	\end{tikzpicture}
+	\caption{Algoritmo para el cálculo de la temperatura de burbuja con la ecuación del factor acéntrico para la presión.}\label{fig:bubbletemperatureEstimate}
+\end{figure}
+
+
