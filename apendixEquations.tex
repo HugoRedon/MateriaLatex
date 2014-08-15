@@ -105,3 +105,17 @@ g = h - T * s;
 \begin{equation}\label{eq:pressureacentricfactor}
  P\degree= P_c 10^{\displaystyle\left[\left(-\frac{7}{3}\right) \left(1+\omega \right)  \left(\left(\frac{T_c}{T}\right) - 1 \right) \right]}
 \end{equation}
+
+
+\subsection{Funciones objetivo para la estimación de parámetros}
+Error relativo para el dato i
+\begin{equation}\label{eq:relativeerror}
+ER_i=\frac{P_i^{calculada} - P_i^{experimental}}{P_i^{experimental}}
+\end{equation}
+
+Error total
+\begin{equation}\label{eq:totalerror}
+	E_{total} = \sum_{i=1}^{nd} ER_i^2
+\end{equation}
+
+$nd$: numero de datos

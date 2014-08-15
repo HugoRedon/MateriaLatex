@@ -1,41 +1,156 @@
 \subsection{Estimación de parámetros de $\alpha$}\label{subsec:alphaoptim}
-	
-\begin{tikzpicture}
-\begin{axis}
-\addplot[blue,only marks,mark size = 1pt]table[x=temperature, y=exppressure]{plotdata/alphaOptimization/error.dat};
-\addplot[green,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/error.dat};
-\addplot[red,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/minError.dat};
-\end{axis}
-\end{tikzpicture}
+	La estimación de los parámetros de la expresión de $\alpha$ se realiza para un compuesto puro, y es necesario una lista de datos experimentales Temperatura-Presión en equilibrio. 
 
-\begin{tabular}{c c c}
-\begin{tikzpicture}
-	\begin{axis}
-		\addplot[red,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/error.dat};
-		\addplot[blue,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/minError.dat};
+	La clase `ErrorFunction' calcula el error total como se muestra en la ecuación \ref{eq:totalerror}. Un objeto del tipo `ErrorFunction' pertenece como variable de instancia a la clase `HeterogeneousSubstance', y es a través de él como se estiman los parámetros de la expresión de $\alpha$.
+
+	Primero es necesario crear una lista, darle un nombre e indicar la fuente de donde se obtienen los datos, después, haciendo uso del método `addExperimentalData' agregar todos los datos a la lista y finalmente asignar la lista a la función error de la substancia heterogénea, como se muestra en el código \ref{lst:experimental}.
+
+	\begin{lstlisting}[label={lst:experimental},caption={Creación de una lista de datos experimentales presión-temperatura con la clase `ExperimentalDataList'}]
+		ExperimentalDataList datalist = new ExperimentalDataList();
+		datalist.setName("Nombre de la lista");
+		datalist.setSource("Origen de los datos ejem. base de datos DIPPR");
+
+		//agregar todos los datos a la lista
+		datalist.addExperimentalData(temperature, pressure);
+		//....
+
+		heterogeneousSubstance.getErrorFunction().setExperimental(datalist);
+	\end{lstlisting}
+
+	Una vez que la función error contiene datos experimentales es posible obtener una comparación de los datos con el modelo de la substancia, la figura \ref{fig:ptdiagrambefore} muestra una gráfica presión-temperatura y la gráfica del `error relativo'-temperatura.
+
+
+\begin{figure}[!h]
+   \begin{subfigure}[t]{.5\textwidth}
+        \begin{tikzpicture}
+			\begin{axis}[xlabel=\temperature,ylabel=\pressure,legend entries={Experimentales,Calculados},legend style={legend pos=north west,font=\footnotesize}
+	]
+			\addplot[blue,only marks,mark size = 1pt]table[x=temperature, y=exppressure]{plotdata/alphaOptimization/error.dat};
+			\addplot[red,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/error.dat};
+			%\addplot[red,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/minError.dat};
+			\end{axis}
+		\end{tikzpicture}
+        \caption{Diagrama presión-temperatura}
+        \label{fig:pressuretemperature}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[t]{.5\textwidth}
+		\begin{tikzpicture}
+			\begin{axis}[xlabel=\temperature,ylabel={Error relativo}]
+				\addplot[red,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/error.dat};
+				%\addplot[blue,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/minError.dat};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Diagrama error relativo - temperatura}\label{fig:relativeerrorbefore}
+	\end{subfigure}
+	\caption{Diagramas para el compuesto puro `agua' con la ecuación de estado Peng Robinson, y la expresión alpha de Soave de 2 parámetros \ref{eq:soaveR}, con los valores $A =0$ y $B =0$}\label{fig:ptdiagrambefore}
+\end{figure}
+
+
+	La clase `NewtonMethodSolver' ejecuta el algoritmo de Newton Multivariable para minimizar la función error. Una instancia de la clase `NewtonMethodSolver' se encuentra como variable de la clase `ErrorFunction'. Para realizar la estimación de parámetros se invoca el método `minimize' de la función error, como se muestra en el código \ref{lst:minimize}.
+
+	\begin{lstlisting}[label={lst:minimize},caption={Estimación de los parámetros al minimizar el valor de la función error.}]
+		heterogeneousSubstance.getErrorFunction().minimize();
+	\end{lstlisting}
+
+	Podemos observar el efecto de la estimación en las gráficas \ref{fig:ptdiagramafter}.
+
+
+
+\begin{figure}[!h]
+   \begin{subfigure}[t]{.5\textwidth}
+        \begin{tikzpicture}
+			\begin{axis}[xlabel=\temperature,ylabel=\pressure,legend entries={Experimentales,Calculados},legend style={legend pos=north west,font=\footnotesize}
+	]
+			\addplot[blue,only marks,mark size = 1pt]table[x=temperature, y=exppressure]{plotdata/alphaOptimization/error.dat};
+			%\addplot[red,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/error.dat};
+			\addplot[red,thick]table[x=temperature,y=calcpressure]{plotdata/alphaOptimization/minError.dat};
+			\end{axis}
+		\end{tikzpicture}
+        \caption{Diagrama presión-temperatura}
+        \label{fig:pressuretemperatureafter}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[t]{.5\textwidth}
+		\begin{tikzpicture}
+			\begin{axis}[xlabel=\temperature,ylabel={Error relativo}]
+				%\addplot[red,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/error.dat};
+				\addplot[red,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/minError.dat};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Diagrama error relativo - temperatura}\label{fig:relativeerrorafter}
+	\end{subfigure}
+	\caption{Diagramas para el compuesto puro `agua' con la ecuación de estado Peng Robinson, y la expresión alpha de Soave de 2 parámetros \ref{eq:soaveR}, con los valores $A =0.70428$ y $B =0.22243$}\label{fig:ptdiagramafter}
+\end{figure}
+
+
+
+	Una vez realizada la estimación es posible leer los parámetros de la expresión de $\alpha$, en el código \ref{lst:readvalues} se muestra como leer los parámetros de una forma general a través de la substancia heterogénea, también es posible leer los valores desde el compuesto puro, sin embargo es necesario saber la expresión de $\alpha$ usada y el nombre de los parámetros dentro del código, lo cual lo hace menos general, ver el código \ref{lst:readvaluesFromCompound}.
+
+
+	\begin{lstlisting}[label={lst:readvalues},caption={Lectura de los parámetros a través de la substancia heterogénea.}]
+		for(AlphaParameter parameter: heterogeneousSubstance.alphaParameters()){
+			String name = parameter.getName();
+			double value = parameter.getValue();
+		}
+	\end{lstlisting}
+
+	\begin{lstlisting}[label={lst:readvaluesFromCompound},caption={Lectura de los parámetros a través del compuesto puro para la expresión $\alpha$ Soave de dos parámetros \ref{eq:soaveR}}]
+		Compound compound = heterogeneousSubstance.getComponent();
+		compound.getA_Soave();
+		compound.getB_Soave();
+	\end{lstlisting}
+
+
+
+	La clase `NewtonMethodSolver' guarda la historia de convergencia de la ultima estimación, se puede acceder a los datos como se muestra en el código \ref{lst:convergencehistory}.
+
+	\begin{lstlisting}[label={lst:convergencehistory},caption={Lectura de la historia de convergencia}]
+		List<Parameters_Error> convergenceHistory = 
+					heterogeneousSubstance.getErrorFunction().getOptimizer()
+										.getConvergenceHistory();
+		
+		for(Parameters_Error paramError:convergenceHistory){
+			int iteration = paramError.getIteration();
+			double[] params = paramError.getParameters();
+			double error=paramError.getError();
+		}
+	\end{lstlisting}
+
+
+	En la figura \ref{fig:convergencehistory} se muestra la historia de convergencia, podemos notar como el error total disminuye conforme avanzan las iteraciones.
+
+
+
+
+\begin{figure}[!h]
+	\begin{subfigure}[t]{0.5\linewidth}
+		\begin{tikzpicture}
+			\begin{axis}[legend entries={A,B},legend style={legend pos=north west,font=\footnotesize},xlabel={Iteración},ylabel={Parámetro de $\alpha$}]
+			\addplot[orange,only marks,mark size = 1pt]table[x=iteration,y=a]{plotdata/alphaOptimization/trayectory.dat};
+			\addplot[red,only marks,mark size = 1pt]table[x=iteration,y=b]{plotdata/alphaOptimization/trayectory.dat};
+			\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={Iteración},ylabel={Error total}]
+		\addplot[blue,only marks,mark size = 1pt]table[x=iteration,y=error]{plotdata/alphaOptimization/trayectory.dat};
+		\end{axis}
+	\end{tikzpicture}
+	\end{subfigure}
+	\caption{Historia de convergencia de la estimación de los parámetros para el agua de la expresión $\alpha$ de Soave de 2 parámetros \ref{eq:soaveR}, ecuación de estado Peng Robinson.}\label{fig:convergencehistory}
+\end{figure}
+
+	Dado que la expresión de $\alpha$ tiene dos parámetros, es posible apreciar la trayectoria en una gráfica de superficie, figura \ref{fig:trayectory3d}.
+
+\begin{figure}[!h]\centering
+	\begin{tikzpicture}
+	\begin{axis}[width=0.75\linewidth,view/h=80,zmax=614983.3952123278,xlabel={A},ylabel={B},zlabel={Error total},legend entries={,Trayectoria de la estimación}]
+	\addplot3[surf]table{plotdata/alphaOptimization/params.dat};
+	\addplot3[black,smooth,line width=1pt]table[x=a,y=b,z=error]{plotdata/alphaOptimization/trayectory.dat};
 	\end{axis}
-\end{tikzpicture}
-&
-\begin{tikzpicture}
-	\begin{axis}[width=5cm]
-	\addplot[blue,only marks,mark size = 1pt]table[x=temperature,y=error]{plotdata/alphaOptimization/minError.dat};
-	\end{axis}
-\end{tikzpicture}
-\end{tabular}
-
-\begin{tikzpicture}
-\begin{axis}
-\addplot[orange,only marks,mark size = 1pt]table[x=iteration,y=a]{plotdata/alphaOptimization/trayectory.dat};
-\addplot[red,only marks,mark size = 1pt]table[x=iteration,y=b]{plotdata/alphaOptimization/trayectory.dat};
-\end{axis}
-\begin{axis}
-\addplot[blue,only marks,mark size = 1pt]table[x=iteration,y=error]{plotdata/alphaOptimization/trayectory.dat};
-\end{axis}
-\end{tikzpicture}
-
-\begin{tikzpicture}
-\begin{axis}[view/h=80,zmax=614983.3952123278]
-\addplot3[surf]table{plotdata/alphaOptimization/params.dat};
-\addplot3[red]table[x=a,y=b,z=error]{plotdata/alphaOptimization/trayectory.dat};
-\end{axis}
-\end{tikzpicture}
+	\end{tikzpicture}
+	\caption{Trayectoria de la estimación de parámetros para el agua con la expresión $\alpha$ de Soave de dos parámetros \ref{eq:soaveR}, ecuación de estado Peng Robinson.}\label{fig:trayectory3d}
+\end{figure}

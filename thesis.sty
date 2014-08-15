@@ -5,8 +5,8 @@
 \usepackage[spanish,mexico]{babel}
 %--
 %para escribir codigo	
-\usepackage{color}
-\usepackage{xcolor}
+\usepackage[usenames,dvipsnames]{color}
+%\usepackage{xcolor}
 \usepackage{listings}
 
 %\usepackage{styles/UNAMThesis}
@@ -16,7 +16,6 @@
   \setstretch{1}% no correction afterwards
 }
 
-
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
 \renewcommand{\lstlistingname}{Código}
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -24,7 +23,10 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{brickred}{rgb}{0.8, 0.25, 0.33}
 \lstset{ 
+   belowskip=3em,
+   aboveskip=3em,
   extendedchars=false,
   breaklines=no,
   basicstyle=\ttfamily\color{black}\footnotesize \mysinglespacing,,
@@ -36,11 +38,18 @@
   showstringspaces=false,
   numbersep=12pt,                   % how far the line-numbers are from the code  
   numberstyle=\color{mygray}, % the style that is used for the line-numbers  
-  stringstyle=\color{orange},     % string literal style
+  stringstyle=\color{BurntOrange},     % string literal style
   tabsize=2,
   literate={\ \ }{{\ }}1,
   keywordstyle=[2]\color{red},
-  keywords=[2]{Alpha,HeterogeneousSubstance,Compound,Cubic,Mixture,MixtureBuilder,Alphas,EquationsOfState,Phase},
+  keywords=[2]{Alpha,HeterogeneousSubstance,Compound,Cubic,Mixture,MixtureBuilder,Alphas,EquationsOfState,Phase,ExperimentalDataList,Parameters_Error,AlphaParameter
+},
+  xleftmargin=17pt,
+   frame=top,frame=bottom,
+  framexleftmargin=17pt,
+  framexrightmargin=17pt,
+  framexbottommargin=17pt,
+  framextopmargin=17pt,
   literate=
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -155,8 +164,9 @@
 %
 
 
+\DeclareCaptionFormat{listing}{\rule{\dimexpr\textwidth+11pt\relax}{0.4pt}\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{ font={footnotesize},format=listing,singlelinecheck=false, margin=0pt,labelsep=space,labelfont=bf}
 
-\captionsetup[lstlisting]{ font={footnotesize} }
 
 %--
 
