@@ -1,11 +1,8 @@
-\subsection{Optimización de parámetros $Binarios$}\label{sec:binaryoptim}
-
-
 \definecolor{amber}{rgb}{1.0, 0.49, 0.0}
 
 \newcommand{\binaryDiagram}[1] {
 \begin{tikzpicture}
-\begin{axis}
+\begin{axis}[xlabel={Fración molar del metanol},ylabel=\temperature,legend entries={Experimentales líquido,Experimentales vapor,Calculados líquido,Calculados Vapor},legend style={at={(1.03,0.5)},anchor=west,font=\footnotesize}]
 \addplot[amber,only marks,mark size = 1pt]table[x=x1, y=expTemp]{#1};
 \addplot[blue,only marks,mark size = 1pt]table[x=yExp, y=expTemp]{#1};
 \addplot[green,thick] table[x=x1, y=calcTemp]{#1};
@@ -24,25 +21,85 @@
 
 
 
+\subsection{Estimación de parámetros $Binarios$}\label{sec:binaryoptim}
+
+	Para realizar las estimación de los parámetros binarios de las reglas de mezclado, es necesaria una lista de datos experimentales de presión, temperatura y fracciones molares del líquido y del vapor.
+
+	La clase `ErrorFunction' realiza el cálculo de la función error, y la clase `NewtonMethodSolver' realiza el algoritmo para la estimación de los parámetros minimizando el valor de la función error.
+
+	Para crear una lista de datos experimentales para una mezcla binaria, es necesario indicar si la experimentación se llevó a cabo de manera isobárica o isotérmica, el tipo de experimentación se indica con el método `setType' y se puede dar como argumento del método las opciones `ExperimentalDataBinaryType.isobaric' ó  `ExperimentalDataBinaryType.isothermic'. Cuando se indican las fracciones molares del líquido y del vapor solo se indican las de un compuesto, por lo tanto se debe decir a la lista de datos cual es el compuesto de referenecia y cual es el de no referencia, ello se indica con los métodos `setReferenceComponent' y `setNonReferenceComponent'.
+
+	Es muy importante que los compuestos de la mezcla sean iguales a los indicados en la lista, sin embargo en este trabajo no se ha implementado una forma para asegurar que esto suceda, esto se deberá realizarse en un trabajo futuro.
+
+	El código \ref{lst:binarydatalist} muestra la creación de la lista de datos experimentales y la asigna a la mezcla heterogénea.
+
+\begin{lstlisting}[caption={Creación de la lista de datos experimentales y la asignación de esta a la mezcla heterogénea.},label={lst:binarydatalist}]
+	ExperimentalDataBinaryList blist = 
+						new ExperimentalDataBinaryList("Ejemplo lista");
+	blist.setSource("Fuente de los datos");
+	blist.setType(experimentalDataBinaryType);
+
+	blist.setReferenceComponent(referenceCompound);
+	blist.setNonReferenceComponent(nonReferenceCompound);
+
+	//agregar todos los datos 
+	blist.addExperimentalDataToList(temperature, pressure, x, y);
+	//......
+
+	heterogeneousMixture.getErrorfunction().setExperimental(blist);
+\end{lstlisting}
 
 
-\section{Metanol-Agua}
-\binaryDiagram{plotdata/binaryOptim/methanolWater/error.dat}
-\alphaDiagram{plotdata/binaryOptim/methanolWater/errorWaterAlpha.dat}
-\alphaDiagram{plotdata/binaryOptim/methanolWater/errorWaterAlphaAfterOptim.dat}
-\alphaDiagram{plotdata/binaryOptim/methanolWater/errorMethanolAlpha.dat}
-\alphaDiagram{plotdata/binaryOptim/methanolWater/errorMethanolAlphaAfterOptim.dat}
-\binaryDiagram{plotdata/binaryOptim/methanolWater/errorAfterOptim.dat}
+	La figura \ref{fig:binarybefore} muestra el diagrama temperatura-fración molar antes de la estimación de parámetros, para el sistema metanol-agua, con la ecuación PRSV, y la regla de mezclado de Van Der Waals.
 
-\section{Metanol-Dióxido de carbono}
+\begin{figure}[!h]
+	\centering
+	\binaryDiagram{plotdata/binaryOptim/methanolWater/error.dat}
+	\caption{Diagrama temperatura-fración molar para el sistema metanol-agua, con la ecuación PRSV y la regla de mezclado de Van Der Waals. Los parámetros de la expresión de alfa para los compuestos es igual a cero, y tambien los parámetros binarios de la regla de mezclado}\label{fig:binarybefore}
+\end{figure}
+
+	Es necesario realizar la estimación de los parámetros de la expresión de $\alpha$ para cada compuesto antes de la estimación de los parámetros binarios.
+
+	El resultado de la estimación de los parámetros de la expresión de $\alpha$ para cada compuesto es:
+\begin{itemize}
+	\item Metanol,$ k: -2.7 \cdot 10^{-5}$
+	\item Agua,$ k: 0.009276$
+\end{itemize}
+
+	La estimación de los parámetros binarios se hace a través de la función error, como se muestra en el código \ref{lst:mixtureMinimize}.
+
+\begin{lstlisting}[label={lst:mixtureMinimize},caption={Estimación de los parámetros binarios de la regla de mezclado minimizando el valor de la función error.}]
+	heterogeneousMixture.getErrorfunction().minimize();
+\end{lstlisting}
+
+	En la figura \ref{fig:binaryafter} se muestra el resultado de la estimación de parámetros.
+
+
+%\alphaDiagram{plotdata/binaryOptim/methanolWater/errorWaterAlpha.dat}
+%\alphaDiagram{plotdata/binaryOptim/methanolWater/errorWaterAlphaAfterOptim.dat}
+%\alphaDiagram{plotdata/binaryOptim/methanolWater/errorMethanolAlpha.dat}
+%alphaDiagram{plotdata/binaryOptim/methanolWater/errorMethanolAlphaAfterOptim.dat}
+
+\begin{figure}[!h]
+	\centering
+	\binaryDiagram{plotdata/binaryOptim/methanolWater/errorAfterOptim.dat}
+	\caption{Diagrama temperatura-fración molar para el sistema agua-metanol, con la ecuación PRSV, parámetro binario $kij=-0.0739981$, parámetros de $\alpha$: Metanol $k= -2.7 \cdot 10^{-5}$,Agua $ k= 0.009276$  }\label{fig:binaryafter}
+\end{figure}
 
 
 
-\begin{tikzpicture}
-\begin{axis}
-	\addplot[blue,only marks]table[x=x, y=pressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
-	\addplot[red,only marks]table[x=y, y=pressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
-	\addplot[brown]table[x=x, y=calcPressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
-	\addplot[green]table[x=ycalc, y=calcPressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
-\end{axis}
-\end{tikzpicture}
+
+
+
+%\section{Metanol-Dióxido de carbono}
+
+
+
+%\begin{tikzpicture}
+%\begin{axis}
+%	\addplot[blue,only marks]table[x=x, y=pressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+%	\addplot[red,only marks]table[x=y, y=pressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+%	\addplot[brown]table[x=x, y=calcPressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+%	\addplot[green]table[x=ycalc, y=calcPressure]{plotdata/binaryOptim/co2Met/co2Met25.dat};
+%\end{axis}
+%\end{tikzpicture}

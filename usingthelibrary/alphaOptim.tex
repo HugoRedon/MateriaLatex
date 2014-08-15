@@ -1,5 +1,6 @@
 \subsection{Estimación de parámetros de $\alpha$}\label{subsec:alphaoptim}
-	La estimación de los parámetros de la expresión de $\alpha$ se realiza para un compuesto puro, y es necesario una lista de datos experimentales Temperatura-Presión en equilibrio. 
+
+	La estimación de los parámetros de la expresión de $\alpha$ se realiza para un compuesto puro, y es necesaria una lista de datos experimentales Temperatura-Presión  de la substancia en equilibrio. 
 
 	La clase `ErrorFunction' calcula el error total como se muestra en la ecuación \ref{eq:totalerror}. Un objeto del tipo `ErrorFunction' pertenece como variable de instancia a la clase `HeterogeneousSubstance', y es a través de él como se estiman los parámetros de la expresión de $\alpha$.
 
@@ -19,6 +20,8 @@
 
 	Una vez que la función error contiene datos experimentales es posible obtener una comparación de los datos con el modelo de la substancia, la figura \ref{fig:ptdiagrambefore} muestra una gráfica presión-temperatura y la gráfica del `error relativo'-temperatura.
 
+
+	Los datos experimentales para el agua en esta sección fueron generados con la ecuación \ref{eq:101vaporpressure}, con los parámetros $A = 98.515$,$B=-8530.7$,$C=-10.984$,$D=0.0000063663$,$E=2$, para el rango de temperaturas $263.15-647.29 [K]$.
 
 \begin{figure}[!h]
    \begin{subfigure}[t]{.5\textwidth}
