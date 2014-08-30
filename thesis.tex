@@ -4,6 +4,8 @@
 	%\usepackage{showframe}
 	%\includeonly{usingTheLibrary_chapter,usingthelibrary/compresibilityFactor,usingthelibrary/fugacity,usingthelibrary/volume,apendixEquations,usingthelibrary/parameters}     
 	%\includeonly{usingthelibrary/alphaOptim,usingthelibrary/binaryOptim, apendixEquations,alpha/alphas}
+	%\includeonly{usingthelibrary/alphaOptim}
+	\includeonly{webpage_chapter}
 %--               
 \begin{document}      
 	\include{title}%Portada -Hecho
@@ -41,24 +43,22 @@
 		
 
 		\include{usingthelibrary/optimization}%hecho
-			\include{usingthelibrary/alphaOptim}
-			\include{usingthelibrary/binaryOptim}		
-
-	
+			\include{usingthelibrary/alphaOptim}%hecho
+			\include{usingthelibrary/binaryOptim}%hecho	
 
 
+	\include{webpage_chapter}
 
-	
-	
-	\include{libraryStructure_chapter}
-	\include{internetResources_chapter}	
-	\include{advancedOptions_chapter}
 	\include{ternaryDiagram_chapter}
+
+
 	\appendix
 	\include{appendix}
 	\include{apendixx2}
 	\include{apendixEquations}
 	\include{webtools}
+	\include{github}
+	\include{newtonmethod}
 	\include{alpha/alphas}
 
 	\bibliographystyle{babplain}
