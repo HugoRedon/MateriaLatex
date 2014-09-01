@@ -79,59 +79,104 @@
 
 \section{Gráficos}
 
-	En la sección `Gráficos' de la página de internet estan disponibles las substancias y mezclas creadas anteriormente, basta con selecciónar y dar click en el botón para ver la gráfica.
+	Las secciónes de gráficos dividen el recuadro derecho de forma horizontal, en la parte superior se localizan los controles de las gráficas, y en la parte inferior la gŕafica tridimensional.
 
-	En algunas gráficas se muestran los resultados de la fase líquida y vapor sin importar que fase se le haya dado al sistema en el momento de su creación.
+	En esta sección estan disponibles las substancias y mezclas creadas anteriormente, basta con dar click en la caja `combobox' y selecciónar el sistema, esto es igual para todas las gráficas de la sección.
+
+	En algunas gráficas se muestran los resultados de la fase líquida y vapor sin importar la fase seleccionada en el momento de la creación del sistema.
 
 	\subsection{Presión-Volumen-Temperatura}\label{subsec:pvt}
+		En este tipo de gráfica no se involucra la fase del sistema. 
+
+		La sección de controles permite elegir el rango del volumen molar y el rango de temperatura.
+		
+		El propósito de la figura \ref{fig:press} es observar los puntos de inflexión característicos de las ecuaciones cúbicas, en el caso que ellos se encuentren dentro del dominio seleccionado.
+
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterPressurePlot.png}
+			\caption{Gráfica de presión-volumen-temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresion de $\alpha$ de stryjek and Vera que esta cargada por default. El rango de volumen: $0.26-1.2 [\frac{m^3}{kmol}]$ y temperatura:$400-700[K]$ }
+			\label{fig:press}
 		\end{figure}
 	\subsection{Z-Presión-Temperatura}\label{subsec:zpt}
+		Usualmente las gráficas del factor de compresibilidad se crean en dos dimensiones mostrando diferentes temperaturas y no es posible ver efecto que se tiene a altas temperaturas y presiones.
+
+		Esta gráfica depende de la fase seleccionada para el sistema y solo se muestra la seleccionada.
+
+		Semejante a la sección anterior se debe determinar un rango de presión y temperatura. La figura \ref{fig:zplot} muestra el efecto en tercera dimensión.
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterZPlot.png}
+			\caption{Gŕafica de z(Factor de compresibilidad)-Presión-Temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresiónde $\alpha$ stryjek and Vera.}
+			\label{fig:zplot}
 		\end{figure}
 	\subsection{Fugacidad-Presión-Temperatura}\label{subsec:fpt}
+
+		En esta gráfica se dibujan las curvas de fugacidad para el líquido (rojo) y el vapor (azul) para el dominio determinado (Presión y temperatura).
+
+		El objetivo de la gráfica es observar el equilibrio líquido-vapor en la línea de intersección de los planos. Ver la figura \ref{fig:fugplot}.
+
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterFugacityPlot.png}
+			\caption{Gŕafica de Fugacidad-Presión-Temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
+			\label{fig:fugplot}
 		\end{figure}
 	\subsection{Temperatura-Entalpía-Presión}\label{subsec:tep}
+
+		En esta y las siguientes gŕafica se dibujan la región de dos fases (rojo) y la región liquida y vapor (azul).
+
+		En estas gráfica no se debe determinar el rango, ya que este se calcula con los puntos críticos y la diferencia de propiedades en las regiones de dos fases. 
+
+
+		Podemos ver la forma de la gráfica en la figura \ref{fig:hplot}.
+
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterEnthalpyPlot.png}
+			\caption{Gráfica de Temperatura-Entalpía-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
+			\label{fig:hplot}
 		\end{figure}
-	\subsection{Temperatura-Entropía-Presión}\label{subsec:tsp}
+	\subsection{Temperatura-Entropía-Presión}\label{subsec:tsp}	
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterEntropyPlot.png}
+			\caption{Gráfica de Temperatura-Entropía-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ Stryjek y Vera}
+			\label{fig:splot}
 		\end{figure}
 	\subsection{Temperatura-Gibbs-Presión}\label{subsec:tgp}
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterEGPlot.png}
+			\caption{Gráfica de Temperatura-(Energía libre de Gibbs)-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ de Stryjek y Vera}
+			\label{gplot}
 		\end{figure}
 	\subsection{Temperatura-Presión-Volumen}\label{subsec:tpv}
 		\begin{figure}[!h]
 			\includegraphics[scale=0.3]{waterVolumePlot.png}
+			\caption{Gráfica de Temperatura-Presión-Volumen molar para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ de Stryjek y Vera}
+			\label{vplot}
 		\end{figure}
 	
 	
+\section{Estimación de parámetros de $\alpha$}\label{sec:webAlphaOptim}
+	En la sección de `Estimación de parámetros' - `Parámetros de $\alpha$' pódemos seleccionar una de las substancias creadas y estimar sus parámetros con una serie de datos generados a través de la ecuación \ref{eq:chemsepVP} que nos proporciona la base de datos Chemsep.
 
+	La sección se muestra una gráfica que compara el modelo con los datos generados, una que muestra el error relativo, y finalmente una que muestra la historia de convergencia después de estimar los parámetros.
 
+	Una imagen del formulario se presenta en la figura \ref{fig:alphaOptim}
 
-
-
-
-
-
-
-\section{Estimación de parámetros de $\alpha$}\label{sec:webBinaryOptim}
 \begin{figure}
 	\includegraphics[scale=0.3]{waterMethanolBinaryOptPlot.png}
+	\caption{Formulario para la estimación de parámetros de la expresión de $\alpha$}
+	\label{fig:alphaOptim}
 \end{figure}
 
 
 \section{Estimación de parámetros binarios}\label{sec:webBinaryOptim}
+	En la sección de `Estimación de parámetros' - `Parámetros binarios' podemos seleccionar una de las mezclas creadas previamente y estimar los parámetros de la regla e mezclado con datos que deberán ser agregados previamente a la página de internet.
 
+	De manera semejante a la sección anterior en la página se realiza una comparación de los datos experimentales con el modelo, se muestra una gráfica del error relativo y la historia de la convergencia.
+
+	Una imagen del formulario se presenta en la figura \ref{fig:binaryOptim}
 \begin{figure}
 	\includegraphics[scale=0.3]{waterAlphaOptPlot.png}
+	\caption{Formulario para la estimación de parámetros de la regla de mezclado de Van Der Waals}
+	\label{fig:binaryOptim}
 \end{figure}
 
 
