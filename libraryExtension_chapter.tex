@@ -1,0 +1,286 @@
+\chapter{Extender o corregir la librería Materia}\label{chap:libraryExtension}
+	
+ 	Explicando la estructura actual de los objetos y sus relaciones, en este capítulo se mostrará como crear nuevas:
+
+ 	\begin{itemize}\itemsep0ex
+ 		\item{Expresiones de $\alpha$}
+ 		\item{Reglas de Mezclado}
+ 		\item{Modelos de actividad} 		
+ 		\item{Ecuaciones de capacidad calorífica} 		
+ 	\end{itemize}
+
+ 
+ 	\section{Creación de nuevas expresiones de $\alpha$}\label{sec:newAlphaExpressions}
+
+ 	La estructura de una expresión de $\alpha$ depende de dos métodos fundamentales: 
+
+ 		\begin{itemize}\itemsep0ex
+ 			\item El cálculo de la expresión para una temperatura y un compuesto puro.
+ 			\item El cálculo de la derivada de la expresión con respecto a la temperatura, en específico la librería necesita el cálculo de la siguiente expresión.
+
+ 			\begin{equation}
+ 				\frac{T \partial \alpha}{\alpha \partial T}
+ 			\end{equation}
+ 		\end{itemize}
+
+ 	Para asegurar el funcionamiento de la estimación de los parámetros de la ecuación se necesitan adicionalmente los métodos:
+ 		\begin{itemize}\itemsep0ex
+ 			\item `getParameter'
+ 			\item `setParámeter'
+ 			\item `numberOfParameters'
+ 		\end{itemize}
+
+	.
+
+	Todos los métodos mencionados anteriormente se declaran en la clase abstracta `Alpha' y necesitan ser definidos en la nueva expresión. 
+
+	La nueva clase deberá heredar a la clase `Alpha', y definir los métodos abstractos en ella. 
+
+	Los ambientes de desarrollo como Netbeans o Eclipse pueden generar lo necesario para definir una nueva expresión de $\alpha$. El código \ref{lst:newAlphaCode} muestra la nueva clase `NewAlphaExpresion' que hereda a la clase `Alpha' y define los métodos abstractos.
+
+
+	\begin{lstlisting}[caption={Esqueleto para la creación de una nueva expresión de $\alpha$ para la librería materia, generado con el ambiente de desarrollo Eclipse},label={lst:newAlphaCode}]
+import termo.component.Compound;
+import termo.eos.alpha.Alpha;
+
+public class NewAlphaExpresion extends Alpha {
+
+	@Override
+	public double TempOverAlphaTimesDerivativeAlphaRespectTemperature(
+			double arg0, Compound arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double alpha(double arg0, Compound arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getParameter(Compound arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getParameterName(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int numberOfParameters() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setParameter(double arg0, Compound arg1, int arg2) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+	\end{lstlisting}
+
+	Existen expresiones de $\alpha$ que se definen para temperaturas debajo de la temperatura crítica y la ecuación cambia cuando la temperatura es mayor a la crítica, para tales casos existe la clase `TwoEquationsAlpha' que define los mismos métodos que la clase abstracta `Alpha' pero condiciona la salida de los métodos según las condiciones de temperatura. 
+
+	El código \ref{lst:twoAlphaExample} utiliza dos expresiones de $\alpha$ y las pone dentro de un objeto `TwoEquationsAlpha' esta ecuación es la expresión de Mathias.
+
+	\begin{lstlisting}[caption={Creación de una expresión de $\alpha$ con cambio de ecuación según la temperatura del sistema},label={lst:twoAlphaExample}]
+		TwoEquationsAlphaExpression mathias = new TwoEquationsAlphaExpression();    
+        mathias.setName(AlphaNames.Mathias);
+        CommonAlphaEquation mathiasBelow = new MathiasAlpha();
+        
+        MathiasAboveTcAlphaEquation mathiasAbove = new MathiasAboveTcAlphaEquation(mathiasBelow);
+        
+        mathias.setAlphaBelowTc(mathiasBelow);
+        mathias.setAlphaAboveTc(mathiasAbove);
+        return mathias;     
+	\end{lstlisting}
+
+\section{Creación de nuevas reglas de mezclado}\label{sec:newMixingRules}
+	
+	Los métodos fundamentales de las reglas de mezclado son :
+
+	\begin{itemize}
+		\item El cálculo del parámetro a de la ecuación cúbica.
+		\item El cálculo del parámetro b de la ecuación cúbica.
+		\item La derivada del parámetro a con respecto al número de moles de un compuesto i, en específico se necesita el cálculo de la expresión: 
+		\begin{equation}
+			\frac{1\partial a N^2}{N \partial N_i}
+		\end{equation}
+		\item La derivada del parámetro a con respecto a la temperatura, en específico se necesita el cálculo de la expresión: 
+		\begin{equation}
+			T \frac{\partial a}{\partial T}
+		\end{equation}
+	\end{itemize}
+
+	Además para el correcto funcionamiento de la estimación de parámetros se necesitan los métodos: 
+	\begin{itemize}
+		\item `getParameter'
+		\item `setParameter'
+		\item `numberOfParámeters'
+	\end{itemize}
+
+	La diferencia de los métodos `get' y `set' para los parámetros de las expresiones de $\alpha$ y las reglas de mezclado son los argumentos que reciben, ya que para una regla de mezclado son necesarios dos compuestos como argumentos y para la expresión de $\alpha$ no.
+
+	El código \ref{lst:newMixingRule} muestra la clase generada por Eclipse con los métodos necesarios para crear una nueva regla de mezclado.
+
+	\begin{lstlisting}[caption={Esqueleto para la creación de una nueva regla de mezclado},label={lst:newMixingRule}]
+
+import termo.binaryParameter.InteractionParameter;
+import termo.component.Compound;
+import termo.eos.mixingRule.MixingRule;
+import termo.matter.Mixture;
+import termo.matter.Substance;
+
+public class NewMixingRule extends MixingRule {
+
+	@Override
+	public double a(Mixture arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double b(Mixture arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getParameter(Compound arg0, Compound arg1,
+			InteractionParameter arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int numberOfParameters() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double oneOverNParcial_aN2RespectN(Substance arg0, Mixture arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setParameter(double arg0, Compound arg1, Compound arg2,
+			InteractionParameter arg3, int arg4) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public double temperatureParcial_a(Mixture arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
+
+	\end{lstlisting}
+
+\section{Creación de nuevos modelos de Actividad}\label{sec:newActivityModels}
+
+	Para la reglas de mezclado basadas en la energía libre de Gibbs son necesarios los modelos de actividad, y en la librería Materia es posible crear nuevos modelos.
+
+	La clase abstracta `ActivityModel' declara los métodos necesarios para los modelos de actividad.
+
+	\begin{itemize}
+		\item El cálculo del coeficiente de actividad.
+		\item El cálculo de la energía libre de Gibbs.
+		\item El cálculo de la derivada de la energía libre de Gibbs con respecto a la temperatura.
+	\end{itemize}
+
+	Los modelos de actividad también tienen parámetros que se pueden estimar, pero para los modelos actualmente creados se ha utilizado la expresión de $\tau$ :
+
+	\begin{equation}
+		\tau = \frac{a_{ij} + b_{ij} T}{R T}
+	\end{equation}
+
+	y se han creado los métodos `get' y `set' parámeter para estos parámetros. Por lo cual si el modelo de actividad contiene mas parámetros que pueden ser estimados se deberán sobreescribir los métodos `get' y `set' para los parámetros.
+
+	El código \ref{lst:newActivityModel} muestra la clase generada por Eclipse para la creación de un nuevo modelo de actividad.
+
+	\begin{lstlisting}[caption={Esqueleto de clase para la creación de un nuevo modelo de actividad},label={lst:newActivityModel}]
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import termo.activityModel.ActivityModel;
+import termo.binaryParameter.ActivityModelBinaryParameter;
+import termo.component.Compound;
+import termo.matter.Mixture;
+import termo.matter.Substance;
+
+public class NewActivityModel extends ActivityModel {
+
+	@Override
+	public double activityCoefficient(Substance arg0, Mixture arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double excessGibbsEnergy(Mixture arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double parcialExcessGibbsRespectTemperature(
+			ArrayList<Compound> arg0, HashMap<Compound, Double> arg1,
+			ActivityModelBinaryParameter arg2, double arg3) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
+	\end{lstlisting}
+
+
+\section{Creación de nuevas ecuaciones de capacidad calorífica}\label{sec:newCpEquation}
+
+	A diferencia de los objetos anteriores la capacidad calorífica se define como una interfaz `CpEquation', y para crear una nueva ecuación no es necesario heredar de ella, se debe implementar.
+
+
+	El código \ref{lst:newCpEquation}
+
+	\begin{lstlisting}[caption={Esqueleto para crear una nueva ecuación de capacidad calorífica}, label={lst:newCpEquation}]
+
+import termo.cp.CpEquation;
+
+public class NewCpEquation implements CpEquation {
+
+	public double Enthalpy(double arg0, double arg1, double arg2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double cp(double arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getMathEquation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double idealGasEntropy(double arg0, double arg1, double arg2,
+			double arg3, double arg4) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
+	\end{lstlisting}
+
