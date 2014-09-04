@@ -1,4 +1,4 @@
-\chapter{Uso de GitHub para obtener y modificar el código fuente de la librería Materia}\label{chap:github}
+\chapter{Uso de GitHub, Git y JUnit para modificar la librería Materia}\label{chap:github}
 
 Para mayor información sobre la participación en proyectos de GitHub, se recomienda la lectura de las guias:
 
@@ -14,7 +14,12 @@ Para mayor información sobre Git se recomienda leer la documentación de la pá
 	\item \url{http://git-scm.com/}
 \end{itemize}
 
-	A continuación se listan brevemente los pasos necesarios para obtener y contribuir a la bliblioteca de clases Materia, es necesario tener una cuenta en GitHub y tener instalado \href{http://git-scm.com/}{Git} en la computadora.
+Para mayor infomación sobre JUnit se recomienda visitar la página:
+\begin{itemize}\itemsep0ex
+	\item \url{http://junit.org/}
+\end{itemize}
+
+	A continuación se listan brevemente los pasos necesarios para obtener y contribuir a la bliblioteca de clases Materia, es necesario tener una cuenta en GitHub y tener instalados \href{http://git-scm.com/}{Git} y \href{http://maven.apache.org/download.cgi}{Maven} en la computadora.
 
 	\begin{enumerate}\itemsep0ex
 		\item Encuentra algo en qué trabajar. Ya sea que encuentres un error en la biblioteca, quieras realizar una mejora o crear una nueva función primero debes estar seguro de lo que quieres hacer. 
@@ -38,7 +43,7 @@ Para mayor información sobre Git se recomienda leer la documentación de la pá
 		\item Clona tu copia personal de la biblioteca Materia en tu computadora. 
 			\begin{itemize}\itemsep0ex
 				\item En github navega a tu copia personal del proyecto Materia
-				\item En la barra derecha de la página, da click en el boton \includegraphics{clonebutton.png} para copiar la url del repositorio.
+				\item En la barra derecha de la página, da click en el boton \includegraphics[scale=0.4]{clonebutton.png} para copiar la url del repositorio.
 				\begin{figure}[!h]
 					\centering
 					\includegraphics[scale=0.5]{cloneArea.png}.
@@ -56,6 +61,51 @@ Para mayor información sobre Git se recomienda leer la documentación de la pá
 		\begin{lstlisting}[label={lst:newBranch},caption={Commando para crear una nueva rama en el repositorio.},language=bash]
 			$ git checkout -b <nombre de la nueva rama>
 		\end{lstlisting}
+
+		\item Crear las pruebas necesarias que aseguren el funcionamiento del cambio que se desea realizar. El primer paso para resolver un problema es entender el problema. La creación de una prueba ayuda en el proceso de entendimiento del problema. Para ejecutar las pruebas se utiliza el commando de Maven que se muestra en el fragmento de código \ref{lst:mvnTest}. Las pruebas deberán ser creadas en el folder src/test/java dentro del paquete de la clase que se esté probando.
+
+\begin{lstlisting}[caption={Para ejecutar las pruebas del proyecto},label={lst:mvnTest},language=bash]
+	$ mvn test
+\end{lstlisting}
+
+		Dado que no se ha modificado aún el código, el resultado del comando anterior solo debería encontrar fallas en las pruebas nuevas agregadas.
+
+		\item Escribir las nuevas funciones o las correcciones al código hasta conseguir el éxito en las pruebas. Una vez escritas las pruebas el objetivo del programador es modificar el código hasta que todas las pruebas del código pasen sin errores, es decir que la nueva prueba creada se ejecuta como se esperaba y que ninguna otra prueba ha sido alterada en el proceso.
+
+		\item Agregar los cambios al repositorio local. Si durante el proceso de modificación se agregaron o eliminaron archivos podemos agregar los cambios al repositorio en la computadora mediante los commandos \ref{lst:addCommit}
+
+\begin{lstlisting}[caption={Agregar los cambios al repositorio local.},label={lst:addCommit},language=bash]
+	$ git add --all # Agregando los cambios 
+	$ git commit -m "<Nota que explique los cambios realizados>" 
+		#Archivando los cambios
+\end{lstlisting}
+		
+		Es importante que la nota responda las siguientes preguntas o necesidades:
+			\begin{itemize}\itemsep0ex
+	 			\item ¿Qué cambios se hicieron al código?
+	 			\item ¿Porque se realizaron los cambios al código? ó ¿Qué problema resuelven los cambios agregados? En caso de tener un número de asunto `issue' anotarlo en el comentario, y si este esta resuelto agregar el prefijo fix como se sugiere en la página: \url{https://help.github.com/articles/closing-issues-via-commit-messages}
+	 			\item ¿Qué problemas surgieron durante el proceso?
+	 			\item ¿Se encontraron otros problemas? si la repuesta es si, entonces listar cuales. De ser necesario crear los asuntos (paso 2) en la página principal de GitHub para ser tratados en el futuro.
+		 	\end{itemize}
+
+	 	\item Subir los cambios a la copia personal de GitHub. Hasta este punto solo el repositorio en la computadora contiene los cambios agregados. Para subir los cambios a internet se debe usar el comando \ref{lst:pushMateria}.
+
+	 	\begin{lstlisting}[caption={Comando para agregar los cambios a la copia personal de GitHub},label={lst:pushMateria},language=bash]
+	 		$ git push origin master 
+	 	\end{lstlisting}
+
+	 	Una vez ejecutado el comando los cambios deberán ser visibles en la página de GitHub, pero estos cambios existen solo en la copia personal.
+
+	 	\item Compartir los cambios al proyecto original.Finalmente si se desea compartir los cambios realizado a la copia personal, es necesario realizar un `pull request', esto se logra dando click en el botón `compare \& pull request' ver la figura \ref{fig:pullRequestMateria}.
+
+	 	\begin{figure}[!h]
+	 		\includegraphics[scale=0.4]{recently_pushed_branch.png}
+	 		 \caption{Sección para compartir los cambios al proyecto original.}
+	 		 \label{fig:pullRequestMateria}
+	 	\end{figure}
+
+	 	Al dar click en el botón serás enviado a una página de discusión donde se debe escribir un título y una descripción sobre la petición para agregar los cambios. Finalmente si los cambios son aceptados habrás concluido tu participación al proyecto Materia y tu perfil de GitHub se habrá agregado a la lista de contribuidores del proyecto Materia.
+
 	\end{enumerate}
 
 
