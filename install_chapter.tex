@@ -6,7 +6,7 @@
     \item Crear una nueva funcionalidad de la biblioteca.
   \end{itemize}
 
-  Por ejemplo si se desea escribir una aplicación que realize diagramas de presión contra volumen molar usando ecuaciones de estado cúbicas, solo será necesario instalar la forma compilada según la sección \ref{sec:compiledinstall}. Ya que las funciones para calcular la presión y el volumen molar con ecuaciones de estado cúbicas existen en la biblioteca , no será necesario modificar el código fuente, por lo tanto no es necesaria la instalación del código fuente. En cambio si se desea utilizar ecuaciones viriales para realizar los diagramas de presión, se deberá realizar la instalación del código fuente, ya que las ecuaciones viriales no forman parte del alance de esta tesis, la librería debera ser extendida para incluir dichas ecuaciones, una vez hecha la extensión al código fuente , la versión compilada de la modificación puede ser empleada para realizar la aplicación que dibuje   los diagramas.
+  Por ejemplo si se desea escribir una aplicación que realize diagramas de presión contra volumen molar usando ecuaciones de estado cúbicas, solo será necesario instalar la forma compilada según la sección \ref{sec:compiledinstall}. Ya que las funciones para calcular la presión y el volumen molar con ecuaciones de estado cúbicas existen en la biblioteca , no será necesario modificar el código, por lo tanto no es necesaria la instalación del código fuente. En cambio si se desea utilizar ecuaciones viriales para realizar los diagramas de presión, se deberá realizar la instalación del código fuente, ya que las ecuaciones viriales no forman parte del alance de esta tesis, la librería debera ser extendida para incluir dichas ecuaciones, una vez hecha la extensión al código fuente , la versión compilada de la modificación puede ser empleada para realizar la aplicación que dibuje   los diagramas.
 
 
   \section{Para uso de la librería (compilado)}\label{sec:compiledinstall}
@@ -14,7 +14,7 @@
       Existen dos formas de utilizar la librería Materia en una aplicación java:
     Descargar el archivo .jar y agregarlo al folder /lib de la aplicación ó desde maven utilizando el archivo pom.xml.
 
-    La librería existe como un archivo .jar, se puede descargar desde la página creada para su difusión \url{http://hugoredon.github.io/Materia/}, o automáticamente desde los servidores de sonatype haciendo uso de maven.
+    La librería existe como un archivo .jar, se puede descargar desde la página creada para su difusión \url{http://hugoredon.github.io/Materia/}, o desde la página de búsqueda de Maven \url{http://search.maven.org/} con el nombre de la librería.
 
     Si se realiza la instalación manual la ubicación de la librería depende de la estructura del proyecto, por ejemplo para una aplicación web los archivos jar deberán ser agregados en el folder dentro del proyecto src/main/webapp/WEB-INF/lib.
 
@@ -29,7 +29,7 @@
 
     El código fuente de la librería se expone de manera pública en la página \url{https://github.com/HugoRedon/Materia}, bajo la licencia GNU GENERAL PUBLIC LICENSE Version 2.
   
-    Para poder participar en el proyecto será necesario obtener de manera gratuita una cuenta en github, realizar una copia o clon \footnote{En github a una copia de un proyecto se conoce como ``Fork''} de la librería  a la nueva cuenta, copiar el código fuente a la computadora haciendo uso de git,realizar los cambios y agregarlos a la cuenta en GitHub  \footnote{El procedimiento hace uso de los comandos `git clone', `git commit' y `git push', que son explicados con mas detalle en el apéndice \ref{chapgithub}} ,finalmente hacer una petición para integrar los cambios a la librería original ``Pull request'', y si los cambios son aceptados, se habrá logrado la participación al proyecto. El proceso se detalla en el apéndice \ref{chap:github}.
+    Para poder participar en el proyecto será necesario obtener de manera gratuita una cuenta en github, realizar una copia o clon \footnote{En github a una copia de un proyecto se conoce como ``Fork''} de la librería  a la nueva cuenta, copiar el código fuente a la computadora haciendo uso de git, realizar los cambios y agregarlos a la cuenta en GitHub  \footnote{El procedimiento hace uso de los comandos `git clone', `git commit' y `git push', que son explicados con mas detalle en el apéndice \ref{chap:github}} ,finalmente hacer una petición para integrar los cambios a la librería original ``Pull request'', y si los cambios son aceptados, se habrá logrado la participación al proyecto. El proceso se detalla en el apéndice \ref{chap:github}.
 
 
 
