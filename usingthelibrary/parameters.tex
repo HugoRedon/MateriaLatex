@@ -2,7 +2,7 @@
 
 El cálculo de los parámetros depende de la cantidad de compuestos presentes en el sistema.
 
-\begin{itemize}
+\begin{itemize}\itemsep0ex
  \item Para los compuestos puros la clase `Substance' define el cálculo de los parámetros usando una expresión de $\alpha$ , los parámetros $\Omega_a$ y $\Omega_b$ de la ecuación de estado y las propiedades del compuesto puro.
  \item Para las mezclas, la clase `Mixture' define el cálculo de los parámetros usando una regla de mezclado y el cojunto de los parámetros  $a$ y $b$ calculados a partir de los compuestos puros.
 \end{itemize}
@@ -19,7 +19,7 @@ Esta estructura se muestra en laf figura \ref{fig:homogeneousCalculations}
 \end{figure}
 
 Nótese de la figura \ref{fig:homogeneousCalculations} los siguiente:
-\begin{itemize}
+\begin{itemize}\itemsep0ex
 	\item Que la clase `Homogeneous' contiene una ecuación del tipo `Cubic'.
  	\item Que las clases `Substance' y `Mixture' heredan las propiedades de la clase `Homogenous', como la ecuación cúbica, y puede hacer uso de ella.
 
@@ -66,9 +66,9 @@ La expresión de $\alpha$ puede ser una función de la temperatura, las expresio
 \end{table}
 \subsubsection{Creación de un objeto tipo `Substance'}\label{subsub:substanceCreation}
 
-Es necesario utilizar el método constructor de la clase `Substance' para crear un objeto de este tipo, se debe proporcionar como parámetros la ecuación de estado deseada, la exprsión de $\alpha$, una instancia de la clase `Compound' como se muestra en la sección \ref{sec:compounds} y la fase de la substancia.
+Es necesario utilizar el método constructor de la clase `Substance' para crear un objeto de este tipo, se debe proporcionar como parámetros la ecuación de estado deseada, la expresión de $\alpha$, una instancia de la clase `Compound' como se muestra en la sección \ref{sec:compounds} y la fase de la substancia.
 
-En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de estado cúbica previamente definida, a través de la clase `EquatiosOfState'. Los valore de $\Omega_a$ y $\Omega_b$ se muestran en la tabla \ref{tab:cubics}. De forma muy similar al de las ecuaciońes de estado,la selección de la expresión de $\alpha$ se realiza a través de la clase `Alphas'.
+En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de estado cúbica previamente definida, a través de la clase `EquatiosOfState'. Los valore de $\Omega_a$ y $\Omega_b$ se muestran en la tabla \ref{tab:cubics}. De forma muy similar al de las ecuaciońes de estado, la selección de la expresión de $\alpha$ se realiza a través de la clase `Alphas'.
 
 El código \ref{lst:substanceCreation} muestra como crear una objeto del tipo substancia.
 

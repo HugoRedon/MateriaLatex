@@ -52,7 +52,7 @@
 \subsection{Cálculos con la ecuación cúbica}
 	Ya que la clase `Cubic' no realiza los cálculos de sus parámetros estos deben ser proporcionados como argumento de los métodos.
 
-	Los métodos de la clase `Cubic' raramente será necesario usarlos directamente, ya que es dificil obtener el cálculo de los parámetros $a$ y $b$, en cambio la clase `Homogeneous' define el cálculo de los parámetros y de las propiedades que a continuación se muestran.
+	Los métodos de la clase `Cubic' raramente será necesario usarlos directamente, ya que es dificil obtener el cálculo de los parámetros $a$ y $b$. La clase `Homogeneous' define el cálculo de los parámetros y utiliza a la clase `Cubic' como se muestra en las siguientes secciones.
 
 	\subsubsection{Presión}
 	El cálculo en el método `calculatePressure' se realiza según la ecuación \ref{eq:pressure} y se utiliza como se muestra en el código \ref{lst:cubicpressure}.
@@ -78,7 +78,7 @@
 	\subsubsection{Fugacidad}
 	La fugacidad se calcúla segun la ecuación \ref{eq:fugacity}.Para realizar el cálculo de la fugaciad es necesario conocer las derivadas de los parámetros con respecto a la cantidad de moles del componente i, es decir al componente para el cúal se desea realizar el cálculo de fugacidad. El cálculo de la derivada de los parámetros se realiza en las clases que hereden a `Homogeneous', por ejemplo las clases `Substance' y `Mixture'.
 	El método se usa como se indica en el código \ref{lst:fugacity}.
-\begin{lstlisting}[label={lst:fugacity},caption={Cálculo de fugacidad usando una ecuación de estad cúbica, el método recibe los parámetros de temperatura, presión ,los parámetros de la ecuación cúbica $a$ y $b$, las derivadas con respecto a la cantidad de moles $partial_a$, $partial_b$ y finalmente la fase a la que se desea el cálculo de la fugacidad.}]
+\begin{lstlisting}[label={lst:fugacity},caption={Cálculo de fugacidad usando una ecuación de estad cúbica, el método recibe los parámetros de temperatura, presión ,los parámetros de la ecuación cúbica $a$ y $b$, las derivadas con respecto a la cantidad de moles $partial\_a$, $partial\_b$ y finalmente la fase a la que se desea el cálculo de la fugacidad.}]
 	double fugacity = calculateFugacity(temperature, pressure,
 										 a, b, parcial_a, parcial_b,phase);
 \end{lstlisting}

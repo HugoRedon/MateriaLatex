@@ -17,56 +17,26 @@
 		double pressure = heterogeneousSubstance.getPressure();
 	\end{lstlisting}
 
-\begin{figure}
-	\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
+	Las figuras \ref{fig:saturationPressure} y \ref{fig:saturationPressure3d} muestran el resultado del cálculo de la presión de saturación para el agua con la ecuación de estado de Peng Robinson.
 
-	\node(init){Inicio};
-	\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$T$};
-	\node[below of=lab,below=0.2cm](estim){Estimado inicial de\\ la incognita\\$P$};
-	\node[below of=estim,below=0.6cm](relations){Cálculo de la\\ razon de equilibrio\\
-	$K = \frac{ \hat{\phi}^L }{\hat{ \phi}^V}$};
-	\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ E = {K}-1 $};
-
-	\node[below of=error,below=0.6cm](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
-	\node[below of=criteria,below=0.4cm](pressureIncrement){Incrementar la presión\\$P^* = P + \Delta P$\\
-	$\Delta P = 0.001  \quad \text{o} \quad 0.0001 K$};
-
-	\node[below of=pressureIncrement,below=0.4cm](relationsWithIncrement){Cálculo de la Razon\\ de Equilibrio con $P^*$
-	\\$K^* = \frac{ \hat{\phi}^L }{ \hat{\phi}^V}$};
-
-	\node[right of=criteria	,right=2.2cm](end){Fin};
-
-
-	\node[right of=pressureIncrement, right=3cm](errorWithIncrement){Cálculo de la función Error \\ con $P^*$\\$ E^* = K^* -1 $};
-
-	\node[right of=relations, right = 3cm](newValues){Cálculo de la nueva estimacion \\ de la \textbf{Incógnita}\\
-	\begin{minipage}{0.2\linewidth}
-	\begin{equation*}
-	T_{nueva} = \frac{P P^* \left(E^*-E\right)}{P^*E^*-P E}
-	\end{equation*} 
-	\end{minipage}
-	};
-
-
-	\draw[-latex] (init)--(lab);
-	\draw[-latex] (lab)--(estim);
-	\draw[-latex] (estim)--(relations);
-	\draw[-latex] (relations)--(error);
-	\draw[-latex] (error)--(criteria);
-	\draw[-latex] (criteria)--node[fill=none,draw=none,above]{SI}(end);
-	\draw[-latex] (criteria)--node[fill=none,draw=none,left]{NO}(pressureIncrement);
-	\draw[-latex] (pressureIncrement)--(relationsWithIncrement);
-	\draw[-latex] (relationsWithIncrement)--(errorWithIncrement);
-	\draw[-latex] (errorWithIncrement)--(newValues);
-	\draw[-latex] (newValues)--(relations);
-
+\begin{figure}[!h]
+	\centering	
+	\begin{tikzpicture}
+	\begin{axis}[xlabel=\temperature,ylabel=\pressure]
+	\addplot[blue,smooth]table{plotdata/heterogeneous/et.dat};
+	\end{axis}
 	\end{tikzpicture}
-	\caption{Algoritmo para el cálculo de presión de saturación.}\label{fig:saturationpressure}
+	\caption{Diagrama de presión de saturación para el agua con la ecuación de estado de Peng Robinson}\label{fig:saturationPressure}
 \end{figure}
 
-
-
-
-
-
-
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-165,xlabel={\temperature},ylabel={\molarVolume},zlabel=\pressure]
+	\addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=liquidVolume, z=pressure]{plotdata/heterogeneous/et.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=vaporVolume, z=pressure]{plotdata/heterogeneous/et.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Diagrama tridimensional de presión de saturación - temperatura- volumen molar para el agua con la ecuación de estado de Peng Robinson}
+	\label{fig:saturationPressure3d}
+\end{figure}

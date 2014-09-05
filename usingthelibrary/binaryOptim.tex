@@ -29,7 +29,7 @@
 
 	Para crear una lista de datos experimentales para una mezcla binaria, es necesario indicar si la experimentación se llevó a cabo de manera isobárica o isotérmica, el tipo de experimentación se indica con el método `setType' y se puede dar como argumento del método las opciones `ExperimentalDataBinaryType.isobaric' ó  `ExperimentalDataBinaryType.isothermic'. Cuando se indican las fracciones molares del líquido y del vapor solo se indican las de un compuesto, por lo tanto se debe decir a la lista de datos cual es el compuesto de referenecia y cual es el de no referencia, ello se indica con los métodos `setReferenceComponent' y `setNonReferenceComponent'.
 
-	Es muy importante que los compuestos de la mezcla sean iguales a los indicados en la lista, sin embargo en este trabajo no se ha implementado una forma para asegurar que esto suceda, esto se deberá realizarse en un trabajo futuro.
+	Es muy importante que los compuestos de la mezcla sean iguales a los indicados en la lista.
 
 	El código \ref{lst:binarydatalist} muestra la creación de la lista de datos experimentales y la asigna a la mezcla heterogénea.
 

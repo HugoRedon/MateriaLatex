@@ -1,19 +1,19 @@
 \section{Materia Heterogénea}\label{sec:heterogeneous}
 
-	La clase `Heterogeneous' se encarga de los cálculos de equilibrio entre las fases líquido y vapor. La clase contiene dos instancias de la clase `Homogeneous' que representan a la clase líquida y a la clase vapor. La clase implementa los algoritmos numéricos para igualar los cálculos de la fugacidad entre las fases.
+	La clase `Heterogeneous' se encarga de los cálculos de equilibrio entre las fases líquido y vapor. La clase contiene dos instancias de la clase `Homogeneous' que representan a la fase líquida y a la fase vapor. La clase implementa los algoritmos numéricos para igualar los cálculos de la fugacidad entre las fases.
 
 	Los cálculos de equilibrio que se implementan en este trabajo son:
 
-	\begin{itemize}
+	\begin{itemize}\itemsep0ex
 
 		\item Substancias
-			\begin{itemize}
+			\begin{itemize}\itemsep0ex
 				\item Temperatura de saturación.
 				\item Presión de saturación.
 			\end{itemize}
 
 		\item Mezclas
-	\begin{itemize}
+	\begin{itemize}\itemsep0ex
 		\item Presión de burbuja, sección \ref{subsec:bubblepressure}.
 		\item Presión de rocío, sección \ref{subsec:dewpressure}.
 		\item Temperatura de burbuja, sección \ref{subsec:bubbletemperature}.
@@ -25,7 +25,7 @@
 
 	Los algoritmos son muy similares, las principales diferencias consisten en la función objetivo.
 
-	La clase `HeterogeneousSubstance' realiza los cálculos de equilibrio para las substancias y la clase `HeterogeneousSubstance' realiza los cálculos de equilibrio para las mezclas, en la figura \ref{fig:heterogeneous} ser muestra la estructura.
+	La clase `HeterogeneousSubstance' realiza los cálculos de equilibrio para las substancias y la clase `HeterogeneousMixture' realiza los cálculos de equilibrio para las mezclas, en la figura \ref{fig:heterogeneous} se muestra la estructura.
 
 \begin{figure}[!h]
   \centering
@@ -34,10 +34,11 @@
     \label{fig:heterogeneous}
 \end{figure}
 
-	Los cálculos de la presente sección se realizan de forma muy similar, primero indicando la variable conocida con el método `set', después invocando el método que realiza el algoritmo para conocer la incognita, el método puede recibir o no un estimado inicial y finalmente obtener el resultado de la variable con el método `get'.
+	Los cálculos de la presente sección se realizan de forma muy similar, primero indicando la variable conocida con el método `set', después invocando el método que realiza el algoritmo para conocer la incognita (el método puede recibir o no un estimado inicial) y finalmente obtener el resultado de la variable con el método `get'.
 
 	Cada sección muestra el uso de la librería con fragmentos de código que realizan el cálculo con y sin el estimado inicial. También se indica que método se usa para estimar la varible incognita en caso de no proporcionar un estimado inicial.
 
+	Todos los diagramas de los algoritmos se muestran en el apéndice \ref{chap:algorithms}.
 		
 \input{usingthelibrary/saturationTemperature}%hecho
 \input{usingthelibrary/saturationPressure}%hecho

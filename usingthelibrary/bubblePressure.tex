@@ -26,9 +26,12 @@
 		double pressure = heterogeneousMixture.getPressure();
 	\end{lstlisting}
 
-\begin{figure}\centering
+	La figura \ref{fig:bubblepressure3d} muestra el resultado del cálculo de presión de burbuja para el sistema metanol-agua.
+
+\begin{figure}[p]
+\centering
 	\begin{tikzpicture}
-	\begin{axis}[view/v=-15,colorbar left,xlabel={Fracción Molar},ylabel=\temperature,zlabel=\pressure,colorbar style={ylabel=\temperature,
+	\begin{axis}[view/v=-15,colorbar left,xlabel={Fracción Molar del metanol},ylabel=\temperature,zlabel=\pressure,colorbar style={ylabel=\temperature,
         yticklabel style={
             text width=2.5em,
             align=right}}]
@@ -39,7 +42,7 @@
 
 
 	\begin{tikzpicture}
-	\begin{axis}[view/v=-220,xlabel={Fracción Molar},ylabel=\temperature,zlabel=\pressure]
+	\begin{axis}[view/v=-220,xlabel={Fracción Molar del metanol},ylabel=\temperature,zlabel=\pressure]
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\end{axis}
@@ -47,64 +50,10 @@
 
 
 	\begin{tikzpicture}
-	\begin{axis}[view/v=-115,xlabel={Fracción Molar},ylabel=\temperature,zlabel=\pressure]
+	\begin{axis}[view/v=-115,xlabel={Fracción Molar del metanol},ylabel=\temperature,zlabel=\pressure]
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=liquidFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagramas tridimensionales de presión-composición-temperatura para el sistema metanol-agua.}\label{fig:bubblepressure3d}
-\end{figure}
-
-\begin{figure}
-	\begin{tikzpicture}[nodes={draw, fill=white,align=center},row sep=0.3cm,column sep=0.5cm] ]
-
-	\node(init){Inicio};
-	\node[below of=init,below] (lab)  {Lectura de \textbf{Datos} \\$T,x_1, x_2,\ldots, x_{nc}$};
-	\node[below of=lab,below=0.2cm](estim){Estimado inicial de\\ las incognitas\\$P,y_1,y_2,\ldots,y_{nc}$};
-	\node[below of=estim,below=0.6cm](relations){Cálculo de las\\ razones de equilibrio\\
-	$K_i = \frac{ \hat{\phi}_i^L }{\hat{ \phi}_i^V}$};
-	\node[below of=relations,below = 0.6cm](error){Cálculo de la función Error\\$ S_y =\sum_{i=1}^{nc} K_i x_i $\\$ E = {S_y}-1 $};
-
-	\node[below of=error,below=0.6cm](criteria){$|E| \leq 1\cdot10^{-4}\quad \text{o} \quad  1\cdot 10^{-5}$};
-	\node[below of=criteria,below=0.4cm](pressureIncrement){Incrementar la presión\\$P^* = P + \Delta P$\\
-	$\Delta P = 0.001  \quad \text{o} \quad 0.0001 K$};
-
-	\node[below of=pressureIncrement,below=0.4cm](relationsWithIncrement){Cálculo de las Razones\\ de Equilibrio con $P^*$
-	\\$K_i^* = \frac{ \hat{\phi}_i^L }{ \hat{\phi}_i^V}$};
-
-	\node[right of=criteria	,right=2.2cm](end){Fin};
-
-
-	\node[right of=pressureIncrement, right=3cm](errorWithIncrement){Cálculo de la función Error \\ con $P^*$\\
-	$ S_y^* =\sum_{i=1}^{nc} K_i^* x_i $\\$ E^* = S_y^* -1 $};
-
-	\node[right of=relations, right = 3cm](newValues){Cálculo de las nuevas estimaciones \\ de las \textbf{Incógnitas}\\
-	\begin{minipage}{0.2\linewidth}
-	\begin{equation*}
-	T_{nueva} = \frac{P P^* \left(E^*-E\right)}{P^*E^*-P E}
-	\end{equation*}
-	\begin{equation*}
-	 S_y =\sum_{i=1}^{nc} K_i x_i \\
-	 \end{equation*}
-	 \begin{equation*}
-	\left(y_i\right)_{nueva} = \frac{K_i x_i}{S_y}
-	\end{equation*}
-	\end{minipage}
-	};
-
-
-	\draw[-latex] (init)--(lab);
-	\draw[-latex] (lab)--(estim);
-	\draw[-latex] (estim)--(relations);
-	\draw[-latex] (relations)--(error);
-	\draw[-latex] (error)--(criteria);
-	\draw[-latex] (criteria)--node[fill=none,draw=none,above]{SI}(end);
-	\draw[-latex] (criteria)--node[fill=none,draw=none,left]{NO}(pressureIncrement);
-	\draw[-latex] (pressureIncrement)--(relationsWithIncrement);
-	\draw[-latex] (relationsWithIncrement)--(errorWithIncrement);
-	\draw[-latex] (errorWithIncrement)--(newValues);
-	\draw[-latex] (newValues)--(relations);
-
-	\end{tikzpicture}
-	\caption{Algoritmo para el cálculo de presión de burbuja}\label{fig:bubblepressure}
+	\caption{Diagramas tridimensionales de presión-composición-temperatura para el sistema metanol-agua. Los diagramas son la misma figura vista desde diferentes angulos}\label{fig:bubblepressure3d}
 \end{figure}

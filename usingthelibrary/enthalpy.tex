@@ -2,10 +2,10 @@
 
 	Para conocer la entalpía real de una substacia o mezcla, es necesario conocer la entalpía del gas ideal y la entalpía residual.
 
-\subsubsection{Entalpía del gas ideal con la ecuación del calor específico}
-	Para realizar el cálculo de la entalpía segun el gas ideal, es necesaria una ecuación que represente el calor específico. El cálculo depende de la forma de la ecuación del calor específico y sus parámetros. En la sección \ref{sec:cp} se muestran las ecuaciónes de cp incluidas en la librería y como usarlas.
+\subsubsection{Entalpía del gas ideal}
+	Para realizar el cálculo de la entalpía segun el gas ideal, es necesaria una ecuación que represente la capacidad calorífica $C_p$. El cálculo depende de la forma de la ecuación y el valor de sus parámetros. En la sección \ref{sec:cp} se muestran las ecuaciónes de $C_p$ incluidas en la librería.
 
-	Con la ecuación del cp la clase `Homogeneous' puede calcular la entalpía del gas ideal como se muestra en el código \ref{lst:idealgasenthalpy}.
+	Con la ecuación del $C_p$ la clase `Homogeneous' puede calcular la entalpía del gas ideal como se muestra en el código \ref{lst:idealgasenthalpy}.
 
 	\begin{lstlisting}[label={lst:idealgasenthalpy},caption={Cálculo de la entalpía del gas ideal.}]
 	double idealGasEnthalpy = homogeneous.calculateIdealGasEnthalpy():
