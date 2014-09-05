@@ -37,7 +37,7 @@
 \end{figure}
 
 \begin{tikzpicture}
-\begin{axis}[view/h=-165,xlabel={Temperatura[K]},ylabel={Volumen Molar $[\frac{m³}{kmol}]$}]
+\begin{axis}[view/h=-165,xlabel={Temperatura[K]},ylabel={Volumen Molar $[\frac{m^3}{kmol}]$}]
 \addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=liquidVolume, z=pressure]{plotdata/heterogeneous/et.dat};
 \addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=vaporVolume, z=pressure]{plotdata/heterogeneous/et.dat};
 \end{axis}

@@ -1,12 +1,11 @@
 \section{Ecuación de estado cúbica}\label{sec:cubic}
 
 	La ecuación de estado cúbica representada por la clase `Cubic', permite realizar los cálculos de: 
-	\begin{itemize}
-	\itemsep0ex
-		\item{Presión} 
-		\item{Factor de compresibilidad}
-		\item{Volumen molar}
-		\item{Fugacidad}
+	\begin{itemize}	\itemsep0ex
+		\item Presión
+		\item Factor de compresibilidad
+		\item Volumen molar
+		\item Fugacidad
 	\end{itemize}
 
 	Cualquier ecuación de estado cúbica se puede crear dentro de la librería \Materia usando los métodos `get' y `set' de la clase `Cubic', ver la sección \ref{subsec:cubicCreation}, pero para comodidad se han definido las ecuaciones de la tabla \ref{tab:cubics} para accederse a través de la clase `EquationsOfState'.
@@ -62,7 +61,7 @@
 \end{lstlisting}
 	\subsubsection{Factor de compresibilidad}
 
-	Es necesario realizar la solución de la ecuación de estado cúbica, como se muestra en el apéndice \ref{chap:cubicsolution}, para conocer el factor de compresibilidad. La solución de la ecuación se realiza en el método `calculateCompresibilityFactor'.
+	Es necesario realizar la solución de la ecuación de estado cúbica, como se muestra en el apéndice \ref{sec:cubicsolution}, para conocer el factor de compresibilidad. La solución de la ecuación se realiza en el método `calculateCompresibilityFactor'.
 
 	El método recibe los parámetros adimensionales A, B y la fase a la cual se desea calcular el factor de compresibilidad. La clase ``Cubic'' tiene los métodos necesarios para transformar los parámetros a y b a su forma adimensional A y B según las ecuaciones \ref{eq:AB}.
 

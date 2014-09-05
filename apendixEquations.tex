@@ -1,4 +1,4 @@
-\chapter{Ecuaciones}
+\chapter{Ecuaciones}\label{chap:appendixEquations}
 
 
 
@@ -45,33 +45,8 @@ z^3-\left[1-(u-1)B\right]z^2+ \\ \left[A-uB-uB^2 +\\ wB^2\right]z-\left[AB+wB^2+
 \end{equation}
 
 
-\subsubsection{Entalpía del gas ideal}
-\begin{equation}\label{eq:idealgasenthalpy}
-h^{\neq} = \sum_{i=1}^{nc} x_i \left[ h_i^{ref} + \int_{Tref}^{T} Cp_i^{\neq} \mathrm{d}T \right]
-\end{equation}
 
-\section{Entalpía}
-\begin{equation}\label{eq:enthalpy}
-h = h^{\neq} + \left[ \frac{T(\frac{\partial a}{\partial T}) - a}{b\sqrt{u²-4w} }\right] 
-\ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
-+ pv - RT
-\end{equation}
-
-\begin{lstlisting}[label=some-code,caption=Some Code]
-private  double calculateEnthalpy( double volume){
-    double idealGasEnthalpy = calculateIdealGasEnthalpy();
-    double a = calculate_a_cubicParameter();
-    double b = calculate_b_cubicParameter();
-    double L = cubicEquationOfState.calculateL(volume, b);
-    double partial_aPartial_temperature = partial_aPartial_temperature( );
-    
-    return idealGasEnthalpy + ((partial_aPartial_temperature - a)/b) * L  + pressure * volume - Constants.R *temperature;
-}
-\end{lstlisting}	
-
-
-
-\chapter{Solución de la ecuación de estado cúbica}\label{chap:cubicsolution}
+\section{Solución de la ecuación de estado cúbica}\label{sec:cubicsolution}
 
 
 
@@ -108,10 +83,40 @@ Nota: En caso de que el z del líquido sea menor que B, entonces hay que calcula
 \item Si $Q > 0 \qquad z = \frac{1}{3}\left[\alpha + \left(-D + \sqrt{Q}\right)^{\frac{1}{3}}+ \left(-D - \sqrt{Q}\right)^{\frac{1}{3}} \right]$
 \end{itemize}
 
-\subsection{Entropía}
+
+
+
+\section{Entalpía del gas ideal}
+\begin{equation}\label{eq:idealgasenthalpy}
+h^{\neq} = \sum_{i=1}^{nc} x_i \left[ h_i^{ref} + \int_{Tref}^{T} Cp_i^{\neq} \mathrm{d}T \right]
+\end{equation}
+
+\section{Entalpía}
+\begin{equation}\label{eq:enthalpy}
+h = h^{\neq} + \left[ \frac{T(\frac{\partial a}{\partial T}) - a}{b\sqrt{u^2-4w} }\right] 
+\ln\left[\frac{2v+b\left(u + \sqrt{u^2-4w}\right)}{2v+b\left(u - \sqrt{u^2-4w}\right)}\right]
++ pv - RT
+\end{equation}
+
+\begin{lstlisting}[caption={Ejemplo de implementación del cálculo de entalpía en la biblioteca Materia}]
+private  double calculateEnthalpy( double volume){
+    double idealGasEnthalpy = calculateIdealGasEnthalpy();
+    double a = calculate_a_cubicParameter();
+    double b = calculate_b_cubicParameter();
+    double L = cubicEquationOfState.calculateL(volume, b);
+    double partial_aPartial_temperature = partial_aPartial_temperature( );
+    
+    return idealGasEnthalpy + ((partial_aPartial_temperature - a)/b) * L  + pressure * volume - Constants.R *temperature;
+}
+\end{lstlisting}	
+
+
+
+
+\section{Entropía}
 \begin{equation}\label{eq:entropy}
 s = s^{\neq} + R\ln\left[\frac{z(v-b)}{v}\right] + \frac{\frac{\partial a}{\partial T}}{b \sqrt{u^2 - 4w}}
-\ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
+\ln\left[\frac{2v+b\left(u + \sqrt{u^2-4w}\right)}{2v+b\left(u - \sqrt{u^2-4w}\right)}\right]
 \end{equation}
 \begin{equation}\label{eq:idealgasentropy}
 s^{\neq} = \sum_{i=1}^{nc} x_i\left[s_i^{ref} + \int_{Tref}^T \frac{Cp_i^{\neq}}{T} \mathrm{d}T 
@@ -131,8 +136,8 @@ g = h - T * s;
 + \frac{a}{RTb\sqrt{u^2-4w}}
 \\
 \left[\frac{1}{b}\frac{\partial bN}{\partial N_i}
-- \frac{1}{aN}\frac{\partial aN²}{\partial N_i}\right]
-\ln\left[\frac{2v+b\left(u + \sqrt{u²-4w}\right)}{2v+b\left(u - \sqrt{u²-4w}\right)}\right]
+- \frac{1}{aN}\frac{\partial aN^2}{\partial N_i}\right]
+\ln\left[\frac{2v+b\left(u + \sqrt{u^2-4w}\right)}{2v+b\left(u - \sqrt{u^2-4w}\right)}\right]
 -\ln{z}
 \end{multline}
 
@@ -144,7 +149,7 @@ g = h - T * s;
 \end{equation}
 
 
-\subsection{Funciones objetivo para la estimación de parámetros}
+\section{Funciones objetivo para la estimación de parámetros}
 Error relativo para el dato i
 \begin{equation}\label{eq:relativeerror}
 ER_i=\frac{P_i^{calculada} - P_i^{experimental}}{P_i^{experimental}}
@@ -159,9 +164,23 @@ $nd$: numero de datos
 
 
 
-\subsection{Ecuaciones para el cálculo de la presión de vapor}
+\section{Presión de vapor}
 
-\subsubsection{Ecuación 101}
+\subsection{Ecuación 101}
 \begin{equation}\label{eq:101vaporpressure}
 	P =e^{\displaystyle\left(A +\frac{B}{T}+C\ln{T}+D {T^E}\right)}
+\end{equation}
+\subsection{Ecuación 10}
+\begin{equation}\label{eq:10vaporpressure}
+	P =e^{\displaystyle\left(A -\frac{B}{ C +T}\right)}
+\end{equation}
+
+\section{Capacidad calorífica}
+\subsection{Ecuación 107 DIPPR}
+\begin{equation}\label{eq:dippr107}
+	C_p =A + B \left(\frac{ \frac{C}{T}}{ \sinh{\frac{D}{T}}}  \right)^2+ E \left(\frac{ \frac{E}{T}}{ \cosh{\frac{G}{T}}}  \right)^2
+\end{equation}
+\subsection{Ecuación chempsep 16}
+\begin{equation}\label{eq:chempse16}
+	C_p = A + e^{\displaystyle\left( \frac{B}{T} + C + D T + E T^2 \right)}
 \end{equation}
