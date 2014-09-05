@@ -33,31 +33,32 @@
 
 	La página de internet dispone de la base de datos ChemSep v6.96 derechos de autor  Harry Kooijman y Ross Taylor (2013) bajo la licencia `Artistic License': \url{ http://www.perlfoundation.org/artistic_license_2_0}.
 
-	Primero se debe cargar los compuestos puros, en la sección `Creación' -> `Compuesto Puro', en el recuadro de texto se debe escribir el nombre del compuesto puro deseado en inglés y dar click en el boton buscar. Si la página encuentra coincidencia en los nombre mostrará una lista debajo del recuadro con los compuestos encontrados.
+	Primero se deben cargar los compuestos puros en la sección `Creación' - `Compuesto Puro'. Para buscar compuestos se debe escribir el nombre en inglés del compuesto deseado en el recuadro de texto al lado de la etiqueta `Buscar'. Al dar click en el boton buscar la página buscará coincidencias entre el nombre escrito y los nombres de la base de datos. Los compuestos que muestren coincidencia con el texto escrito se mostrarán en una lista debajo del recuadro.
 
-	Para agregar el compuesto basta con dar click en el boton `Agregar' .En la tabla que se muestra a la derecha de la página se muestran los compuestos agregados. Ver la figura \ref{fig:pureCompounds}.
+	Para agregar un compuesto de la lista basta con dar click en el boton `Agregar' junto al nombre del compuesto. En la tabla a la derecha de la página se muestran los compuestos agregados. Ver la figura \ref{fig:pureCompounds}.
 
-	\begin{figure}
-		\includegraphics[scale=0.3]{pureCompounds.png}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[scale=0.34]{pureCompounds.png}
 		\caption{Formulario para seleccionar y cargar compuestos puros en la página de internet}
 		\label{fig:pureCompounds}
 	\end{figure}
 
 \section{Creación de substancias}\label{sec:webSubstanceCreator}
 	
-	En la sección `Creación' -> `Substancia' se permite crear materia de un solo compuesto, para después utilizarse en las secciones de graficación y estimación de parámetros de la expresión de $\alpha$.
+	En la sección `Creación' - `Substancia' se permite crear materia de un solo compuesto, para después utilizarse en las secciones de graficación y estimación de parámetros de la expresión de $\alpha$.
 
-	Esta sección permite elegir la ecuación cúbica, la expresión de $\alpha$,el compuesto y la fase homogéna con la cual se creará la substancia. Al final de la sección el botón `Aceptar' creará la Substancia y mostrará el resultado de la creación.
+	Esta sección permite elegir la ecuación cúbica, la expresión de $\alpha$, el compuesto y la fase homogéna con la cual se creará la substancia. Al final de la sección el botón `Aceptar' creará la Substancia y mostrará el resultado de la creación.
 
 	La figura \ref{fig:substanceCreator} muestra la interfaz de usuario para la creación de substancias. La figura \ref{fig:substanceProperties} muestra las propiedades de la substancia creada.
 
-	\begin{figure}
+	\begin{figure}[!h]
 		\includegraphics[scale=0.3]{substanceCreator.png}
 		\caption{Formulario para crear substancias en la página de internet}
 		\label{fig:substanceCreator}
 	\end{figure}
 
-	\begin{figure}
+	\begin{figure}[!h]
 		\includegraphics[scale=0.3]{substanceProperties.png}
 		\caption{Página que muestra las propiedades de la substancia recien creada}
 		\label{fig:substanceProperties}
@@ -65,11 +66,11 @@
 
 \section{Creación de Mezclas}\label{sec:webMixtureCreator}
 
-	En la sección `Creación' -> `Mezcla' que permite crear materia con multiples compuestos puros, solo aquellas mezclas que contengan dos compuestos estarán disponibles en la sección \nameref{sec:webBinaryOptim}.
+	En la sección `Creación' - `Mezcla' que permite crear materia con multiples compuestos puros, solo aquellas mezclas que contengan dos compuestos estarán disponibles en la sección \nameref{sec:webBinaryOptim}.
 
 	El formulario permite elegir la ecuación cúbica, la fase ,la regla de mezclado, elegir cada compuesto y definir su expresión de $\alpha$ y su fración molar. Ver figura \ref{fig:webMixCreator}.
 
-	\begin{figure}
+	\begin{figure}[!h]
 		\includegraphics[scale=0.3]{mixtureCreator.png}
 		\caption{Formulario para la creación de mezclas}
 		\label{fig:webMixCreator}
