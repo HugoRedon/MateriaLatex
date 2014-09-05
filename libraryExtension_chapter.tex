@@ -1,6 +1,8 @@
 \chapter{Extender o corregir la librería Materia}\label{chap:libraryExtension}
+
+	Para colaborar con el proyecto \Materia y agregar nuevas clases a la biblioteca es necesario seguir los pasos del apéndice \ref{chap:github} para descargar el código fuente desde GitHub.	
 	
- 	Explicando la estructura actual de los objetos y sus relaciones, en este capítulo se mostrará como crear nuevas:
+ 	En este capítulo se mostrará como crear nuevas:
 
  	\begin{itemize}\itemsep0ex
  		\item{Expresiones de $\alpha$}
@@ -32,9 +34,9 @@
 
 	.
 
-	Todos los métodos mencionados anteriormente se declaran en la clase abstracta `Alpha' y necesitan ser definidos en la nueva expresión. 
+	Todos los métodos mencionados anteriormente se declaran en la clase abstracta `Alpha' y necesitan ser definidos en la nueva clases. 
 
-	La nueva clase deberá heredar a la clase `Alpha', y definir los métodos abstractos en ella. 
+	La nueva clase deberá heredar a la clase abstracta `Alpha', y definir los métodos abstractos de ella. 
 
 	Los ambientes de desarrollo como Netbeans o Eclipse pueden generar lo necesario para definir una nueva expresión de $\alpha$. El código \ref{lst:newAlphaCode} muestra la nueva clase `NewAlphaExpresion' que hereda a la clase `Alpha' y define los métodos abstractos.
 
@@ -90,17 +92,17 @@ public class NewAlphaExpresion extends Alpha {
 
 	El código \ref{lst:twoAlphaExample} utiliza dos expresiones de $\alpha$ y las pone dentro de un objeto `TwoEquationsAlpha' esta ecuación es la expresión de Mathias.
 
-	\begin{lstlisting}[caption={Creación de una expresión de $\alpha$ con cambio de ecuación según la temperatura del sistema},label={lst:twoAlphaExample}]
-		TwoEquationsAlphaExpression mathias = new TwoEquationsAlphaExpression();    
-        mathias.setName(AlphaNames.Mathias);
-        CommonAlphaEquation mathiasBelow = new MathiasAlpha();
-        
-        MathiasAboveTcAlphaEquation mathiasAbove = new MathiasAboveTcAlphaEquation(mathiasBelow);
-        
-        mathias.setAlphaBelowTc(mathiasBelow);
-        mathias.setAlphaAboveTc(mathiasAbove);
-        return mathias;     
-	\end{lstlisting}
+\begin{lstlisting}[caption={Creación de una expresión de $\alpha$ con cambio de ecuación según la temperatura del sistema},label={lst:twoAlphaExample}]
+	TwoEquationsAlphaExpression mathias = new TwoEquationsAlphaExpression();    
+	mathias.setName(AlphaNames.Mathias);
+	CommonAlphaEquation mathiasBelow = new MathiasAlpha();
+    
+	MathiasAboveTcAlphaEquation mathiasAbove = new MathiasAboveTcAlphaEquation(mathiasBelow);
+    
+	mathias.setAlphaBelowTc(mathiasBelow);
+	mathias.setAlphaAboveTc(mathiasAbove);
+	return mathias;     
+\end{lstlisting}
 
 \section{Creación de nuevas reglas de mezclado}\label{sec:newMixingRules}
 	
@@ -190,7 +192,7 @@ public class NewMixingRule extends MixingRule {
 
 \section{Creación de nuevos modelos de Actividad}\label{sec:newActivityModels}
 
-	Para la reglas de mezclado basadas en la energía libre de Gibbs son necesarios los modelos de actividad, y en la librería Materia es posible crear nuevos modelos.
+	Para las reglas de mezclado basadas en la energía libre de Gibbs son necesarios los modelos de actividad, y en la librería Materia es posible crear nuevos modelos.
 
 	La clase abstracta `ActivityModel' declara los métodos necesarios para los modelos de actividad.
 
@@ -206,7 +208,7 @@ public class NewMixingRule extends MixingRule {
 		\tau = \frac{a_{ij} + b_{ij} T}{R T}
 	\end{equation}
 
-	y se han creado los métodos `get' y `set' parámeter para estos parámetros. Por lo cual si el modelo de actividad contiene mas parámetros que pueden ser estimados se deberán sobreescribir los métodos `get' y `set' para los parámetros.
+	y se han creado los métodos `get' y `set' parámeter para estos parámetros. Por lo cual si el modelo de actividad contiene mas parámetros que pueden ser estimados se deberán sobreescribir los métodos `get' y `set' para incluir los demás parámetros.
 
 	El código \ref{lst:newActivityModel} muestra la clase generada por Eclipse para la creación de un nuevo modelo de actividad.
 
@@ -252,7 +254,7 @@ public class NewActivityModel extends ActivityModel {
 	A diferencia de los objetos anteriores la capacidad calorífica se define como una interfaz `CpEquation', y para crear una nueva ecuación no es necesario heredar de ella, se debe implementar.
 
 
-	El código \ref{lst:newCpEquation}
+	El código \ref{lst:newCpEquation} muestra la implementación generada por eclipse para una nueva ecuación de capacidad calorífica.
 
 	\begin{lstlisting}[caption={Esqueleto para crear una nueva ecuación de capacidad calorífica}, label={lst:newCpEquation}]
 
