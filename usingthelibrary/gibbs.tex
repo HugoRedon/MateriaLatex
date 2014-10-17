@@ -11,34 +11,34 @@
 \begin{figure}[!h]
 	\centering	
 	\begin{tikzpicture}
-	\begin{axis}
+	\begin{axis}[xlabel={\gibbs},ylabel={\pressure}]
 	\addplot[blue]table{plotdata/gibbs/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagrama de la energía libre de Gibbs para el agua.}\label{fig:2dgibbs}
+	\caption{Diagrama de la energía libre de Gibbs para el agua. Las líneas azules representan isotermas.}\label{fig:2dgibbs}
 \end{figure}
 
 \begin{figure}[!h]
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-165,xlabel={\gibbs},ylabel={\molarVolume},zlabel={\pressure},colorbar]
+	\begin{axis}[view/h=-165,xlabel={\gibbs},ylabel={\molarVolume},zlabel={\pressure},colorbar,colorbar style={ylabel=Temperatura (K),title=Código de color}]
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/lv3d.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/l3d.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
-	% \begin{tikzpicture}
-	% \begin{axis}[view/h=-225,xlabel={\gibbs},ylabel={\molarVolume},zlabel={\pressure}]
-	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/lv3d.dat};
-	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/l3d.dat};
-	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/v3d.dat};
-	% \end{axis}
-	% \end{tikzpicture}
-	% \begin{tikzpicture}
-	% \begin{axis}[view/h=-120,xlabel={\gibbs},ylabel={\molarVolume},zlabel={\pressure}]
-	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/lv3d.dat};
-	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/l3d.dat};
-	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/v3d.dat};
-	% \end{axis}
-	% \end{tikzpicture}
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-225,xlabel={\gibbs},ylabel={\molarVolume},zlabel={\pressure}]
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/lv3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/l3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/v3d.dat};
+	\end{axis}
+	\end{tikzpicture}
+	\begin{tikzpicture}
+	\begin{axis}[view/h=-120,xlabel={\gibbs},ylabel={\molarVolume},zlabel={\pressure}]
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/lv3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/l3d.dat};
+	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/gibbs/v3d.dat};
+	\end{axis}
+	\end{tikzpicture}
 	\caption{Diagramas tridimensionales de presión-`energía libre de Gibbs'-`volumen molar' para el agua.}\label{fig:gibbs3d}
 \end{figure}

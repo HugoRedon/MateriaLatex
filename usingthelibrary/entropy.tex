@@ -30,7 +30,7 @@
 	\addplot[blue]table{plotdata/entropy/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagrama de presión-entropía para el agua.}\label{fig:2dentropy}
+	\caption{Diagrama de presión-entropía para el agua. Las líneas azules representan isotermas.}\label{fig:2dentropy}
 \end{figure}
 
 
@@ -44,25 +44,25 @@
 
 \begin{figure}[!h]
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-165,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure},colorbar]
+	\begin{axis}[view/h=-165,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure},colorbar,colorbar style={ylabel=Temperatura (K),title=Código de color}]
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\begin{tikzpicture}
-	\begin{axis}[view/h=-225,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure}]
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
-	\end{axis}
-	\end{tikzpicture}
-	\begin{tikzpicture}
-	\begin{axis}[view/h=-120,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure}]
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
-	\end{axis}
-	\end{tikzpicture}
-	\caption{Diagramas tridimensionales presión-entropía-`volumen molar' para el agua.}\label{fig:entropy3d}
+	% \begin{tikzpicture}
+	% \begin{axis}[view/h=-225,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure}]
+	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
+	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
+	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
+	% \end{axis}
+	% \end{tikzpicture}
+	% \begin{tikzpicture}
+	% \begin{axis}[view/h=-120,xlabel={\entropy},ylabel={\molarVolume},zlabel={\pressure}]
+	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/lv3d.dat};
+	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/l3d.dat};
+	% \addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/entropy/v3d.dat};
+	% \end{axis}
+	% \end{tikzpicture}
+	\caption{Diagramas tridimensional presión-entropía-`volumen molar' para el agua.}\label{fig:entropy3d}
 \end{figure}

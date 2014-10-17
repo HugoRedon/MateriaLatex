@@ -30,7 +30,7 @@
 	\addplot[blue]table{plotdata/enthalpy/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagrama de entalpía para el agua.}\label{fig:2denthalpy}
+	\caption{Diagrama de entalpía para el agua. Las líneas azules representan isotermas. }\label{fig:2denthalpy}
 \end{figure}
 
 
@@ -38,31 +38,39 @@
 \begin{figure}[!h]
 %\begin{tabular}{c c}
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-165,xlabel={\enthalpy},ylabel={\molarVolume},zlabel={\pressure},colorbar]
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
-	\end{axis}
+		\begin{axis}[view/h=-165,
+					xlabel={\enthalpy},
+					ylabel={\molarVolume},
+					zlabel={\pressure},
+					colorbar,
+					colorbar style={ylabel=Temperatura (K),
+					 							title=Código de color}
+					]
+			\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
+			\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
+			\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
+		\end{axis}
 	\end{tikzpicture}
 	%&
-	\begin{tikzpicture}
-	\begin{axis}[view/h=-225,xlabel={\enthalpy},ylabel={\molarVolume},zlabel={\pressure}]
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
-	\end{axis}
-	\end{tikzpicture}
-%\\
- %\multicolumn{2}{|c|}{
-	\begin{tikzpicture}
-	\begin{axis}[view/h=-120,xlabel={\enthalpy},ylabel={\molarVolume},zlabel={\pressure}]
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
-	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
-	\end{axis}
-	\end{tikzpicture}
+% 	\begin{tikzpicture}
+% 	\begin{axis}[view/h=-225,xlabel={\enthalpy},ylabel={\molarVolume},zlabel={\pressure}]
+% 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
+% 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
+% 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
+% 	\end{axis}
+% 	\end{tikzpicture}
+% %\\
+%  %\multicolumn{2}{|c|}{
+% 	\begin{tikzpicture}
+% 	\begin{axis}[view/h=-120,xlabel={\enthalpy},ylabel={\molarVolume},zlabel={\pressure}]
+% 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/lv3d.dat};
+% 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/l3d.dat};
+% 	\addplot3[surf,point meta=explicit]table[meta=temperature]{plotdata/enthalpy/v3d.dat};
+% 	\end{axis}
+% 	\end{tikzpicture}
 %}
-	\caption{Diagramas tridimensionales presión-entalpía-`volumen molar' del agua.}\label{fig:enthalpy3d}
+	\caption{Diagrama tridimensional presión-entalpía-`volumen molar' del agua.}
+	\label{fig:enthalpy3d}
 
 %\end{tabular}
 \end{figure}
