@@ -1,12 +1,12 @@
 \subsection{Fugacidad}\label{subsec:fugacity}
 	
-	El cálculo de fugacidad se realiza para un compuesto en específico. Si el cálculo se desea hacer para una mezcla homogénea, será necesario especificar el compuesto para el cual se desea la fugacidad.Si el cálculo es para una substancia no será necesario especificar el compuesto, ya que la substancia solo tiene un compuesto puro. En el código \ref{lst:substancefugacity} se realiza el cálculo de fugacidad para una substancia, y en el código \ref{lst:mixturefugacity} se realiza el cálculo de fugaciad para un compuesto en una mezcla.
+	El cálculo de fugacidad se realiza para un compuesto en específico. Si el cálculo se desea hacer para una mezcla homogénea, será necesario especificar el compuesto para el cual se desea la fugacidad. Si el cálculo es para una substancia, no será necesario especificar el compuesto, ya que la substancia solo contiene un compuesto puro. En el código \ref{lst:substancefugacity} se realiza el cálculo de fugacidad para una substancia, y en el código \ref{lst:mixturefugacity} se realiza el cálculo de fugacidad para un compuesto en una mezcla.
 
 \begin{lstlisting}[label={lst:substancefugacity}, caption={Cálculo de la fugacidad para una substancia homogénea.}]
 	double fugacity = substance.calculateFugacity();
 \end{lstlisting}
 
-\begin{lstlisting}[label={lst:mixturefugacity}, caption={Cálculo de la fugacidad para un compuesto en una mezcla.}]
+\begin{lstlisting}[label={lst:mixturefugacity}, caption={Cálculo de la fugacidad para un compuesto en una mezcla. Es necesario indicar el objeto del tipo 'Substance' para el cual se desea calcular la fugacidad. Este compuesto debe formar parte de la mezcla. }]
 	double fugacity = mixture.calculateFugacity(compound);
 \end{lstlisting}
 
@@ -15,14 +15,15 @@
 \begin{figure}[!h]
 	\centering
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-120,view/v=15,xlabel={Temperatura $[K]$},ylabel={Presión $[Pa]$},zlabel={Fugacidad},width=0.6\linewidth,smooth,
+	\begin{axis}[view/h=-20,xlabel={Temperatura $[K]$},ylabel={Presión $[Pa]$},zlabel={Fugacidad},width=0.6\linewidth,smooth,
 	every axis y label/.style={at={(current axis.south east)},right=2mm},]
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, z=liquidfug , x=temperature,y=pressure]{plotdata/fugacity/fug3d.dat};
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, z=vaporfug , x=temperature,y=pressure]{plotdata/fugacity/fug3d.dat};
 	\addplot3[point meta=explicit]table[meta=temperature, z=fug , x=temperature,y=pressure]{plotdata/fugacity/linefug3d.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{La fugacidad del líquido y del vapor coinciden en la línea de equilibrio.}\label{fig:fugacity}
+	\caption{Diagrama calculado con la ecuación de PRSV para el agua.
+	La fugacidad del líquido y del vapor coinciden en la línea de equilibrio. }\label{fig:fugacity}
 \end{figure}
 
 

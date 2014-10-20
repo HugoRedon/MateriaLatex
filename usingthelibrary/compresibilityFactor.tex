@@ -2,10 +2,10 @@
 
 En el fragmento de código \ref{lst:compresibility} se muestra el cálculo de el factor de compresibilidad para una substancia o mezcla homogénea.
 
-\begin{lstlisting}[label=lst:compresibility,caption={Cálculo del factor de compresibilidad, y adimensionamiento de los parámetros a y b con la clase ``Cubic''}]
-substance.setPressure(pressure);
-substance.setTemperature(temperature);
-double z = substance.calculateCompresibilityFactor();
+\begin{lstlisting}[label=lst:compresibility,caption={Cálculo del factor de compresibilidad, nótese la necesidad de indicar la temperatura y la presión del sistema antes de realizar el cálculo de compresibilidad.}]
+homogenous.setPressure(pressure);
+homogenous.setTemperature(temperature);
+double z = homogenous.calculateCompresibilityFactor();
 \end{lstlisting}
  
 	Para un rango de presión y a diferentes temperaturas podemos formar los diagramas de la figura \ref{fig:zchart}.
@@ -29,6 +29,6 @@ double z = substance.calculateCompresibilityFactor();
 	\end{axis}
 	\end{tikzpicture}
 \end{tabular}
-\caption{Diagramas del factor de compresibilidad con la ecuación de estado de Van Der Waals para el heptano}
+\caption{Izquierda: Diagrama tridimensional 'factor de compresibilidad'-'presión reducida'-'temperatura reducida'. Derecha diagrama del factor de compresibilidad contra presión reducida. Ambas figuras creadas con la ecuación de estado de Van Der Waals para el heptano}
 \label{fig:zchart}
 \end{figure}

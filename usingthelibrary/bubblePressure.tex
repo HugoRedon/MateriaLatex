@@ -12,7 +12,7 @@
 		//...... asignar la fracción molar para todos los compuestos
 
 		heterogeneousMixture.setTemperature(temperature);
-		heterogeneousMixture.bubblePressure(pressureEstimate);
+		heterogeneousMixture.bubblePressure(pressureEstimate,vaporEstimatedFractions);
 		double pressure = heterogeneousMixture.getPressure();
 	\end{lstlisting}
 
@@ -26,7 +26,7 @@
 		double pressure = heterogeneousMixture.getPressure();
 	\end{lstlisting}
 
-	La figura \ref{fig:bubblepressure3d} muestra el resultado del cálculo de presión de burbuja para el sistema metanol-agua.
+	La figura \ref{fig:bubblepressure3d} muestra los planos obtenidos del líquido saturado y del vapor saturado por medio del cálculo de presión de burbuja para el sistema metanol-agua con la ecuación de PRSV.
 
 \begin{figure}[p]
 \centering
@@ -55,5 +55,5 @@
 	\addplot3[surf,point meta=explicit,shader=interp]table[meta=temperature, y=temperature , x=vaporFraction, z=pressure]{plotdata/mixhet/hp.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagramas tridimensionales de presión-composición-temperatura para el sistema metanol-agua. En la figura podemos observar los planos formados por los puntos de burbuja y los puntos de rocío. Los diagramas son la misma figura vista desde diferentes angulos}\label{fig:bubblepressure3d}
+	\caption{Diagramas tridimensionales de presión-composición-temperatura para el sistema metanol-agua. En la figura podemos observar los planos formados por el líquido y el vapor saturado obtenidos con el cálculo de presión de burbuja. Los diagramas son la misma figura vista desde diferentes angulos.}\label{fig:bubblepressure3d}
 \end{figure}

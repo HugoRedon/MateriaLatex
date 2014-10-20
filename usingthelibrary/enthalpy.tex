@@ -17,11 +17,11 @@
 
 	El cálculo de la entalpía se realiza en el método `calculateEnthalpy()' como se muestra en el fragmento de código \ref{lst:enthalpy} según la ecuación \ref{eq:enthalpy}. 
 
-\begin{lstlisting}[caption={Cálculo de la entalpía real},label={lst:enthalpy}]
+\begin{lstlisting}[caption={Cálculo de la entalpía real para una mezcla o substancia homogénea.},label={lst:enthalpy}]
 	double enthalpy = homogeneous.calculateEnthapy();
 \end{lstlisting}
 	
-	Las figuras \ref{fig:2denthalpy} y \ref{fig:enthalpy3d} muestran diagramas de entalpía creados con ayuda de la librería \Materia.
+	Las figuras \ref{fig:2denthalpy} y \ref{fig:enthalpy3d} muestran líneas isotermas creadas con ayuda de la librería \Materia para el agua con la ecuación de Peng Robinson.
 
 \begin{figure}[!h]
 	\centering	
@@ -30,7 +30,7 @@
 	\addplot[blue]table{plotdata/enthalpy/lv.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Diagrama de entalpía para el agua. Las líneas azules representan isotermas. }\label{fig:2denthalpy}
+	\caption{Diagrama de entalpía para el agua. Las líneas azules representan isotermas. Cálculos realizados con la ecuación de Peng Robinson para el agua.}\label{fig:2denthalpy}
 \end{figure}
 
 
@@ -69,7 +69,7 @@
 % 	\end{axis}
 % 	\end{tikzpicture}
 %}
-	\caption{Diagrama tridimensional presión-entalpía-`volumen molar' del agua.}
+	\caption{Diagrama tridimensional presión-entalpía-`volumen molar' para el agua con la ecuación de Peng Robinson.}
 	\label{fig:enthalpy3d}
 
 %\end{tabular}

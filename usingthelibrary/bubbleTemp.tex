@@ -4,13 +4,12 @@
 
 	Si al método no se le proporciona un estimado inicial, como se muestra en el código \ref{lst:bubbletemperature} entonces la clase realiza la estimación de la temperatura como se muestra en la figura \ref{fig:bubbletemperatureEstimate}. 
 
-	\begin{lstlisting}[label={lst:bubbletemperatureWithEstimate},caption={Cálculo de la temperatura de burbuja proporcionando un estimado inicial.}]
-
+	\begin{lstlisting}[label={lst:bubbletemperatureWithEstimate},caption={Cálculo de la temperatura de burbuja proporcionando el estimado inicial de temperatura y de las fracciones molares del vapor.}]		
 		heterogeneousMixture.setZFraction(compound1,molarFraction1);
 		//...... asignar la fracción molar para todos los compuestos
 
 		heterogeneousMixture.setPressure(pressure);
-		heterogeneousMixture.bubbleTemperature(temeperatureEstimate);
+		heterogeneousMixture.bubbleTemperature(temeperatureEstimate,vaporEstimatedFractions);
 		double temperature = heterogeneousMixture.getTemperature();
 	\end{lstlisting}
 

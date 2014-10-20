@@ -2,8 +2,8 @@
 	
 	El código \ref{lst:volume} muestra como calcular el volumen molar para una substancia o mezcla homogénea.  
 
-\begin{lstlisting}[label={lst:volume},caption={Cálculo del factor de double volume = cubic.}]
-	double volume = calculateVolume(temperature, pressure, z);
+\begin{lstlisting}[label={lst:volume},caption={Cálculo del volumen molar para una mezcla o substancia homogénea.}]
+	double volume = homogeneous.calculateMolarVolume();
 \end{lstlisting}
 	
 	En la figura \ref{fig:volume} se muestra la relación que tiene el volumen con el factor de compresibilidad a diferentes temperaturas y presiones.
@@ -27,5 +27,5 @@
 	\end{axis}
 	\end{tikzpicture}
 \end{tabular}
-\caption{Relación entre el factor de compresibilidad y el volumen}\label{fig:volume}
+\caption{Izquierda: Diagrama tridimensional 'Factor de compresibilidad'-'volumen reducido'-'presión reducida'. Derecha:'Factor de compresibilidad'-'volumen reducido'. Ambas figuras calculadas con la ecuación de Van Der Waals para el heptano}\label{fig:volume}
 \end{figure}

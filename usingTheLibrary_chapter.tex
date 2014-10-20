@@ -4,7 +4,7 @@
 
 	El principal propósito de la biblioteca Materia es realizar el cálculo de propiedades termodinámicas usando ecuaciónes de estado cúbicas. Para cumplir con este propósito distintos modelos se han implementado para realizar el cálculo de los parámetros $a$ y $b$. Este trabajo no pretende explicar los modelos usados, ni su obtención, sin embargo en el apéndice \ref{chap:appendixEquations} se muestran las ecuaciones de algunos de los modelos implementados. 
 		
-	La clase `Cubic' realiza cálculos de presión, fugacidad, factor de compresibilidad y adimensionamiento de los parámetros $a$ y $b$, pero no calcula los parámetros $a$ y $b$.Para calcular los parámetos $a$ y $b$ existen las clases `Substance' y `Mixture' que definen el cálculo de los parámetros para un compuesto puro o para una mezcla respectivamente. 
+	La clase `Cubic' realiza cálculos de presión, coeficiente de fugacidad, factor de compresibilidad y adimensionamiento de los parámetros $a$ y $b$, pero no calcula los parámetros $a$ y $b$.Para calcular los parámetos $a$ y $b$ existen las clases `Substance' y `Mixture' que definen el cálculo de los parámetros para un compuesto puro o para una mezcla respectivamente. 
 
 	Las clases `Substance' y `Mixture' tienen en común los métodos `calculate\_a\_cubicParameter', `calculate\_b\_cubicParameter', ademas de otros que se condensan en la clase `Homogeneous'.La clase `Homogeneous' utiliza los cálculos de los parámetros de la ecuación cúbica y la clase cúbic para finalmente realizar el cálculo de la fugacidad, presión ,factor compresibilidad, entalpía, entropía y energía libre de Gibbs.
 
@@ -14,7 +14,7 @@
 	Las secciones del capítulo:
 	\begin{itemize}
 		\item{Sección} \ref{sec:units} Se definen las unidades que se emplearán durante todo el capítulo.
-		\item{Sección} \ref{sec:cubic}  La clase `Cubic' realiza cálculos de presión, fugacidad, factor de compresibilidad y volumen molar.
+		\item{Sección} \ref{sec:cubic}  La clase `Cubic' realiza cálculos de presión, coeficiente de fugacidad, factor de compresibilidad y volumen molar.
 		\item{Sección} \ref{sec:compounds} La clase `Compound' para definir y utilizar las propiedades del compuesto puro dentro de la librería.
 		\item {Sección} \ref{sec:parameters} La clase `Homogeneous' y sus implementaciones `Substance' y `Mixture' para calcular los parámetros de la ecuación cúbica.
 		\item {Sección} \ref{sec:homogeneous} La clase `Homogeneous' para realizar cálculos de entalpía, entropía y energía libre de Gibbs.

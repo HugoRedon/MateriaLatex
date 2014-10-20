@@ -4,7 +4,7 @@
 	double pressure = homogeneous.calculatePressure(temperature, volume);
 	\end{lstlisting}
 
-	Como ya se mencionó antes el objeto `Homogeneous' del código \ref{lst:pressureCalculation} puede ser del tipo `Substance' o `Mixture'.
+	Como ya se mencionó antes el objeto `Homogeneous' del código \ref{lst:pressureCalculation} puede ser una substancia o una mezcla.
 
  	En la figura \ref{fig:cubicPressureDiagrams} se muestra un ejemplo de uso del cálculo para realizár gŕaficas de presión.
 
@@ -12,7 +12,7 @@
 	\begin{tabular}{c c}
 		\begin{tikzpicture}
 		\begin{axis}[width= 0.45 \linewidth,font=\footnotesize,
-		xlabel = {Volumen molar $[\frac{m^3}{kg}]$},
+		xlabel = {Volumen molar $[\frac{m^3}{kmol}]$},
 		ylabel = {Presión $[Pa]$}]
 		\addplot[blue]table{plotdata/pressurevolume.dat};
 		\end{axis}
@@ -20,7 +20,7 @@
 		&
 		\begin{tikzpicture}
 		\begin{axis}[width= 0.45 \linewidth,,font=\footnotesize,
-		xlabel={Volumen molar $[\frac{m^3}{kg}]$},
+		xlabel={Volumen molar $[\frac{m^3}{kmol}]$},
 		zlabel={Presión $[Pa]$},
 		ylabel={Temperatura $[K]$}]
 		\addplot3[surf,

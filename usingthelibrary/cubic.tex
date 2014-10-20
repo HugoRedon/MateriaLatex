@@ -5,10 +5,10 @@
 		\item Presión
 		\item Factor de compresibilidad
 		\item Volumen molar
-		\item Fugacidad
+		\item coeficiente de fugacidad
 	\end{itemize}
 
-	Cualquier ecuación de estado cúbica se puede crear dentro de la librería \Materia usando los métodos `get' y `set' de la clase `Cubic', ver la sección \ref{subsec:cubicCreation}, pero para comodidad se han definido las ecuaciones de la tabla \ref{tab:cubics} para accederse a través de la clase `EquationsOfState'.
+	Cualquier ecuación de estado cúbica se puede crear dentro de la librería \Materia usando los métodos `get' y `set' de la clase `Cubic', ver la sección \ref{subsec:cubicCreation}, pero para comodidad se ha definido la clase `EquationsOfState' para acceder fácilmente a las ecuaciones predefinidas que se muestran en la tabla \ref{tab:cubics}.
 
 	\begin{table}[!h]
 		\centering
@@ -52,11 +52,11 @@
 \subsection{Cálculos con la ecuación cúbica}
 	Ya que la clase `Cubic' no realiza los cálculos de sus parámetros estos deben ser proporcionados como argumento de los métodos.
 
-	Los métodos de la clase `Cubic' raramente será necesario usarlos directamente, ya que es dificil obtener el cálculo de los parámetros $a$ y $b$. La clase `Homogeneous' define el cálculo de los parámetros y utiliza a la clase `Cubic' como se muestra en las siguientes secciones.
+	Raramente será necesario usar los métodos de la clase `Cubic' directamente, ya que es dificil obtener el cálculo de los parámetros $a$ y $b$. La clase `Homogeneous' y sus implementaciones resuelven el cálculo de los parámetros $a$ y $b$, ver sección \ref{sec:parameters}. En esta sección se muestra el uso de la clase `Cubic' proporcionando como argumento los parámetros de la ecuación de estado cúbica.
 
 	\subsubsection{Presión}
 	El cálculo en el método `calculatePressure' se realiza según la ecuación \ref{eq:pressure} y se utiliza como se muestra en el código \ref{lst:cubicpressure}.
-\begin{lstlisting}[label={lst:cubicpressure},caption={Cálculo de presión con una ecuación de estado cúbica, proporcionando como argumento la temperatura, el volumen y los parámetros $a$,$b$}]
+\begin{lstlisting}[label={lst:cubicpressure},caption={Cálculo de presión con una ecuación de estado cúbica, proporcionando como argumento la temperatura, el volumen y los parámetros $a$ y $b$}]
 	 double pressure =  cubic.calculatePressure(temperature, volume, a, b);
 \end{lstlisting}
 	\subsubsection{Factor de compresibilidad}
@@ -71,11 +71,11 @@
 \end{lstlisting}
 	\subsubsection{Volumen molar}
 
-	La ecuación \ref{eq:volume} proporciona un método para calcular el volume molar a partir del factor de compresibilidad. El código \ref{lst:cubicvolume} muestra el método.
+	La ecuación \ref{eq:volume} proporciona un método para calcular el volumen molar a partir del factor de compresibilidad. El código \ref{lst:cubicvolume} muestra el método.
 \begin{lstlisting}[label={lst:cubicvolume},caption={Cálculo del volumen molar usando una ecuación de estado cúbica, el método recibe los parámetros de temperatura, presión y factor acéntrico}]
 	double volume = calculateVolume(temperature, pressure, z);
 \end{lstlisting}	
-	\subsubsection{Fugacidad}
+	\subsubsection{Coeficiente de fugacidad}
 	La fugacidad se calcúla segun la ecuación \ref{eq:fugacity}.Para realizar el cálculo de la fugaciad es necesario conocer las derivadas de los parámetros con respecto a la cantidad de moles del componente i, es decir al componente para el cúal se desea realizar el cálculo de fugacidad. El cálculo de la derivada de los parámetros se realiza en las clases que hereden a `Homogeneous', por ejemplo las clases `Substance' y `Mixture'.
 	El método se usa como se indica en el código \ref{lst:fugacity}.
 \begin{lstlisting}[label={lst:fugacity},caption={Cálculo de fugacidad usando una ecuación de estad cúbica, el método recibe los parámetros de temperatura, presión ,los parámetros de la ecuación cúbica $a$ y $b$, las derivadas con respecto a la cantidad de moles $partial\_a$, $partial\_b$ y finalmente la fase a la que se desea el cálculo de la fugacidad.}]

@@ -1,6 +1,6 @@
 \section{Materia Heterogénea}\label{sec:heterogeneous}
 
-	La clase `Heterogeneous' se encarga de los cálculos de equilibrio entre las fases líquido y vapor. La clase contiene dos instancias de la clase `Homogeneous' que representan a la fase líquida y a la fase vapor. La clase implementa los algoritmos numéricos para igualar los cálculos de la fugacidad entre las fases.
+	La clase `Heterogeneous' se encarga de los cálculos de equilibrio entre las fases líquido y vapor. La clase contiene dos objetos del tipo `Homogeneous' que representan a la fase líquida y a la fase vapor. La clase implementa los algoritmos numéricos para igualar los cálculos de la fugacidad entre las fases.
 
 	Los cálculos de equilibrio que se implementan en este trabajo son:
 
@@ -8,8 +8,8 @@
 
 		\item Substancias
 			\begin{itemize}\itemsep0ex
-				\item Temperatura de saturación.
-				\item Presión de saturación.
+				\item Temperatura de saturación.\ref{subsec:saturationtemperature}
+				\item Presión de saturación.\ref{subsec:saturationpressure}
 			\end{itemize}
 
 		\item Mezclas
@@ -36,9 +36,22 @@
 
 	Los cálculos de la presente sección se realizan de forma muy similar, primero indicando la variable conocida con el método `set', después invocando el método que realiza el algoritmo para conocer la incognita (el método puede recibir o no un estimado inicial) y finalmente obtener el resultado de la variable con el método `get'.
 
-	Cada sección muestra el uso de la librería con fragmentos de código que realizan el cálculo con y sin el estimado inicial. También se indica que método se usa para estimar la varible incognita en caso de no proporcionar un estimado inicial.
+	Cada sección muestra el uso de la librería con fragmentos de código que realizan el cálculo con y sin el estimado inicial. También se indica el método empleado para estimar la varible incognita en caso de no proporcionar un estimado inicial.
 
 	Todos los diagramas de los algoritmos se muestran en el apéndice \ref{chap:algorithms}.
+
+	La librería \Materia intenta evitar usar clases que no tengan relación con conceptos de termodinámica o de ingeniería química, sin embargo para los siguientes métodos es necesario utilizar otro tipo de clase para indicar los estimados de las fracciones molares de las mezclas. Para indicar las fracciones mol de cada compuesto se utiliza el objeto 'Map<String,Double>' que relaciona el nombre del compuesto con el valor de la fracción molar. Típicamente el estimado de las fracciones se debe guardar entre cambios de temperatura o presión en cálculos de rocío o de burbuja, para evitar la divergencia de los métodos numéricos al acercarse a la región del punto crítico. Para guardar las fracciones molares de una mezcla homogénea se utilza el método 'getFractions()' que devuelve un objeto del tipo 'Map<String,Double>'. Esta clase solo es necesaria para los cálculos en mezclas heterogéneas. El código \ref{lst:estimatedFractions} muestra como guardar las fracciones del líquido o del vapor para ser usadas como estimados iniciales de los próximos cálculos de equilibrio.
+
+
+	\begin{lstlisting}[caption={Para guardar las fracciones molares del líquido o del vapor en un objeto del tipo 'Map<String,Double>' que se usará en los métodos de presión y temperatura de equilibrio} ,label={lst:estimatedFractions}}
+		Map<String,Double> liquidFractions = 
+					heterogeneousMixture.getLiquid().getFractions();
+
+		Map<String,Double> vaporFractions = 
+					heterogeneousMixture.getVapor().getFractions();
+		
+	\end{lstlisting}
+
 		
 \input{usingthelibrary/saturationTemperature}%hecho
 \input{usingthelibrary/saturationPressure}%hecho

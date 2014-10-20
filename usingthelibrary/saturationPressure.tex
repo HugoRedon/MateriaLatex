@@ -32,7 +32,9 @@
 \begin{figure}[!h]
 	\centering
 	\begin{tikzpicture}
-	\begin{axis}[view/h=-165,xlabel={\temperature},ylabel={\molarVolume},zlabel=\pressure]
+	\begin{axis}[view/h=-165,xlabel={\temperature},ylabel={\molarVolume},zlabel=\pressure,colorbar,
+					colorbar style={ylabel=Temperatura (K),
+					 							title=Código de color}]
 	\addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=liquidVolume, z=pressure]{plotdata/heterogeneous/et.dat};
 	\addplot3[surf,point meta=explicit]table[meta=temperature, x=temperature , y=vaporVolume, z=pressure]{plotdata/heterogeneous/et.dat};
 	\end{axis}

@@ -21,7 +21,7 @@ Esta estructura se muestra en laf figura \ref{fig:homogeneousCalculations}
 Nótese de la figura \ref{fig:homogeneousCalculations} los siguiente:
 \begin{itemize}\itemsep0ex
 	\item Que la clase `Homogeneous' contiene una ecuación del tipo `Cubic'.
- 	\item Que las clases `Substance' y `Mixture' heredan las propiedades de la clase `Homogenous', como la ecuación cúbica, y puede hacer uso de ella.
+ 	\item Que las clases `Substance' y `Mixture' heredan las propiedades de la clase `Homogenous', como la ecuación cúbica, y pueden hacer uso de ella.
 
 \end{itemize}
 
@@ -38,7 +38,7 @@ Nótese de la figura \ref{fig:homogeneousCalculations} los siguiente:
 
 Como se muestra en la figura \ref{fig:homogeneousCalculations} la clase `Substance' continene una expresión de $\alpha$, y una ecuación de estado, necesarias para realizar el cáculo de los parámetros, segun las ecuaciones \ref{eq:a} y \ref{eq:b}. 
 
-La expresión de $\alpha$ puede ser una función de la temperatura, las expresiones implementadas en el presente trabajo se muestran en la tabla \ref{tab:alphas}.
+La expresión de $\alpha$ puede ser función de la temperatura, las expresiones implementadas en el presente trabajo se muestran en la tabla \ref{tab:alphas}.
 
 \begin{table}[!h]
 	\centering
@@ -66,7 +66,7 @@ La expresión de $\alpha$ puede ser una función de la temperatura, las expresio
 \end{table}
 \subsubsection{Creación de un objeto tipo `Substance'}\label{subsub:substanceCreation}
 
-Es necesario utilizar el método constructor de la clase `Substance' para crear un objeto de este tipo, se debe proporcionar como parámetros la ecuación de estado deseada, la expresión de $\alpha$, una instancia de la clase `Compound' como se muestra en la sección \ref{sec:compounds} y la fase de la substancia.
+Es necesario utilizar el método constructor de la clase `Substance' para crear un objeto de este tipo, se debe proporcionar como parámetros la ecuación de estado deseada, la expresión de $\alpha$, una instancia de la clase `Compound' como se mostró en la sección \ref{sec:compounds} y la fase de la substancia.
 
 En la sección \ref{subsec:cubicCreation} se mostró como crear una ecuación de estado cúbica previamente definida, a través de la clase `EquatiosOfState'. Los valore de $\Omega_a$ y $\Omega_b$ se muestran en la tabla \ref{tab:cubics}. De forma muy similar al de las ecuaciońes de estado, la selección de la expresión de $\alpha$ se realiza a través de la clase `Alphas'.
 

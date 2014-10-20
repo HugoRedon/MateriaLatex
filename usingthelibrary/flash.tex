@@ -1,7 +1,9 @@
 \subsection{Flash}\label{subsec:flash}
 
 
-	El cálculo del flash temperatura-presión se realiza como se indica en la figura \ref{fig:flash}. Usando un objeto del tipo `HeterogeneousMixture' de la librería \Materia el cálculo se realiza como se muestra en el fragmento de código \ref{lst:flash} .
+	El cálculo del flash temperatura-presión se realiza como se indica en la figura \ref{fig:flash}. Usando un objeto del tipo `HeterogeneousMixture' de la librería \Materia el cálculo se realiza como se muestra en el fragmento de código \ref{lst:flash}.
+
+	Si no se proporcionan las fracciones molares del líquido y del vapor, entonces estas son estimadas usando la presión de vapor según el factor acéntrico, y con un valor $vF = 0.5$.
 
 \begin{lstlisting}[label={lst:flash},caption={Cálculo del flash temperatura-presión.}]
 
@@ -10,6 +12,22 @@
 	//...... 
 
 	double vF = heterogeneousMixture.flash(temperature,pressure);
+
+	//leer las fracciones del vapor y del liquido para todos los compuestos
+	double x1 = heterogeneousMixture.getLiquid()
+					.getReadOnlyFractions().get(compound1);
+	double y1 = heterogeneousMixture.getVapor()
+					.getReadOnlyFractions().get(compound1);
+	//.....
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:flashWithEstimate},caption={Cálculo del flash temperatura-presión proporcionando estimados iniciales}]
+
+	//asignar la fraccion molar para todos los compuestos
+	heterogeneousMixture.setZFraction(compound1,molarFraction1);
+	//...... 
+
+	double vF = heterogeneousMixture.flash(temperature,pressure,vaporFractions,liquidFractions,vF);
 
 	//leer las fracciones del vapor y del liquido para todos los compuestos
 	double x1 = heterogeneousMixture.getLiquid()
