@@ -14,12 +14,16 @@
 			\end{itemize}
 		\item{Gráficas}
 			\begin{itemize}
-				\item \nameref{subsec:pvt}
-				\item \nameref{subsec:zpt}
-				\item \nameref{subsec:fpt}
-				\item \nameref{subsec:tep}
-				\item \nameref{subsec:tsp}
-				\item \nameref{subsec:tgp}
+				\item \nameref{subsec:pvt} \ref{subsec:pvt}
+				\item \nameref{subsec:zpt} \ref{subsec:zpt}
+				\item \nameref{subsec:fpt} \ref{subsec:fpt}
+				\item {A partir del envolvente de fases}
+				\begin{itemize}
+					\item {Envolvente de fases} \ref{subsec:envelope}
+					\item \nameref{subsec:tep} \ref{subsec:tep}
+					\item \nameref{subsec:tsp} \ref{subsec:tsp}
+					\item \nameref{subsec:tgp} \ref{subsec:tgp}
+				\end{itemize}
 				% \item \nameref{subsec:tpv}
 			\end{itemize}
 		\item{Estimación de parámetros}
@@ -29,6 +33,8 @@
 			\end{itemize}
 	\end{itemize}
 
+	La página de internet contiene las instrucciones con mas detalle en la página de inicio.
+
 \section{Selección de compuestos puros}\label{sec:webCompounds}
 
 	La página de internet dispone de la base de datos ChemSep v6.96 derechos de autor  Harry Kooijman y Ross Taylor (2013) bajo la licencia `Artistic License': \url{ http://www.perlfoundation.org/artistic_license_2_0}.
@@ -37,7 +43,7 @@
 
 	Para agregar un compuesto de la lista basta con dar click en el boton `Agregar' junto al nombre del compuesto. En la tabla a la derecha de la página se muestran los compuestos agregados. Ver la figura \ref{fig:pureCompounds}.
 
-	\begin{figure}[!h]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.34]{pureCompounds.png}
 		\caption{Formulario para seleccionar y cargar compuestos puros en la página de internet}
@@ -52,13 +58,13 @@
 
 	La figura \ref{fig:substanceCreator} muestra la interfaz de usuario para la creación de substancias. La figura \ref{fig:substanceProperties} muestra las propiedades de la substancia creada.
 
-	\begin{figure}[!h]
+	\begin{figure}[H]
 		\includegraphics[scale=0.3]{substanceCreator.png}
 		\caption{Formulario para crear substancias en la página de internet}
 		\label{fig:substanceCreator}
 	\end{figure}
 
-	\begin{figure}[!h]
+	\begin{figure}[H]
 		\includegraphics[scale=0.3]{substanceProperties.png}
 		\caption{Página que muestra las propiedades de la substancia recien creada}
 		\label{fig:substanceProperties}
@@ -70,7 +76,7 @@
 
 	El formulario permite elegir la ecuación cúbica, la fase ,la regla de mezclado, permite elegir cada compuesto, definir su expresión de $\alpha$ y su fración molar. Ver figura \ref{fig:webMixCreator}.
 
-	\begin{figure}[!h]
+	\begin{figure}[H]
 		\includegraphics[scale=0.3]{mixtureCreator.png}
 		\caption{Formulario para la creación de mezclas}
 		\label{fig:webMixCreator}
@@ -82,18 +88,17 @@
 
 	Las secciónes de gráficos dividen el recuadro derecho de forma horizontal, en la parte superior se localizan los controles de las gráficas, y en la parte inferior la gŕafica tridimensional.
 
-	En esta sección estan disponibles las substancias y mezclas creadas anteriormente, basta con dar click en la caja tipo `combobox' y selecciónar el sistema, esto es igual para todas las gráficas de la sección.
+	En esta sección estan disponibles las substancias y mezclas creadas anteriormente, basta con dar click en la caja tipo `combobox' y seleccionar el sistema, esto es igual para todas las gráficas de la sección.
 
 	En algunas gráficas se muestran los resultados de la fase líquida y vapor sin importar la fase seleccionada en el momento de la creación del sistema.
 
 	\subsection{Presión-Volumen-Temperatura}\label{subsec:pvt}
-		En este tipo de gráfica no se involucra la fase del sistema. 
+		En este tipo de gráfica no se involucra la fase del sistema seleccionada previamente. 
 
 		La sección de controles permite elegir el rango del volumen molar y el rango de temperatura.
 		
-		El propósito de la figura \ref{fig:press} es observar los puntos de inflexión característicos de las ecuaciones cúbicas, en el caso que ellos se encuentren dentro del dominio seleccionado.
-
-		\begin{figure}[!h]
+		La figura \ref{fig:press} muestra el diagrama tridimensional presión-volumen-temperatura creado en la página de internet.
+		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterPressurePlot.png}
 			\caption{Gráfica de presión-volumen-temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresion de $\alpha$ de Stryjek and Vera que esta cargada por default. El rango de volumen: $0.26-1.2 [\frac{m^3}{kmol}]$ y temperatura:$400-700[K]$ }
 			\label{fig:press}
@@ -104,7 +109,7 @@
 		Esta gráfica depende de la fase seleccionada para el sistema.
 
 		Semejante a la sección anterior se debe determinar un rango de presión y temperatura. La figura \ref{fig:zplot} muestra el efecto en tercera dimensión.
-		\begin{figure}[!h]
+		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterZPlot.png}
 			\caption{Gŕafica de z(Factor de compresibilidad)-Presión-Temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresiónde $\alpha$ Stryjek and Vera.}
 			\label{fig:zplot}
@@ -117,42 +122,53 @@
 
 		La línea de equilibrio (Intersección de los planos) puede aparecer o no, dependiendo del dominio elegido.
 
-		\begin{figure}[!h]
+		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterFugacityPlot.png}
 			\caption{Gŕafica de Fugacidad-Presión-Temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
 			\label{fig:fugplot}
 		\end{figure}
-	\subsection{Temperatura-Entalpía-Presión}\label{subsec:tep}
 
-		En esta y las siguientes gŕaficas se dibujan dos tipos de regiones, la región de dos fases que se identifica con un color rojo y la región de una fase que se identifica con un color azul.
+	\subsection{A partir del envolvente de fases}\label{subsec:envelope}
+		Para crear los siguientes diagramas es necesario calcular el envolvente de fases y a partir de éste se calculan las demás propiedades.
 
-		En estas gráfica no se debe determinar el rango, ya que este se calcula con los puntos críticos y la diferencia de propiedades en las regiones de dos fases. 
+	\subsubsection{Envolvente de fases}
+		Para crear el envolvente basta con elegir el sistema deseado y dar click en el botón. En el diagrama se muestra el envolvente de todas las substancias y el de la mezcla. ver la figura \ref{fig:envelope}
+		\begin{figure}[H]
+			\includegraphics[scale=0.3]{envelope.png}
+			\caption{Gráfica del envolvente de fases Presión-Temperatura para el sistema  agua metanol con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
+			\label{fig:envelope}
+		\end{figure}
+
+	\subsubsection{Temperatura-Entalpía-Presión}\label{subsec:tep}
+		Una vez calculado el envolvente de fases las propiedades se calculan para la fase vapor y la fase líquida.
+
+		En esta gráfica no se debe determinar el rango, ya que éste se calculó en el envolvente de fases.
 
 		Podemos ver la forma de la gráfica en la figura \ref{fig:hplot}.
 
-		\begin{figure}[!h]
+		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterEnthalpyPlot.png}
 			\caption{Gráfica de Temperatura-Entalpía-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
 			\label{fig:hplot}
 		\end{figure}
-	\subsection{Temperatura-Entropía-Presión}\label{subsec:tsp}	
+	\subsubsection{Temperatura-Entropía-Presión}\label{subsec:tsp}	
 		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterEntropyPlot.png}
 			\caption{Gráfica de Temperatura-Entropía-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ Stryjek y Vera}
 			\label{fig:splot}
 		\end{figure}
-	\subsection{Temperatura-Gibbs-Presión}\label{subsec:tgp}
+	\subsubsection{Temperatura-Gibbs-Presión}\label{subsec:tgp}
 		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterEGPlot.png}
 			\caption{Gráfica de Temperatura-(Energía libre de Gibbs)-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ de Stryjek y Vera}
 			\label{gplot}
 		\end{figure}
-	\subsection{Temperatura-Presión-Volumen}\label{subsec:tpv}
-		\begin{figure}[H]
-			\includegraphics[scale=0.3]{waterVolumePlot.png}
-			\caption{Gráfica de Temperatura-Presión-Volumen molar para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ de Stryjek y Vera}
-			\label{vplot}
-		\end{figure}
+	% \subsection{Temperatura-Presión-Volumen}\label{subsec:tpv}
+	% 	\begin{figure}[H]
+	% 		\includegraphics[scale=0.3]{waterVolumePlot.png}
+	% 		\caption{Gráfica de Temperatura-Presión-Volumen molar para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ de Stryjek y Vera}
+	% 		\label{vplot}
+	% 	\end{figure}
 	
 	
 \section{Estimación de parámetros de $\alpha$}\label{sec:webAlphaOptim}
