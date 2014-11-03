@@ -7,7 +7,7 @@
  	\begin{itemize}\itemsep0ex
  		\item{Expresiones de $\alpha$}
  		\item{Reglas de Mezclado}
- 		\item{Modelos de actividad} 		
+ 		\item{modelos de coeficientes de actividad} 		
  		\item{Ecuaciones de capacidad calorífica} 		
  	\end{itemize}
 
@@ -18,7 +18,7 @@
 
  		\begin{itemize}\itemsep0ex
  			\item El cálculo de la expresión para una temperatura y un compuesto puro.
- 			\item El cálculo de la derivada de la expresión con respecto a la temperatura, en específico la librería necesita el cálculo de la siguiente expresión.
+ 			\item El cálculo de la derivada de la expresión con respecto a la temperatura. La librería necesita el cálculo de la siguiente expresión.
 
  			\begin{equation}
  				\frac{T \partial \alpha}{\alpha \partial T}
@@ -36,9 +36,9 @@
 
 	Todos los métodos mencionados anteriormente se declaran en la clase abstracta `Alpha' y necesitan ser definidos en la nueva clases. 
 
-	La nueva clase deberá heredar a la clase abstracta `Alpha', y definir los métodos abstractos de ella. 
+	La nueva clase deberá heredar de la clase abstracta `Alpha' los métodos definidos en ella.
 
-	Los ambientes de desarrollo como Netbeans o Eclipse pueden generar lo necesario para definir una nueva expresión de $\alpha$. El código \ref{lst:newAlphaCode} muestra la nueva clase `NewAlphaExpresion' que hereda a la clase `Alpha' y define los métodos abstractos.
+	Los ambientes de desarrollo como Netbeans o Eclipse pueden generar el código necesario para definir una nueva expresión de $\alpha$. El código \ref{lst:newAlphaCode} muestra la nueva clase `NewAlphaExpresion' que hereda de la clase `Alpha' y define los métodos abstractos de 'Alpha'.
 
 
 	\begin{lstlisting}[caption={Esqueleto para la creación de una nueva expresión de $\alpha$ para la librería materia, generado con el ambiente de desarrollo Eclipse},label={lst:newAlphaCode}]
@@ -190,11 +190,11 @@ public class NewMixingRule extends MixingRule {
 
 	\end{lstlisting}
 
-\section{Creación de nuevos modelos de Actividad}\label{sec:newActivityModels}
+\section{Creación de nuevos modelos de coeficientes de actividad}\label{sec:newActivityModels}
 
-	Para las reglas de mezclado basadas en la energía libre de Gibbs son necesarios los modelos de actividad, y en la librería Materia es posible crear nuevos modelos.
+	Para las reglas de mezclado basadas en la energía libre de Gibbs son necesarios los modelos de coeficientes de actividad, y en la librería Materia es posible crear nuevos modelos.
 
-	La clase abstracta `ActivityModel' declara los métodos necesarios para los modelos de actividad.
+	La clase abstracta `ActivityModel' declara los métodos necesarios para los modelos de coeficientes de actividad.
 
 	\begin{itemize}
 		\item El cálculo del coeficiente de actividad.
@@ -202,7 +202,7 @@ public class NewMixingRule extends MixingRule {
 		\item El cálculo de la derivada de la energía libre de Gibbs con respecto a la temperatura.
 	\end{itemize}
 
-	Los modelos de actividad también tienen parámetros que se pueden estimar, pero para los modelos actualmente creados se ha utilizado la expresión de $\tau$ :
+	Los modelos de coeficientes de actividad también tienen parámetros que se pueden estimar, pero para los modelos actualmente creados se ha utilizado la expresión de $\tau$ :
 
 	\begin{equation}
 		\tau = \frac{a_{ij} + b_{ij} T}{R T}

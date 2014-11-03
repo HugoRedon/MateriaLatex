@@ -72,7 +72,7 @@
 
 \section{Creación de Mezclas}\label{sec:webMixtureCreator}
 
-	En la sección `Creación' - `Mezcla' se permite crear materia con multiples compuestos, solo aquellas mezclas que contengan dos compuestos estarán disponibles en la sección de estimación de parámetros binarios \ref{sec:webBinaryOptim}.
+	En la sección `Creación' - `Mezcla' se permite crear mezclas con varios compuestos.Para la sección de estimación de parámetros binarios \ref{sec:webBinaryOptim} solo estarán disponibles aquellas mezclas que contengan dos compuestos.
 
 	El formulario permite elegir la ecuación cúbica, la fase ,la regla de mezclado, permite elegir cada compuesto, definir su expresión de $\alpha$ y su fración molar. Ver figura \ref{fig:webMixCreator}.
 
@@ -92,7 +92,7 @@
 
 	En algunas gráficas se muestran los resultados de la fase líquida y vapor sin importar la fase seleccionada en el momento de la creación del sistema.
 
-	\subsection{Presión-Volumen-Temperatura}\label{subsec:pvt}
+	\subsection{Gráficos Presión-Volumen-Temperatura}\label{subsec:pvt}
 		En este tipo de gráfica no se involucra la fase del sistema seleccionada previamente. 
 
 		La sección de controles permite elegir el rango del volumen molar y el rango de temperatura.
@@ -103,7 +103,7 @@
 			\caption{Gráfica de presión-volumen-temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresion de $\alpha$ de Stryjek and Vera que esta cargada por default. El rango de volumen: $0.26-1.2 [\frac{m^3}{kmol}]$ y temperatura:$400-700[K]$ }
 			\label{fig:press}
 		\end{figure}
-	\subsection{Z-Presión-Temperatura}\label{subsec:zpt}
+	\subsection{Gráficos Z-Presión-Temperatura}\label{subsec:zpt}
 		Usualmente las gráficas del factor de compresibilidad se crean en dos dimensiones mostrando diferentes temperaturas en el mismo plano y no es posible ver efecto que se tiene a altas temperaturas y presiones.
 
 		Esta gráfica depende de la fase seleccionada para el sistema.
@@ -114,7 +114,7 @@
 			\caption{Gŕafica de z(Factor de compresibilidad)-Presión-Temperatura para el agua con la ecuación de estado de Peng-Robinson y la expresiónde $\alpha$ Stryjek and Vera.}
 			\label{fig:zplot}
 		\end{figure}
-	\subsection{Fugacidad-Presión-Temperatura}\label{subsec:fpt}
+	\subsection{Gráficos Fugacidad-Presión-Temperatura}\label{subsec:fpt}
 
 		En esta gráfica se dibujan las curvas de fugacidad para las dos fases, para el líquido (rojo) y el vapor (azul).
 
@@ -128,19 +128,19 @@
 			\label{fig:fugplot}
 		\end{figure}
 
-	\subsection{A partir del envolvente de fases}\label{subsec:envelope}
-		Para crear los siguientes diagramas es necesario calcular el envolvente de fases y a partir de éste se calculan las demás propiedades.
+	\subsection{Gráficos a partir del envolvente de fases}\label{subsec:envelope}
+		Para crear los siguientes diagramas es necesario calcular la envolvente de fases y a partir de éste se calculan las demás propiedades.
 
 	\subsubsection{Envolvente de fases}
-		Para crear el envolvente basta con elegir el sistema deseado y dar click en el botón. En el diagrama se muestra el envolvente de todas las substancias y el de la mezcla. ver la figura \ref{fig:envelope}
+		Para crear la envolvente basta con elegir el sistema deseado y dar click en el botón. En el diagrama se muestra la envolvente de la mezcla y se agregan las curvas de Presión de vapor-Temperatura de los compuestos puros, ver la figura \ref{fig:envelope}
 		\begin{figure}[H]
 			\includegraphics[scale=0.3]{envelope.png}
 			\caption{Gráfica del envolvente de fases Presión-Temperatura para el sistema  agua metanol con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
 			\label{fig:envelope}
 		\end{figure}
 
-	\subsubsection{Temperatura-Entalpía-Presión}\label{subsec:tep}
-		Una vez calculado el envolvente de fases las propiedades se calculan para la fase vapor y la fase líquida.
+	\subsubsection{Gráficos Temperatura-Entalpía-Presión}\label{subsec:tep}
+		Una vez calculado la envolvente de fases las propiedades se calculan para la fase vapor y la fase líquida.
 
 		En esta gráfica no se debe determinar el rango, ya que éste se calculó en el envolvente de fases.
 
@@ -151,13 +151,13 @@
 			\caption{Gráfica de Temperatura-Entalpía-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ stryjek y Vera}
 			\label{fig:hplot}
 		\end{figure}
-	\subsubsection{Temperatura-Entropía-Presión}\label{subsec:tsp}	
+	\subsubsection{Gráficos Temperatura-Entropía-Presión}\label{subsec:tsp}	
 		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterEntropyPlot.png}
 			\caption{Gráfica de Temperatura-Entropía-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ Stryjek y Vera}
 			\label{fig:splot}
 		\end{figure}
-	\subsubsection{Temperatura-Gibbs-Presión}\label{subsec:tgp}
+	\subsubsection{Gráficos Temperatura-Gibbs-Presión}\label{subsec:tgp}
 		\begin{figure}[H]
 			\includegraphics[scale=0.3]{waterEGPlot.png}
 			\caption{Gráfica de Temperatura-(Energía libre de Gibbs)-Presión para el agua con la ecuación de estado de Peng-Robinson y la expresión de $\alpha$ de Stryjek y Vera}
