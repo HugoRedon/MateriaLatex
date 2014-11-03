@@ -150,7 +150,7 @@
 
 \begin{figure}[!h]\centering
 	\begin{tikzpicture}
-	\begin{axis}[width=0.75\linewidth,view/h=80,zmax=614983.3952123278,xlabel={A},ylabel={B},zlabel={Error total},legend entries={,Trayectoria de la estimación}]
+	\begin{axis}[width=0.75\linewidth,view/h=40,zmax=614983.3952123278,xlabel={A},ylabel={B},zlabel={Error total},legend entries={,Trayectoria de la estimación},zmode=log]
 	\addplot3[surf]table{plotdata/alphaOptimization/params.dat};
 	\addplot3[black,smooth,line width=1pt]table[x=a,y=b,z=error]{plotdata/alphaOptimization/trayectory.dat};
 	\end{axis}
