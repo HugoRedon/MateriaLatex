@@ -40,6 +40,8 @@
 
 	Los ambientes de desarrollo como Netbeans o Eclipse pueden generar el código necesario para definir una nueva expresión de $\alpha$. El código \ref{lst:newAlphaCode} muestra la nueva clase `NewAlphaExpresion' que hereda de la clase `Alpha' y define los métodos abstractos de 'Alpha'.
 
+	La anotación '@Override' significa que la clase en cuestión define los métodos abstractos de la superclase. Para mas información sobre anotaciones en java ver \url{https://docs.oracle.com/javase/tutorial/java/annotations/}.
+
 
 	\begin{lstlisting}[caption={Esqueleto para la creación de una nueva expresión de $\alpha$ para la librería materia, generado con el ambiente de desarrollo Eclipse},label={lst:newAlphaCode}]
 import termo.component.Compound;
